@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff" 
+    android:weightSum="10">
+    
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+	    android:background="#0164B7"
+	    android:orientation="horizontal"
+	    >
+	    
+	    <TextView
+	        android:id="@+id/bind_phone_return"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center_vertical"
+	        android:padding="15dp"
+	        android:text="返回"
+	        android:textColor="#fff"
+	        android:textSize="18sp"
+	        ></TextView>
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center_vertical"
+	        android:layout_marginLeft="10dp"
+	        android:layout_weight="1"
+	        android:text="绑定手机"
+	        android:textColor="#fff"
+	        android:textSize="@dimen/toolbar_textsize"
+	        android:textStyle="bold"
+	        ></TextView>
+	</LinearLayout>
+	
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="9"
+	    android:background="#EEEEEE"
+	    android:orientation="vertical"
+	    android:weightSum="3"
+	    >
+	    
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1"
+	        android:background="#fff"
+	        android:orientation="vertical"
+	        android:padding="15dp"
+	        >
+	        
+	        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:layout_weight="1"
+	            android:gravity="center"
+	            android:padding="10dp"
+	            android:text="已绑定的手机号:     未绑定"
+	            android:textColor="#3191E8"
+	            android:textSize="20sp"
+	            ></TextView>
+	        
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:layout_weight="1"
+	            android:orientation="horizontal"
+	            >
+	            
+	            <EditText
+	                android:id="@+id/phone_input"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1"
+	                android:hint="输入手机号"
+	                android:padding="10dp"
+	                ></EditText>
+	            
+	            <Button
+	                android:id="@+id/waiting_code"
+	                android:layout_width="150dp"
+	                android:layout_height="40dp"
+	                android:layout_gravity="center_horizontal"
+	                android:layout_marginTop="10dp"
+	                android:background="@drawable/bt_bg"
+	                android:text="等待100s"
+	                android:textColor="#3191E8"
+	                ></Button>
+	        </LinearLayout>
+	        
+	        <EditText
+	            android:id="@+id/code_input"
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:layout_weight="1"
+	            android:hint="输入验证码"
+	            android:padding="10dp"
+	            ></EditText>
+	    </LinearLayout>
+	    
+	    <Button
+	        android:id="@+id/bing_phone_comfirm"
+	        android:layout_width="250dp"
+	        android:layout_height="50dp"
+	        android:layout_gravity="center_horizontal"
+	        android:layout_marginTop="10dp"
+	        android:background="@drawable/bt_bg2"
+	        android:text="确定"
+	        android:textColor="#fff"
+	        ></Button>
+	</LinearLayout>
+</LinearLayout>

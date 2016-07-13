@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3191E8" >
+
+    <LinearLayout
+        android:id="@+id/forgetnumber_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+         >
+
+        <ImageButton
+            android:id="@+id/return_to_mainactivity_Btn"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:src="@mipmap/arrow_left_c"
+            android:background="#3191E8"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:text="@string/forget_password"
+            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/toolbar__main_textsize" />
+
+    </LinearLayout>
+
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:paddingTop="@dimen/plate_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/forgetnumber_layout"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/logo" />
+
+    <TextView
+        android:id="@+id/forgetnumber_sendText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:text="配送端"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"/>
+
+
+
+    <RelativeLayout
+        android:id="@+id/phone_layout"
+        android:layout_marginTop="20dp"
+
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/forgetnumber_sendText"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/content_bg">
+        <ImageView
+            android:id="@+id/iv_phone"
+            android:src="@mipmap/phone"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/logo_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kai.distribution.widget.ClearEditText
+            android:id="@+id/forgetnumber_phone_Et"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:layout_marginLeft="8dp"
+            android:gravity="center|left"
+            android:layout_toRightOf="@+id/iv_phone"
+            android:textSize="16sp"
+            android:hint="手机号"
+            android:textColor="@color/textcolor" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/identifynumber_layout"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/phone_layout"
+        android:layout_alignLeft="@+id/phone_layout"
+        android:background="@drawable/content_bg">
+        <ImageView
+            android:id="@+id/iv_identifynumber"
+            android:src="@mipmap/password"
+            android:layout_marginLeft="@dimen/logo_margin"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kai.distribution.widget.ClearEditText
+            android:id="@+id/identifynumber_Et"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:layout_marginLeft="8dp"
+            android:gravity="center|left"
+            android:layout_toRightOf="@+id/iv_identifynumber"
+            android:textSize="16sp"
+            android:hint="验证码"
+            android:textColor="@color/textcolor" />
+
+
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/send_identifynumber_Btn"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+
+        android:background="#003567"
+        android:text="发送验证码"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/forgetnumber_to_next_Btn"
+        android:layout_alignRight="@+id/phone_layout"
+        android:layout_alignEnd="@+id/phone_layout" />
+    <Button
+        android:id="@+id/forgetnumber_to_next_Btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:background="#ffffff"
+        android:text="下一步"
+        android:textColor="#3ea2ce"
+        android:textSize="20dp"
+        android:layout_below="@+id/identifynumber_layout"
+        android:layout_alignLeft="@+id/identifynumber_layout"
+        android:layout_alignStart="@+id/identifynumber_layout"
+        android:layout_alignRight="@+id/send_identifynumber_Btn"
+        android:layout_alignEnd="@+id/send_identifynumber_Btn" />
+
+</RelativeLayout>

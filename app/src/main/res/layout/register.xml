@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#3092e8" >
+
+    <RelativeLayout
+        android:id="@+id/logo_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/plate_main_margin"
+        >
+        <include android:id="@+id/logo"
+            layout="@layout/logo" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/register_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/arrow_left_c" />
+
+    <TextView
+        android:id="@+id/toolbarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/register_back"
+        android:text="认证"
+        android:textColor="#154b81"
+        android:textSize="@dimen/toolbar__main_textsize" />
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/register_number_layout"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/logo_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/content_bg">
+
+        <ImageView
+            android:id="@+id/iv_register_number"
+            android:src="@mipmap/number"
+            android:paddingLeft="@dimen/logo_margin"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kai.distribution.widget.ClearEditText
+            android:id="@+id/register_number"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:layout_marginLeft="@dimen/logo_margin"
+            android:gravity="center|left"
+            android:layout_toRightOf="@+id/iv_register_number"
+            android:textSize="16sp"
+            android:hint="账号"
+            android:textColor="@color/textcolor"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/register_password_layout"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/register_number_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/content_bg">
+
+        <ImageView
+            android:id="@+id/iv_register_password"
+            android:src="@mipmap/star"
+            android:paddingLeft="@dimen/logo_margin"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kai.distribution.widget.ClearEditText
+            android:id="@+id/register_password"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:layout_marginLeft="@dimen/logo_margin"
+            android:gravity="center|left"
+            android:layout_toRightOf="@+id/iv_register_password"
+            android:textSize="16sp"
+            android:hint="姓名"
+            android:textColor="@color/textcolor"
+            />
+    </RelativeLayout>
+
+    <CheckBox
+        android:id="@+id/register_check_agreement"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register_password_layout"
+        android:layout_below="@+id/register_password_layout" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/register_check_agreement"
+        android:layout_alignBottom="@+id/register_check_agreement"
+        android:layout_toRightOf="@+id/register_check_agreement"
+        android:text="我已仔细阅读并同意"
+        android:textSize="15sp"
+        android:textColor="#174c80" />
+
+    <TextView
+        android:id="@+id/agreement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="@string/agreement"
+        android:textColor="#174c80"
+        android:textSize="15sp" />
+
+
+    <Button
+        android:id="@+id/register_yes"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:text="下一步"
+        android:layout_alignLeft="@+id/register_check_agreement"
+        android:layout_below="@+id/register_check_agreement"
+        android:textColor="#46a4d3" />
+
+</RelativeLayout>

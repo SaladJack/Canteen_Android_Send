@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff" >
+	
+    <View
+        android:layout_width="match_parent"	
+        android:layout_height="8dp"
+        android:background="#EEEEEE"
+        ></View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center" >
+	
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+        	android:layout_height="match_parent"
+        	android:background="#EEEEEE"
+            ></View>
+        <TextView
+			android:textSize="17sp"
+			android:paddingLeft="8dp"
+            android:id="@+id/which_area"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:gravity="center|left"
+            android:text="外卖" 
+            android:textColor="#000000"
+            android:drawableLeft="@mipmap/location_on"
+            />
+        
+        <TextView
+            android:id="@+id/which_people"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:layout_gravity="center"
+            android:text="刘同学"
+			android:textSize="17sp"
+            android:textColor="#000000" 
+            android:drawableLeft="@mipmap/ic_phone"/>
+        
+        <LinearLayout
+        	android:layout_width="0dp"
+        	android:layout_height="50dp"
+        	android:orientation="horizontal"
+        	android:layout_weight="1" >
+        <Button
+            android:id="@+id/is_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="外出"
+			android:textSize="16sp"
+			android:padding="3dp"
+            android:textColor="#DD4C5A"
+            android:background="@drawable/bt_bg4"
+            ></Button>
+         </LinearLayout>
+        
+        <RelativeLayout
+        	android:layout_width="0dp"
+        	android:layout_height="50dp"
+        	android:layout_weight="1"
+        	android:orientation="horizontal"
+        	android:gravity="center" >
+        	<Button
+            	android:id="@+id/is_confirm"
+            	android:layout_width="40dp"
+            	android:layout_height="50dp"
+            	android:layout_gravity="center"
+            	android:text="确认送达"
+				android:textSize="16sp"
+				android:padding="2dp"
+            	android:textColor="#fff"
+            	android:visibility="visible"
+            	android:background="@drawable/bt_bg2"
+            ></Button>
+        	<ImageButton
+        	    android:id="@+id/delivered"
+        	    android:layout_width="40dp"
+            	android:layout_height="40dp"
+            	android:layout_gravity="center"
+        	    android:src="@mipmap/checkmark"
+        	    android:visibility="gone"
+        	    android:background="#898989"
+        	    ></ImageButton>
+		</RelativeLayout>
+        	
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+        	android:layout_height="match_parent"
+        	android:background="#EEEEEE"
+            ></View>
+    </LinearLayout>
+	<View
+        android:layout_width="match_parent"	
+        android:layout_height="7dp"
+        android:background="#EEEEEE"
+        ></View>
+    
+</LinearLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3191E8"
+    android:orientation="vertical" >
+
+    <ImageButton
+        android:id="@+id/return_to_ForgetNumberActivity_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:background="#3191E8"
+        android:src="@mipmap/arrow_left_c"
+        >
+    </ImageButton>
+
+    <RelativeLayout
+        android:id="@+id/logo_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/plate_main_margin"
+        >
+        <include android:id="@+id/logo"
+            layout="@layout/logo" />
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/new_password_layout"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/logo_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/content_bg">
+
+        <com.kai.distribution.widget.ClearEditText
+            android:id="@+id/new_password_Et"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:paddingLeft="@dimen/logo_margin"
+            android:background="@null"
+            android:layout_marginLeft="8dp"
+            android:gravity="center|left"
+            android:textSize="16sp"
+            android:hint="新密码"
+            android:textColor="@color/textcolor"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/new_password_again_layout"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/new_password_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/content_bg">
+
+
+        <com.kai.distribution.widget.ClearEditText
+            android:id="@+id/new_password_again_Et"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:paddingLeft="@dimen/logo_margin"
+            android:background="@null"
+            android:layout_marginLeft="8dp"
+            android:gravity="center|left"
+            android:textSize="16sp"
+            android:hint="请输入账号"
+            android:textColor="@color/textcolor"
+            />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/forgetnumber_comfirm_Btn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/new_password_again_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="#ffffff"
+        android:text="确认"
+        android:textColor="#3ea2ce"
+        android:textSize="20dp" />
+
+
+
+
+
+
+
+</RelativeLayout>

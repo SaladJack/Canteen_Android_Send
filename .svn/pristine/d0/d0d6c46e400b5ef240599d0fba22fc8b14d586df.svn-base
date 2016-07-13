@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#3092e8">
+
+    <ImageView
+        android:id="@+id/register_next_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/arrow_left_c" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/imageView2"
+        android:text="注册"
+        android:textColor="#154b81"
+        android:textSize="35sp" />
+
+    <EditText
+        android:id="@+id/register_next_phone"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:textColor="#164d81"
+        android:hint=" 手机号"
+        android:drawableLeft="@mipmap/phone"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/register_next_code"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/register_next_phone"
+        android:layout_below="@+id/register_next_phone"
+        android:textColor="#164d81"
+        android:hint=" 验证码"
+        android:drawableLeft="@mipmap/password"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/register__next_send_code"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignRight="@+id/register_next_phone"
+        android:layout_below="@+id/register_next_phone"
+        android:background="#003767"
+        android:textColor="#fff"
+        android:text="发送验证码" />
+
+    <Button
+        android:id="@+id/register_next_success"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/register_next_code"
+        android:layout_below="@+id/register_next_code"
+        android:layout_marginTop="14dp"
+        android:background="#fff"
+        android:text="注册"
+        android:textColor="#43a3d0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="191dp"
+        android:src="@mipmap/scut" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:src="@mipmap/logo" />
+	
+</RelativeLayout>

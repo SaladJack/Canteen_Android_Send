@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3092e8"
+    tools:context=".activity.LoginActivity">
+
+   <RelativeLayout
+       android:id="@+id/logo_layout"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="@dimen/plate_main_margin"
+       >
+    <include android:id="@+id/logo"
+             layout="@layout/logo" />
+   </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/user_layout"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/logo_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/content_bg">
+        <ImageView
+            android:id="@+id/iv_user"
+            android:src="@mipmap/number"
+            android:paddingLeft="@dimen/logo_margin"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kai.distribution.widget.ClearEditText
+            android:id="@+id/accountnumber_Et"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:layout_marginLeft="8dp"
+            android:gravity="center|left"
+            android:layout_toRightOf="@+id/iv_user"
+            android:textSize="16sp"
+            android:hint="请输入账号"
+            android:textColor="#000000"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/password_layout"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/user_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/content_bg">
+        <ImageView
+            android:id="@+id/iv_password"
+            android:src="@mipmap/password"
+            android:layout_marginLeft="5dp"
+            android:paddingLeft="@dimen/logo_margin"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kai.distribution.widget.ClearEditText
+            android:id="@+id/password_Et"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background = "@null"
+            android:layout_marginLeft="8dp"
+            android:inputType="textPassword"
+            android:gravity="center|left"
+            android:layout_toRightOf="@+id/iv_password"
+            android:hint="请输入密码"
+            android:textSize="16sp"
+            android:textColor="@color/textcolor" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/forgetnumber_Tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/land_Btn"
+        android:layout_below="@+id/land_Btn"
+        android:layout_marginTop="19dp"
+        android:text="忘记密码?"
+        android:textColor="@color/textcolor"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        />
+
+
+    <TextView
+        android:id="@+id/register_Tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/land_Btn"
+        android:layout_below="@+id/land_Btn"
+        android:layout_marginTop="19dp"
+        android:text="认证"
+        android:textColor="#1d5e91"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/land_Btn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/password_layout"
+        android:layout_marginTop="14dp"
+        android:background="#ffffff"
+        android:text="@string/land"
+        android:textColor="#3ea2ce"
+        android:textSize="23sp" />
+
+
+</RelativeLayout>

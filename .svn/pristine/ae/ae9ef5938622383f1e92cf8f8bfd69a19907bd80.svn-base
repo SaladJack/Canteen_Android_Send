@@ -1,0 +1,110 @@
+[
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\navigate_next_black.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\navigate_next_black.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\rect_2.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\rect_2.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\clipboard.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\clipboard.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\logo.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\logo.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\choose2.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\choose2.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\location_on.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\location_on.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_location_on_black.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\ic_location_on_black.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\choose.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\choose.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\daisongcan_gray.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\daisongcan_gray.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\password.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\password.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\yisongda_blue.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\yisongda_blue.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\phone_number.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\phone_number.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\rect.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\rect.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\number.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\number.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\scut.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\scut.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\yisongda_gray.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\yisongda_gray.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\daisongcan_blue.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\daisongcan_blue.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\wode_gray.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\wode_gray.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\checkmark.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\checkmark.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\set_up.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\set_up.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_phone.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\ic_phone.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\wode_blue.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\wode_blue.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\system_message.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\system_message.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\phone.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\phone.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\arrow_left_c.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\arrow_left_c.png"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_phone_blue.png",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\mipmap-hdpi\\ic_phone_blue.png"
+    }
+]

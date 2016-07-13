@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#fff">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#0164B7"
+        android:orientation="horizontal"
+        
+        >
+
+        <TextView
+            android:id="@+id/show_distributed_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/choose2"
+            android:text="2016-5-10"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:text="已送达"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:orientation="horizontal" >
+        
+        <LinearLayout
+            android:id="@+id/distributed_calendar"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="#0164B7"
+            android:visibility="gone"
+            >
+        	<LinearLayout 
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:layout_weight="1"
+	            android:orientation="horizontal">
+        	    
+        	    <TextView
+        	        android:id="@+id/distributed_calendar_year_add"
+        	        android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1"
+	                android:gravity="center"
+	                android:text="+"
+	                android:textColor="#fff"
+	                android:textSize="25sp"
+        	        ></TextView>
+        	    
+        	    <TextView
+        	        android:id="@+id/distributed_calendar_month_add"
+        	        android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1"
+	                android:gravity="center"
+	                android:text="+"
+	                android:textColor="#fff"
+	                android:textSize="25sp"
+        	        ></TextView>
+        	    
+        	    <TextView
+        	        android:id="@+id/distributed_calendar_day_add"
+        	        android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:layout_weight="1"
+	                android:gravity="center"
+	                android:text="+"
+	                android:textColor="#fff"
+	                android:textSize="25sp"
+        	        ></TextView>
+        	</LinearLayout>
+        	
+        	 <LinearLayout
+	             android:orientation="horizontal"
+	             android:layout_width="match_parent"
+	             android:layout_height="0dp"
+	             android:layout_weight="1">
+        	     
+        	     <TextView
+        	         android:id="@+id/distributed_calendar_year"
+        	         android:layout_width="0dp"
+	                 android:layout_height="match_parent"
+	                 android:layout_weight="1"
+	                 android:gravity="center"
+	                 android:text="2016"
+	                 android:textColor="#fff"
+	                 android:textSize="25sp"
+        	         ></TextView>      	  
+        	         
+        	     <TextView
+        	         android:id="@+id/distributed_calendar_month"
+        	         android:layout_width="0dp"
+	                 android:layout_height="match_parent"
+	                 android:layout_weight="1"
+	                 android:gravity="center"
+	                 android:text="1"
+	                 android:textColor="#fff"
+	                 android:textSize="25sp"
+        	         ></TextView>
+        	     
+        	     <TextView
+        	         android:id="@+id/distributed_calendar_day"
+        	         android:layout_width="0dp"
+	                 android:layout_height="match_parent"
+	                 android:layout_weight="1"
+	                 android:gravity="center"
+	                 android:text="1"
+	                 android:textColor="#fff"
+	                 android:textSize="25sp"
+        	         ></TextView>
+        	 </LinearLayout>
+        	 
+        	 <LinearLayout
+        	     android:orientation="horizontal"
+	             android:layout_width="match_parent"
+	             android:layout_height="0dp"
+	             android:layout_weight="1">
+        	     
+        	     <TextView
+        	         android:id="@+id/distributed_calendar_year_reduce"
+        	         android:layout_width="0dp"
+	                 android:layout_height="match_parent"
+	                 android:layout_weight="1"
+	                 android:gravity="center"
+	                 android:text="-"
+	                 android:textColor="#fff"
+	                 android:textSize="25sp"
+        	         ></TextView>
+       			
+        	     <TextView
+        	         android:id="@+id/distributed_calendar_month_reduce"
+        	         android:layout_width="0dp"
+	                 android:layout_height="match_parent"
+	                 android:layout_weight="1"
+	                 android:gravity="center"
+	                 android:text="-"
+	                 android:textColor="#fff"
+	                 android:textSize="25sp"
+        	         ></TextView>
+        	     
+        	     <TextView
+        	         android:id="@+id/distributed_calendar_day_reduce"
+        	         android:layout_width="0dp"
+	                 android:layout_height="match_parent"
+	                 android:layout_weight="1"
+	                 android:gravity="center"
+	                 android:text="-"
+	                 android:textColor="#fff"
+	                 android:textSize="25sp"
+        	         ></TextView>
+        	 </LinearLayout>
+        	 
+        	 <LinearLayout
+        	     android:orientation="horizontal"
+	             android:layout_width="match_parent"
+	             android:layout_height="0dp"
+	             android:layout_weight="2"
+        	     >
+        	     
+        	     <LinearLayout
+	                    android:layout_width="0dp"
+	                    android:layout_height="match_parent"
+	                    android:layout_weight="1"
+	                    android:gravity="center"
+	                    >
+        	         
+        	         <Button
+        	             android:id="@+id/distributed_calendar_comfrim"
+        	             android:layout_height="40dp"
+	                     android:layout_width="80dp"
+	                     android:gravity="center"
+	                     android:background="@drawable/bt_bg"
+	                     android:text="确定"
+	                     android:textColor="#418AC8"
+        	             ></Button>
+        	     </LinearLayout>
+        	     
+        	     <LinearLayout
+	                    android:layout_width="0dp"
+	                    android:layout_height="match_parent"
+	                    android:layout_weight="1"
+	                    android:gravity="center"
+	                    >
+        	         
+        	         <Button
+        	             android:id="@+id/distributed_calendar_today"
+        	             android:layout_height="40dp"
+	                     android:layout_width="80dp"
+	                     android:gravity="center"
+	                     android:background="@drawable/bt_bg"
+	                     android:text="今天"
+	                     android:textColor="#418AC8"
+        	             ></Button>
+        	     </LinearLayout>
+        	     
+        	     <LinearLayout
+        	          android:layout_width="0dp"
+	                  android:layout_height="match_parent"
+	                  android:layout_weight="1"
+	                  android:gravity="center"
+        	         >
+        	         
+        	         <Button
+        	             android:id="@+id/distributed_calendar_cancel"
+        	             android:layout_height="40dp"
+	                     android:layout_width="80dp"
+	                     android:gravity="center"
+	                     android:background="@drawable/bt_bg"
+	                     android:text="取消"
+	                     android:textColor="#418AC8"
+        	             ></Button>
+        	         
+        	     </LinearLayout>
+        	 </LinearLayout>
+    	</LinearLayout>		
+    	
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#BCBCBC"
+                android:text="配送区域"
+                android:textSize="15sp"
+                ></TextView>
+            
+            <Spinner
+                android:id="@+id/distributed_area"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.52"
+                android:spinnerMode="dropdown"
+                android:gravity="center"
+                android:background="#ffffff"
+                ></Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="配送楼栋"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="#BCBCBC"
+                android:textSize="15sp"
+                android:drawableLeft="@mipmap/ic_location_on_black"
+                ></TextView>
+            
+            <Spinner 
+                android:id="@+id/distributed_dorm"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.52"
+                android:spinnerMode="dropdown"
+                android:gravity="center"
+                android:background="#ffffff"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="送达时间"
+                android:textSize="15sp"
+                android:textColor="#BCBCBC"
+                ></TextView>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1.52"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="12:00~12:15"
+                android:textSize="15sp"
+                android:textColor="#3C3C3C"
+                ></TextView>
+        </LinearLayout>
+    </LinearLayout>
+    
+    <ListView
+        android:id="@+id/distributed_show_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff" 
+        android:divider="@null"
+        ></ListView>
+</LinearLayout>

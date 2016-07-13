@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kai.distribution">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:name=".app.MyApplication"
+        android:allowBackup="true"
+        android:label="配送端"
+        android:theme="@style/AppTheme"
+        >
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kai.distribution.activity.ForgetNumberActivity">
+        </activity>
+        
+        <activity 
+            android:name="com.kai.distribution.activity.ForgetNumber_NextActivity">
+        </activity>
+        
+        <activity
+            android:launchMode="singleInstance"
+            android:name=".activity.HomeActivity">
+        </activity>
+        
+        <activity 
+            android:name="com.kai.distribution.activity.Work_Clipboard_Activity">
+        </activity>
+        
+        <activity 
+            android:name="com.kai.distribution.activity.Changed_Password_Activity">
+        </activity>
+        
+        <activity 
+            android:name=".activity.Bind_Phone_Activity">
+        </activity>
+        
+        <activity 
+            android:name=".activity.Setup_Activity">
+        </activity>
+        
+        <activity 
+            android:name="com.kai.distribution.activity.Version_Activity">
+        </activity>
+        
+        <activity
+            android:name=".activity.SysMessage_Activity">
+        </activity>
+        
+        <activity 
+            android:name="com.kai.distribution.activity.Binded_Phone_Activity">
+        </activity>
+        
+        
+        <activity 
+            android:name="com.kai.distribution.activity.Register_Activity">
+        </activity>
+        
+        <activity 
+            android:name="com.kai.distribution.activity.Register_Agreement_Activity">
+        </activity>
+        
+        
+        <activity 
+            android:name="com.kai.distribution.activity.Register_Next_Activity">
+        </activity>
+
+        <activity
+            android:name=".activity.ScanActivity">
+        </activity>
+
+
+        <activity
+            android:configChanges="orientation|keyboardHidden"
+            android:name="com.zxing.activity.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+
+    </application>
+
+</manifest>

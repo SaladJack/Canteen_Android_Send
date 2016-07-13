@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#3092e8" >
+
+    <ImageView
+        android:id="@+id/register_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/arrow_left_c" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/scut" />
+
+    <EditText
+        android:id="@+id/register_number"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:drawableLeft="@mipmap/number"
+        android:textColor="#174c80"
+        android:hint=" 学号"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register_number"
+        android:layout_below="@+id/register_number"
+        android:drawableLeft="@mipmap/password"
+        android:ems="10"
+        android:hint=" 初始密码为身份证后6位"
+        android:textColor="#174c80" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/imageView3"
+        android:text="注册"
+        android:textColor="#125183"
+        android:textSize="35sp" />
+
+    <Button
+        android:id="@+id/register_yes"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/register_check_agreement"
+        android:layout_below="@+id/register_check_agreement"
+        android:background="#ffffff"
+        android:text="下一步"
+        android:textColor="#46a4d3" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:src="@mipmap/logo" />
+
+    <CheckBox
+        android:id="@+id/register_check_agreement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register_password"
+        android:layout_below="@+id/register_password" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/register_check_agreement"
+        android:layout_alignBottom="@+id/register_check_agreement"
+        android:layout_toRightOf="@+id/register_check_agreement"
+        android:text="我已仔细阅读并同意"
+        android:textSize="15sp"
+        android:textColor="#174c80" />
+
+    <TextView
+        android:id="@+id/agreement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="用户协议"
+        android:textColor="#174c80"
+        android:textSize="15sp" />
+
+</RelativeLayout>

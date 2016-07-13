@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#3092e8" >
+
+    <ImageView
+        android:id="@+id/agreement_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/arrow_left_c" />
+
+    <ScrollView
+        android:id="@+id/register_agreement"
+        android:layout_width="200dp"
+        android:layout_height="230dp"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="20dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/agreement_agree"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/register_agreement"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="#ffffff"
+        android:text="同意"
+        android:textColor="#3092e8"
+        android:textSize="23sp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/agreement_agree"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="18dp"
+        android:text="用户协议"
+        android:textColor="#124d80"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="华工云餐厅合作协议"
+        android:textColor="#072432"
+        android:textSize="30sp" />
+
+</RelativeLayout>

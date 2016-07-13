@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff" >
+    
+	<View
+	    android:layout_width="match_parent"
+	    android:layout_height="8dp"
+	    android:background="#EEEEEE"
+	    ></View>
+	
+	<LinearLayout
+	    android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+	    >
+	    <View
+	    	android:layout_width="0dp"
+	    	android:layout_weight="0.3"
+	    	android:layout_height="match_parent"
+	    	android:background="#EEEEEE"
+	        ></View>
+	    
+	    <LinearLayout
+	        android:layout_height="match_parent"
+	        android:layout_width="0dp"
+	        android:layout_weight="8"
+	        android:orientation="vertical"
+	        >
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:layout_weight="1"
+	            >
+
+	            <TextView
+	                android:id="@+id/distributed_person_name"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignParentBottom="true"
+	                android:layout_alignParentLeft="true"
+	                android:layout_marginLeft="20dp"
+	                android:text="梁同学"
+	                android:textColor="#A8A8A8" />
+
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignParentBottom="true"
+	                android:layout_alignParentRight="true"
+	                android:layout_marginRight="17dp"
+	                android:textSize="15sp"
+	                android:textColor="#A8A8A8"
+	                android:text="送达于" />
+	            
+	        </RelativeLayout>
+	        
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:layout_weight="1"
+	            android:orientation="horizontal" >
+
+	            <ImageView
+	                android:id="@+id/imageView1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignParentLeft="true"
+	                android:layout_alignParentTop="true"
+	                android:layout_marginLeft="18dp"
+	                android:src="@mipmap/location_on" />
+
+	            <TextView
+	                android:id="@+id/distributed_which_area"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_centerVertical="true"
+	                android:layout_toRightOf="@+id/imageView1"
+	                android:textColor="#565656"
+	                android:textSize="15sp"
+	                android:text="北十，北校区" />
+
+	            <TextView
+	                android:id="@+id/distributed_which_time"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignParentRight="true"
+	                android:layout_centerVertical="true"
+	                android:layout_marginRight="18dp"
+	                android:textColor="#565656"
+	                android:textSize="15sp"
+	                android:text="12:14" />
+
+	        </RelativeLayout>
+
+	    </LinearLayout>
+	    <View
+	    	android:layout_width="0dp"
+	    	android:layout_weight="0.3"
+	    	android:layout_height="match_parent"
+	    	android:background="#EEEEEE"
+	        ></View>
+	    </LinearLayout>
+	    
+	<View
+	    android:layout_width="match_parent"
+	    android:layout_height="7dp"
+	    android:background="#EEEEEE"
+	    ></View>
+</LinearLayout>

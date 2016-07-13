@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\BB\AA\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.1.1_4177347a73828535015b6b5f5e1a714ba20ebe76\classes.dex" />
+    </item>
+    <item
+        jar="D:\BB\AA\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="9316d5410446722049d0f58be971be19dbd2bc5e">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_859741ccfa6d7360f490ca5e34483917e5f34a39\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Dell\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_9271b65524836d81588e5e03e18cbebe4ce4e0a7\classes.dex" />
+    </item>
+    <item
+        jar="D:\BB\AA\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="889fc6107299a056fe7257c67182383e86c85c87">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_6673017cfa0f8edc515a81a84bc2629458f9b159\classes.dex" />
+    </item>
+    <item
+        jar="D:\BB\AA\app\libs\jackson-annotations-2.2.3.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="0527fece4f23a457070a36c371a26d6c0208e1c3">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\2\jackson-annotations-2.2.3_2ef37727e16261b79a056e8021f2b56b688df0a9\classes.dex" />
+    </item>
+    <item
+        jar="D:\BB\AA\app\libs\jackson-databind-2.2.3.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="03ae380888029daefb91d3ecdca3a37d8cb92bc9">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\2\jackson-databind-2.2.3_d21f32d3f04f8652d8e3196585be2e2f58809441\classes.dex" />
+    </item>
+    <item
+        jar="D:\BB\AA\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.1_c8963db8265a613b79a9ecb415bc4f4f74bddbe1\classes.dex" />
+    </item>
+    <item
+        jar="D:\BB\AA\app\libs\gson-2.2.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="42a24d508f5e05bd22cc42bd2e2babd7b5466ec9">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\2\gson-2.2.1_3f779f1aff0471690b87048986c58e3840161256\classes.dex" />
+    </item>
+    <item
+        jar="D:\BB\AA\app\libs\jackson-core-2.2.3.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\2\jackson-core-2.2.3_7be345f71d0c68c6b9ffbd08de996698ade5b060\classes.dex" />
+    </item>
+    <item
+        jar="D:\BB\AA\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.1.1_f03d985a73cb29c1d24a790c018da5005e976913\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Dell\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="D:\BB\AA\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.1.1_cdcc36f1f887ea1bac920eb1376cde45fd7a00c1\classes.dex" />
+    </item>
+
+</items>

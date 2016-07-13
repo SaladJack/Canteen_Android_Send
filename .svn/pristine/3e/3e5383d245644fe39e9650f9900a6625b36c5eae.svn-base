@@ -1,0 +1,129 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:2:1-83:12
+	package
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:3:5-35
+		INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml
+		INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml
+		INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml
+		INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:5:22-64
+uses-permission#android.permission.READ_CALENDAR
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:6:5-71
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:6:22-69
+uses-permission#android.permission.WRITE_CALENDAR
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:7:5-72
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:7:22-70
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:8:5-79
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:8:22-76
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:9:5-81
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:9:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:10:5-80
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:10:22-77
+application
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:12:5-81:19
+MERGED from [com.android.support:appcompat-v7:23.1.1] D:\BB\AA\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] D:\BB\AA\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
+	android:label
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:15:9-28
+	android:allowBackup
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:14:9-35
+	android:theme
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:16:9-40
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:13:9-42
+activity#com.kai.distribution.activity.LoginActivity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:18:9-26:20
+	android:label
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:20:13-45
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:19:13-51
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:21:13-25:29
+action#android.intent.action.MAIN
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:22:17-69
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:22:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:24:17-77
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:24:27-74
+activity#com.kai.distribution.activity.ForgetNumberActivity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:27:9-29:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:28:13-78
+activity#com.kai.distribution.activity.ForgetNumber_NextActivity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:31:9-33:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:32:13-83
+activity#com.kai.distribution.activity.HomeActivity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:35:9-37:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:36:13-50
+activity#com.kai.distribution.activity.Work_Clipboard_Activity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:39:9-41:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:40:13-81
+activity#com.kai.distribution.activity.Changed_Password_Activity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:43:9-45:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:44:13-83
+activity#com.kai.distribution.activity.Bind_Phone_Activity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:47:9-49:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:48:13-57
+activity#com.kai.distribution.activity.Setup_Activity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:51:9-53:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:52:13-52
+activity#com.kai.distribution.activity.Version_Activity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:55:9-57:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:56:13-74
+activity#com.kai.distribution.activity.System_Message_Activity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:59:9-61:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:60:13-81
+activity#com.kai.distribution.activity.Binded_Phone_Activity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:63:9-65:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:64:13-79
+activity#com.kai.distribution.activity.Register_Activity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:68:9-70:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:69:13-75
+activity#com.kai.distribution.activity.Register_Agreement_Activity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:72:9-74:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:73:13-85
+activity#com.kai.distribution.activity.Register_Next_Activity
+ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:77:9-79:20
+	android:name
+		ADDED from D:\BB\AA\app\src\main\AndroidManifest.xml:78:13-80
+uses-sdk
+INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:23.1.1] D:\BB\AA\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] D:\BB\AA\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:20:5-43
+	android:targetSdkVersion
+		INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml
+		INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml
+		INJECTED from D:\BB\AA\app\src\main\AndroidManifest.xml

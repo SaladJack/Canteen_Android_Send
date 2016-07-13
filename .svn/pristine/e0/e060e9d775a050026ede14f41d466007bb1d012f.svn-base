@@ -1,0 +1,266 @@
+[
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\distributed_takeoutfood.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\distributed_takeoutfood.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\clear_cache_diaolog.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\clear_cache_diaolog.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\confirm_out_dialog.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\confirm_out_dialog.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\takeoutfodd_content.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\takeoutfodd_content.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_distributed.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\fragment_distributed.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\register.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\register.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\confirm_dialog.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\confirm_dialog.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\home_screen.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\home_screen.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\show_spinner_text.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\show_spinner_text.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\bind_phone.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\bind_phone.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\comfirm_back_dialog.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\comfirm_back_dialog.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\register_user_agreement.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\register_user_agreement.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\system_message.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\system_message.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\binded_phone.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\binded_phone.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\forgetnumber_tonext.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\forgetnumber_tonext.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\clipboard.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\clipboard.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\unbind_phone_number_succeess.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\unbind_phone_number_succeess.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\forgetnumber.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\forgetnumber.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mine.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\mine.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\show_distributed_spinner_text.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\show_distributed_spinner_text.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_lines.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\wating_fragment.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\wating_fragment.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\register_next.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\register_next.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\unbind_phone_numer.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\unbind_phone_numer.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_login.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\set_up.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\set_up.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\change_password.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\change_password.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_disttributing.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\fragment_disttributing.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\phone_number.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\phone_number.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\set_up_version.xml",
+        "source": "D:\\BB\\AA\\app\\src\\main\\res\\layout\\set_up_version.xml"
+    },
+    {
+        "merged": "D:\\BB\\AA\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
+        "source": "D:\\BB\\AA\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_list_menu_item_radio.xml"
+    }
+]
