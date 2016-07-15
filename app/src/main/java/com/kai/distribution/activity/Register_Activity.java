@@ -15,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kai.distribution.R;
+import com.kai.distribution.entity.Register;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class Register_Activity extends Activity
 {
@@ -77,6 +80,13 @@ public class Register_Activity extends Activity
 					intent.putExtra("account", register_account.getText().toString());
 					intent.putExtra("name",register_name.getText().toString());
 					startActivity(intent);
+
+
+
+
+					EventBus.getDefault().post(Register.getInstance());
+
+
 				}else
 				{
 					Toast.makeText(Register_Activity.this,"请同意协议", Toast.LENGTH_LONG).show();

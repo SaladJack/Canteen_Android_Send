@@ -3,6 +3,7 @@ package com.kai.distribution.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -16,14 +17,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.AppStringRequest;
 import com.kai.distribution.R;
 import com.kai.distribution.app.Constants;
+import com.kai.distribution.entity.Register;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Register_Next_Activity extends Activity {
 	private ImageView register_next_back;
 	private EditText register_password, register_passowd_again;
-	private Button register__next_send_code, register_next_success;
+	private Button register_next_success;
+	private EventBus registerBus;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,15 @@ public class Register_Next_Activity extends Activity {
 		setContentView(R.layout.register_next);
 
 		initView();
+
+		registerBus = EventBus.getDefault();
+		registerBus.register(this);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		registerBus.unregister(this);
 	}
 
 	private void initView() {
@@ -42,7 +56,6 @@ public class Register_Next_Activity extends Activity {
 		register_next_success = (Button) findViewById(R.id.register_next_success);
 
 		register_next_back.setOnClickListener(click);
-		register__next_send_code.setOnClickListener(click);
 		register_next_success.setOnClickListener(click);
 	}
 
@@ -66,10 +79,16 @@ public class Register_Next_Activity extends Activity {
 						register_passowd_again.setText("");
 					}
 
+
 					break;
+
 			}
 		}
 	};
+
+
+    @Subscribe
+
 
 	private void register(String account, String password, String name) {
 		JSONObject jsonObject = new JSONObject();
