@@ -18,6 +18,7 @@
         android:layout_weight="1"
         android:gravity="center">
        <LinearLayout
+           android:id="@+id/ll_distributed"
            android:layout_weight="1"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
@@ -29,15 +30,18 @@
                android:layout_gravity="center"
                android:src="@mipmap/yisongda_blue" />
            <TextView
+               android:id="@+id/tv_distributed"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_marginTop="5dp"
                android:layout_gravity="center"
+               android:textColor="@color/button_bottom_tv_selected_color"
                android:text="已送达"/>
 
        </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_distributing"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,6 +53,7 @@
                 android:layout_gravity="center"
                 android:src="@mipmap/daisongcan_gray" />
             <TextView
+                android:id="@+id/tv_distributing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -59,6 +64,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_person"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,6 +76,7 @@
                 android:layout_gravity="center"
                 android:src="@mipmap/wode_gray" />
             <TextView
+                android:id="@+id/tv_person"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"

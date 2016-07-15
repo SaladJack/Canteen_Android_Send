@@ -9,8 +9,8 @@
         android:id="@+id/logo_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/plate_main_margin"
-        >
+        android:layout_marginTop="@dimen/plate_main_margin">
+
         <include android:id="@+id/logo"
             layout="@layout/logo" />
     </RelativeLayout>
@@ -41,7 +41,7 @@
 
     <RelativeLayout
         android:layout_marginTop="20dp"
-        android:id="@+id/register_number_layout"
+        android:id="@+id/register_account_layout"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@+id/logo_layout"
@@ -49,7 +49,7 @@
         android:background="@drawable/content_bg">
 
         <ImageView
-            android:id="@+id/iv_register_number"
+            android:id="@+id/iv_register_account"
             android:src="@mipmap/number"
             android:paddingLeft="@dimen/logo_margin"
             android:layout_marginLeft="5dp"
@@ -58,13 +58,13 @@
             android:layout_height="wrap_content" />
 
         <com.kai.distribution.widget.ClearEditText
-            android:id="@+id/register_number"
+            android:id="@+id/register_account"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@null"
             android:layout_marginLeft="@dimen/logo_margin"
             android:gravity="center|left"
-            android:layout_toRightOf="@+id/iv_register_number"
+            android:layout_toRightOf="@+id/iv_register_account"
             android:textSize="16sp"
             android:hint="账号"
             android:textColor="@color/textcolor"
@@ -74,35 +74,38 @@
 
     <RelativeLayout
         android:layout_marginTop="20dp"
-        android:id="@+id/register_password_layout"
+        android:id="@+id/register_name_layout"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/register_number_layout"
+        android:layout_below="@+id/register_account_layout"
         android:layout_centerHorizontal="true"
         android:background="@drawable/content_bg">
 
         <ImageView
-            android:id="@+id/iv_register_password"
+            android:id="@+id/iv_register_name"
             android:src="@mipmap/star"
             android:paddingLeft="@dimen/logo_margin"
-            android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <com.kai.distribution.widget.ClearEditText
-            android:id="@+id/register_password"
+            android:id="@+id/register_name"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@null"
             android:layout_marginLeft="@dimen/logo_margin"
             android:gravity="center|left"
-            android:layout_toRightOf="@+id/iv_register_password"
+            android:layout_toRightOf="@+id/iv_register_name"
             android:textSize="16sp"
             android:hint="姓名"
             android:textColor="@color/textcolor"
             />
     </RelativeLayout>
+
+
+
+
 
     <CheckBox
         android:id="@+id/register_check_agreement"
@@ -110,8 +113,8 @@
         android:layout_marginBottom="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/register_password_layout"
-        android:layout_below="@+id/register_password_layout" />
+        android:layout_alignLeft="@+id/register_name_layout"
+        android:layout_below="@+id/register_name_layout" />
 
     <TextView
         android:id="@+id/textView2"

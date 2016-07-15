@@ -19,12 +19,12 @@ import com.kai.distribution.R;
 public class Register_Activity extends Activity
 {
 	private ImageView register_back;
-	private EditText register_number,register_password;
+	private EditText register_account, register_name;
 	private CheckBox register_check_agreement;
 	private TextView agreement;
 	private Button register_yes;
 	private Intent intent;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -40,8 +40,8 @@ public class Register_Activity extends Activity
 		Intent intent_from_agreement =getIntent();
 		boolean check_or_no=intent_from_agreement.getBooleanExtra("agree", false);
 		register_back=(ImageView) findViewById(R.id.register_back);
-		register_number=(EditText) findViewById(R.id.register_number);
-		register_password=(EditText) findViewById(R.id.register_password);
+		register_account =(EditText) findViewById(R.id.register_account);
+		register_name =(EditText) findViewById(R.id.register_name);
 		register_check_agreement=(CheckBox) findViewById(R.id.register_check_agreement);
 		agreement=(TextView) findViewById(R.id.agreement);
 		register_yes=(Button) findViewById(R.id.register_yes);
@@ -74,10 +74,12 @@ public class Register_Activity extends Activity
 				if(register_check_agreement.isChecked())
 				{
 					intent=new Intent(Register_Activity.this,Register_Next_Activity.class);
+					intent.putExtra("account", register_account.getText().toString());
+					intent.putExtra("name",register_name.getText().toString());
 					startActivity(intent);
 				}else
 				{
-					Toast.makeText(Register_Activity.this,"��δͬ���û�Э��", Toast.LENGTH_LONG).show();
+					Toast.makeText(Register_Activity.this,"请同意协议", Toast.LENGTH_LONG).show();
 				}
 				break;
 			}

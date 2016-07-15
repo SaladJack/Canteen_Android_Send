@@ -36,7 +36,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@+id/register_next_back"
-        android:text="注册"
+        android:text="@string/identification"
         android:textColor="#154b81"
         android:textSize="@dimen/toolbar__main_textsize" />
 
@@ -44,89 +44,63 @@
 
 
 
-
     <RelativeLayout
-        android:id="@+id/register_next_phone_layout"
         android:layout_marginTop="20dp"
-
+        android:id="@+id/register_password_layout"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@+id/logo_layout"
         android:layout_centerHorizontal="true"
         android:background="@drawable/content_bg">
-        <ImageView
-            android:id="@+id/iv_register_next_phone"
-            android:src="@mipmap/phone"
-            android:layout_marginLeft="5dp"
-            android:layout_centerVertical="true"
-            android:paddingLeft="@dimen/logo_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
         <com.kai.distribution.widget.ClearEditText
-            android:id="@+id/register_next_phone_Et"
+            android:id="@+id/register_password"
             android:layout_width="300dp"
             android:layout_height="50dp"
+            android:paddingLeft="10dp"
             android:background="@null"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="@dimen/logo_margin"
             android:gravity="center|left"
-            android:layout_toRightOf="@+id/iv_register_next_phone"
             android:textSize="16sp"
-            android:hint="手机号"
-            android:textColor="@color/textcolor" />
+            android:hint="新密码"
+            android:textColor="@color/textcolor"
+            />
     </RelativeLayout>
+
 
     <RelativeLayout
         android:layout_marginTop="20dp"
-        android:id="@+id/register_next_code_layout"
-        android:layout_width="150dp"
+        android:id="@+id/register_password_again_layout"
+        android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/register_next_phone_layout"
-        android:layout_alignLeft="@+id/register_next_phone_layout"
+        android:layout_below="@+id/register_password_layout"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/content_bg">
-        <ImageView
-            android:id="@+id/iv_register_next_code"
-            android:src="@mipmap/password"
-            android:layout_marginLeft="@dimen/logo_margin"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
         <com.kai.distribution.widget.ClearEditText
-            android:id="@+id/register_next_code_Et"
-            android:layout_width="120dp"
+            android:id="@+id/register_password_again"
+            android:paddingLeft="10dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@null"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="@dimen/logo_margin"
             android:gravity="center|left"
-            android:layout_toRightOf="@+id/iv_register_next_code"
             android:textSize="16sp"
-            android:hint="验证码"
-            android:textColor="@color/textcolor" />
+            android:hint="再次输入密码"
+            android:textColor="@color/textcolor"
+            />
     </RelativeLayout>
-    <Button
-        android:id="@+id/register_next_send_code"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
 
-        android:background="#003567"
-        android:text="发送验证码"
-        android:textColor="#ffffff"
-        android:layout_alignTop="@+id/register_next_code_layout"
-        android:layout_alignRight="@+id/register_next_phone_layout"
-        android:layout_alignEnd="@+id/register_next_phone_layout" />
+
 
     <Button
         android:id="@+id/register_next_success"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
         android:background="#fff"
-        android:text="注册"
+        android:text="@string/identification"
         android:textColor="#43a3d0"
-        android:layout_below="@+id/register_next_code_layout"
-        android:layout_alignLeft="@+id/register_next_code_layout"
-        android:layout_alignStart="@+id/register_next_code_layout" />
+        android:layout_below="@+id/register_password_again_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
 
 

@@ -1,5 +1,8 @@
 package com.kai.distribution.app;
 
+import android.content.Context;
+import android.telephony.TelephonyManager;
+
 /**
  * author:hh
  * Created by Dell on 2016/6/21.
@@ -17,6 +20,8 @@ public class Constants {
         public static final String LOGIN_URL=BASE_URL+"Canteen/worker/login";
         //退出
         public static final String LOGOUT_URL=BASE_URL+"Canteen/worker/logout";
+        //认证
+        public static final String REGISTER_URL=BASE_URL+"Canteen/worker/setPassword";
         //系统消息
         public static final String SYS_MESSAGE_URL=BASE_URL+"Canteen/worker/showMessages";
     }
@@ -33,5 +38,13 @@ public class Constants {
 
     public static  class CODE{
 
+    }
+
+
+
+    public static String getDeviceID(Context context){
+        TelephonyManager tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+        String DEVICE_ID = tm.getDeviceId();
+        return DEVICE_ID;
     }
 }

@@ -119,9 +119,8 @@ public class LoginActivity extends Activity implements OnClickListener{
 		try {
 			jsonObject.put("account", user);
 			jsonObject.put("password", password);
-			TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-			String DEVICE_ID = tm.getDeviceId();
-			jsonObject.put("recognizeCode", DEVICE_ID);
+
+			jsonObject.put("recognizeCode", Constants.getDeviceID(this));
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
