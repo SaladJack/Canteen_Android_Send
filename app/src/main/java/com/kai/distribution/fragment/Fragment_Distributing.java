@@ -1,7 +1,9 @@
 package com.kai.distribution.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,13 +20,15 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kai.distribution.R;
+import com.zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_Distributing extends Fragment
+public class Fragment_Distributing extends Fragment implements View.OnClickListener
 {
 	private View view;
 	private TextView area;
@@ -40,8 +44,9 @@ public class Fragment_Distributing extends Fragment
 			"北十七", "北十八", "北十九", "北二十" };
 
 	private String current_area;
+    private ImageButton scan;
 
-	@Override
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
@@ -55,7 +60,9 @@ public class Fragment_Distributing extends Fragment
 		service_time = (TextView) view.findViewById(R.id.service_time);
 		show_count=(TextView) view.findViewById(R.id.show_count);
 		spinner = (Spinner) view.findViewById(R.id.show_listview);
-		spinner_content = new ArrayList<String>();
+        scan = (ImageButton)view.findViewById(R.id.scan);
+
+        spinner_content = new ArrayList<String>();
 		for (int i = 0; i < spinner_text.length; i++) {
 			spinner_content.add(spinner_text[i]);
 		}
@@ -86,9 +93,37 @@ public class Fragment_Distributing extends Fragment
 		
 		int item_amount=show_takeoutfood.getCount();
 		show_count.setText("配送中"+Integer.toString(item_amount)+")");
+
+
+        scan.setOnClickListener(this);
+
+
+
 	}
 
-	public class ListView_Adapter extends BaseAdapter {
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.scan:
+                Intent intent = new Intent(getActivity(), CaptureActivity.class);
+                startActivityForResult(intent,0);
+                break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK){
+            String result = data.getExtras().getString("result");
+            Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+
+    public class ListView_Adapter extends BaseAdapter {
 		private Context context;
 		private int i;
 

@@ -15,7 +15,10 @@
     <string name="identification"><u>认证</u></string>
     <string name="forgetpasswd"><u>忘记密码?</u></string>
 
+    <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
 
- 
+
+
+
 
 </resources>

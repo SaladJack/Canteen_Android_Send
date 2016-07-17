@@ -15,9 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kai.distribution.R;
-import com.kai.distribution.entity.Register;
-
-import org.greenrobot.eventbus.EventBus;
 
 public class Register_Activity extends Activity
 {
@@ -84,7 +81,6 @@ public class Register_Activity extends Activity
 
 
 
-					EventBus.getDefault().post(Register.getInstance());
 
 
 				}else
