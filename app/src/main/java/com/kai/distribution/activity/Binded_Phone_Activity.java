@@ -7,14 +7,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.kai.distribution.R;
+import com.kai.distribution.app.Constants;
+import com.kai.distribution.utils.RsSharedUtil;
 
 
 public class Binded_Phone_Activity extends Activity
 {
-	private TextView binded_phone_back,binded_phone_number;
+	private TextView binded_phone_number;
+	private ImageButton binded_phone_back;
 	private Button unbinded_phone_number;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +27,12 @@ public class Binded_Phone_Activity extends Activity
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.binded_phone);
 
-		binded_phone_back=(TextView) findViewById(R.id.binded_phone_back);
+		binded_phone_back=(ImageButton) findViewById(R.id.binded_phone_back);
 		binded_phone_number=(TextView) findViewById(R.id.binded_phone_number);
 		unbinded_phone_number=(Button) findViewById(R.id.unbinded_phone_number);
+
+		binded_phone_number.setText(RsSharedUtil.getString(this, Constants.KEY.USER_PHONE));
+
 		binded_phone_back.setOnClickListener(click);
 		unbinded_phone_number.setOnClickListener(click);
 	}

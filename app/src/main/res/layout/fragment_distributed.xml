@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="#fff">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:background="#fff">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -306,25 +307,41 @@
                 android:textSize="15sp"
                 android:textColor="#BCBCBC"
                 />
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1.52"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="12:00~12:15"
-                android:textSize="15sp"
-                android:textColor="#3C3C3C"
-                />
+
+			<Spinner
+				android:id="@+id/distributed_time"
+				android:layout_width="match_parent"
+				android:layout_height="0dp"
+				android:layout_weight="1.52"
+				android:spinnerMode="dropdown"
+				android:gravity="center"
+				android:background="#ffffff"
+				/>
+
+
         </LinearLayout>
     </LinearLayout>
-    
+
+
+	<com.chanven.lib.cptr.PtrClassicFrameLayout
+		xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/distributed_list_view"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#f0f0f0"
+		cube_ptr:ptr_duration_to_close="200"
+		cube_ptr:ptr_duration_to_close_header="700"
+		cube_ptr:ptr_keep_header_when_refresh="true"
+		cube_ptr:ptr_pull_to_fresh="false"
+		cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+		cube_ptr:ptr_resistance="1.8" >
     <ListView
         android:id="@+id/distributed_show_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+		tools:listitem="@layout/distributed_takeoutfood"
         android:background="#ffffff" 
         android:divider="@null"
         />
+	</com.chanven.lib.cptr.PtrClassicFrameLayout>
 </LinearLayout>

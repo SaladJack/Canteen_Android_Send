@@ -22,7 +22,7 @@
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
-        android:label="配送端"
+        android:label="@string/app_name"
         android:theme="@style/AppTheme"
         >
         <activity

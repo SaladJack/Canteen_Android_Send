@@ -21,7 +21,7 @@ public class Work_Clipboard_Activity extends Activity
 	private Button clipboard_calendar_comfirm,clipboard_calendar_today,clipboard_calendar_cancel;
 	
 	private LinearLayout clipboard_calendar;
-	private static boolean calendar_open=true;
+	private static boolean calendar_open = true;
 	private String old_year;
 	private String old_month;
 	private String old_day;

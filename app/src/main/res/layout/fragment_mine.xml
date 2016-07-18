@@ -45,14 +45,7 @@
                 android:text="手机号"
                 android:textColor="#fff"/>
 
-            <ImageButton
-                android:id="@+id/scan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/scut"
-                android:layout_alignBottom="@+id/tv_phone"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+
         </RelativeLayout>
     </LinearLayout>
 

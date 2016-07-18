@@ -24,15 +24,21 @@ public class Constants {
         public static final String REGISTER_URL=BASE_URL+"Canteen/worker/setPassword";
         //系统消息
         public static final String SYS_MESSAGE_URL=BASE_URL+"Canteen/worker/showMessages";
+        //已送达订单
+        public static final String DISTRIBUTED_URL = BASE_URL+"Canteen/worker/showSendedOrders";
+        //绑定手机
+        public static final String BIND_PHONE = BASE_URL + "Canteen/worker/bindPhone";
+        //发送短信（获得验证码用）
+        public static final String SEND_MESSAGE = BASE_URL + "Canteen/sendMessage/random";
     }
 
     public static  class KEY{
-        public static final String USER_NAME="user_name";
-        public static final String USER_CODE="user_code";
-        public static final String USER_PHOTO="user_photo";
-        public static final String USER_PHONE="user_phone";
-        public static final String WORK_ID="user_work_id";
-        public static final String USER_ACCOUNT="user_account";
+        public static final String USER_NAME="workerName";
+        public static final String USER_CODE="code";
+        public static final String USER_PHOTO="photo";
+        public static final String USER_PHONE="phoneNumber";
+        public static final String WORK_ID="workerId";
+        public static final String USER_ACCOUNT="account";
 
     }
 

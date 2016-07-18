@@ -1,32 +1,54 @@
 package com.kai.distribution.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.chanven.lib.cptr.PtrClassicFrameLayout;
+import com.chanven.lib.cptr.PtrDefaultHandler;
+import com.chanven.lib.cptr.PtrFrameLayout;
+import com.chanven.lib.cptr.loadmore.OnLoadMoreListener;
 import com.kai.distribution.R;
+import com.kai.distribution.adapter.Distributed_listview_adapter;
+import com.kai.distribution.app.Constants;
+import com.kai.distribution.app.MyApplication;
+import com.kai.distribution.entity.Distributed;
+import com.kai.distribution.utils.JsonToBean;
+import com.kai.distribution.utils.RsSharedUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Fragment_Distributied extends Fragment
 {
+
+	private PtrClassicFrameLayout ptrClassicFrameLayout;
+	private Handler handler = new Handler();
+
 	private View view;
-	private Spinner distributed_area,distributed_dorm;
+	private Spinner distributed_area,distributed_dorm,distributed_time;
 	private ListView distributed_show_list;
-	private ListView_Adapter listview_adapter;
+	private Distributed_listview_adapter listview_adapter;
 	
 	private List<String> area_spinner_content;
 	private List<String> dorm_spinner_content;
@@ -48,43 +70,54 @@ public class Fragment_Distributied extends Fragment
 	private String old_year;
 	private String old_month;
 	private String old_day;
+	private int pageIndex = 1;
+	private int sendAreId = 0;
+	private int buildingtype = 0 ;
+	private long sendTimeBegin = 0l;
+	private long sendTimeEnd = 0l;
+	private List<Distributed> newDatas;
+	private JSONArray unparsedNewDatas;
+	private List<Distributed> ditributedsList = new ArrayList<>();
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
 		view=inflater.inflate(R.layout.fragment_distributed, container,false);
 		initView();
+		initData();
 		return view;
 	}
 
 	private void initView() {
 		distributed_area=(Spinner) view.findViewById(R.id.distributed_area);
 		distributed_dorm=(Spinner) view.findViewById(R.id.distributed_dorm);
-		
-		//����
+		distributed_time = (Spinner)view.findViewById(R.id.distributed_time);
+
+		ptrClassicFrameLayout = (PtrClassicFrameLayout) view.findViewById(R.id.distributed_list_view);
+
+		//TODO 配送区域Spinner
 		area_spinner_content = new ArrayList<String>();
 		for (int i = 0; i < area_spinner_text.length; i++) {
 			area_spinner_content.add(area_spinner_text[i]);
 		}
-		area_spinner_adapter = new ArrayAdapter(getActivity(),
-				R.layout.show_distributed_spinner_text,area_spinner_content);
-		area_spinner_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+		area_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text,area_spinner_content);
+		area_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 		
 		distributed_area.setAdapter(area_spinner_adapter);
 		
-
+		//TODO 配送楼栋Spinner
 		dorm_spinner_content = new ArrayList<String>();
 		for (int i = 0; i < dorm_spinner_text.length; i++) {
 			dorm_spinner_content.add(dorm_spinner_text[i]);
 		}
-		dorm_spinner_adapter = new ArrayAdapter(getActivity(),
-				R.layout.show_distributed_spinner_text,dorm_spinner_content);
-		dorm_spinner_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+		dorm_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text,dorm_spinner_content);
+		dorm_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 		
 		distributed_dorm.setAdapter(dorm_spinner_adapter);
 		
 		distributed_show_list=(ListView) view.findViewById(R.id.distributed_show_list);
-		listview_adapter = new ListView_Adapter(getActivity(), 8);
+		listview_adapter = new Distributed_listview_adapter(getActivity(), R.layout.distributed_takeoutfood,ditributedsList);
 		distributed_show_list.setAdapter(listview_adapter);
 		
 		//���ʹ������
@@ -363,60 +396,61 @@ public class Fragment_Distributied extends Fragment
 			}
 		}
 	};
-	
-	public class ListView_Adapter extends BaseAdapter {
-		private Context context;
-		private int i;
 
-		public ListView_Adapter(Context context, int i)
 
-		{
-			this.context = context;
-			this.i = i;
-		}
-
-		@Override
-		public int getCount() {
-			return i;
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-		@Override
-		public View getView(int position, View view, ViewGroup viewgroup) {
-			final ViewHolder holder;
-			if (view == null) {
-				LayoutInflater inflater = LayoutInflater.from(context);
-				view = inflater.inflate(R.layout.distributed_takeoutfood,
-						viewgroup, false);
-				holder = new ViewHolder();
-				holder.distributed_person_name = (TextView) view.findViewById(R.id.distributed_person_name);
-				holder.distributed_which_area = (TextView) view.findViewById(R.id.distributed_which_area);
-				holder.distributed_which_time = (TextView) view.findViewById(R.id.distributed_which_time);
-				
-				view.setTag(holder);
-			} else {
-				holder = (ViewHolder) view.getTag();
+	private void initData(){
+		ptrClassicFrameLayout.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				Log.e("debug","postDelayed");
+				ptrClassicFrameLayout.autoRefresh(true);
 			}
-			
-			return view;
-		}
+		}, 1);
 
+		ptrClassicFrameLayout.setLoadMoreEnable(true);
+
+		ptrClassicFrameLayout.setPtrHandler(new PtrDefaultHandler() {
+
+			@Override
+			public void onRefreshBegin(PtrFrameLayout frame) {
+				handler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						//添加刷新事件
+						Log.e("debug","setPtrHandler--onRefreshBegin");
+						pageIndex = 1;
+						Log.e("debug","onRefreshBegin访问网络");
+						getDistributedListByHTTP(true);
+
+						ptrClassicFrameLayout.refreshComplete();
+						ptrClassicFrameLayout.setLoadMoreEnable(true);
+					}
+				}, 1000);
+			}
+		});
+
+		ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+
+			@Override
+			public void loadMore() {
+				handler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						//添加加载事件
+						Log.e("debug","setPtrHandler--onRefreshBegin");
+						pageIndex++;
+						Log.e("debug","onRefreshBegin访问网络");
+						getDistributedListByHTTP(false);
+						ptrClassicFrameLayout.loadMoreComplete(true);
+						Toast.makeText(getActivity(), "加载完成", Toast.LENGTH_SHORT).show();
+					}
+				}, 1000);
+			}
+		});
 	}
 
-	static class ViewHolder {
-		public TextView distributed_person_name;
-		public TextView distributed_which_area;
-		public TextView distributed_which_time;
-	}
-	
+
+
 	@Override
 	public void onStart() {
 		super.onStart();
@@ -424,5 +458,113 @@ public class Fragment_Distributied extends Fragment
 			listview_adapter.notifyDataSetChanged();
 		}
 	}
-	
+
+
+/*
+  url：http:// milk345.imwork.net:13607/Canteen/worker/showSendedOrders
+方法：POST
+入参：
+ {
+"code":不含时间戳的令牌（string）
+"workerId":配送员Id（int）
+"pageIndex":页码(int)        ？一页有多少个数据？
+"date":日期,当天凌晨毫秒数(long)
+"sendAreaId":配送区域Id(int)    (0:全部)				  **********
+"buildingType":建筑类型(int) (0:全部；1：宿舍；5：其他)   **********
+"sendTimeBegin":送达开始时间(long)
+"sendTimeEnd":送达结束时间(long)
+}
+
+ */
+
+	private void getDistributedListByHTTP(final boolean clearDataFlag){
+
+		org.json.JSONObject jsonObject = new org.json.JSONObject();
+		String url = Constants.URL.DISTRIBUTED_URL;
+
+//		Student student = getStudent();
+		try {
+			jsonObject.put("code", RsSharedUtil.getString(getContext(),"code"));
+			jsonObject.put("workerId", RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
+			jsonObject.put("pageIndex",pageIndex);
+			jsonObject.put("date", System.currentTimeMillis());
+			jsonObject.put("sendAreaId", sendAreId);
+			jsonObject.put("buildingType", buildingtype);
+			jsonObject.put("sendTimeBegin",sendTimeBegin );
+			jsonObject.put("sendTimeEnd", sendTimeEnd);
+
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+
+		JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+				Request.Method.POST,  url, jsonObject,
+				new Response.Listener<org.json.JSONObject>() {
+					@Override
+					public void onResponse(org.json.JSONObject response) {
+						try {
+							Log.e("searchFragmentResponse",response.toString());
+//							totalPage = response.getInt("totalPage");
+							unparsedNewDatas = response.getJSONArray("array");
+							manageData(clearDataFlag);//处理数据
+							Log.i("onResponse","success");
+						} catch (Exception e1) {
+							e1.printStackTrace();
+							try {
+								String result = response.getString("result");
+//								onFailResponse(result);
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				}, new Response.ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				try {
+					Toast.makeText(getActivity(), "网络不给力", Toast.LENGTH_SHORT).show();
+					Log.i("searchFragmentError",error.toString());
+				} catch (Exception e) {
+				}
+			}
+
+		}
+
+		);
+		MyApplication.getRequestQueue().add(jsonObjectRequest);
+	}
+
+	private void manageData(boolean clearDataFlag){
+		if (newDatas != null){
+			newDatas.clear();
+		}else {
+			newDatas = new ArrayList<>();
+		}
+
+		if (unparsedNewDatas == null || unparsedNewDatas.length()==0){
+			Toast.makeText(getActivity(),"没有更多的餐厅了",Toast.LENGTH_SHORT).show();
+			return;
+		} else {
+
+					/*TODO: 16/7/18
+					  解析成Bean
+					  */
+
+
+			newDatas = JsonToBean.getDistributeds(unparsedNewDatas.toString());
+
+			unparsedNewDatas = null;
+
+			if(clearDataFlag)
+				ditributedsList.clear();
+			ditributedsList.addAll(newDatas);
+			Log.e("searchFragment","canteensList.size() = "+ ditributedsList.size());
+			listview_adapter.notifyDataSetChanged();
+
+		}
+
+	}
 }

@@ -3,6 +3,7 @@ package com.kai.distribution.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.kai.distribution.R;
 import com.kai.distribution.activity.Bind_Phone_Activity;
+import com.kai.distribution.activity.Binded_Phone_Activity;
 import com.kai.distribution.activity.Changed_Password_Activity;
 import com.kai.distribution.activity.LoginActivity;
 import com.kai.distribution.activity.ScanActivity;
@@ -40,12 +42,11 @@ public class Fragment_Mine extends Fragment
 	private LinearLayout ll_user;
 	@ViewInject(R.id.ll_login)
 	private LinearLayout ll_login;
-	@ViewInject(R.id.scan)
-	private ImageButton scan;
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+							 Bundle savedInstanceState) {
 		View view=inflater.inflate(R.layout.fragment_mine, container,false);
 		ViewUtils.inject(this, view);
 		initView();
@@ -73,7 +74,7 @@ public class Fragment_Mine extends Fragment
 
 	}
 
-	@OnClick({R.id.ll_work,R.id.ll_password,R.id.ll_bind,R.id.ll_set,R.id.ll_system,R.id.ll_login,R.id.scan})
+	@OnClick({R.id.ll_work,R.id.ll_password,R.id.ll_bind,R.id.ll_set,R.id.ll_system,R.id.ll_login})
 	public void onClick(View view) {
 		// TODO Auto-generated method stub
 		Intent  intent=null;
@@ -91,9 +92,16 @@ public class Fragment_Mine extends Fragment
 					startActivity(intent);
 					break;
 				case R.id.ll_bind:
-					intent=new Intent(getActivity(),Bind_Phone_Activity.class);
-					startActivity(intent);
-					break;
+					if (TextUtils.isEmpty(RsSharedUtil.getString(getActivity(),Constants.KEY.USER_PHONE))) {
+						intent=new Intent(getActivity(),Bind_Phone_Activity.class);
+						startActivity(intent);
+						break;
+					}
+					else{
+						intent = new Intent(getActivity(), Binded_Phone_Activity.class);
+						startActivity(intent);
+						break;
+					}
 				case R.id.ll_set:
 					intent=new Intent(getActivity(),Setup_Activity.class);
 					startActivity(intent);
@@ -106,11 +114,7 @@ public class Fragment_Mine extends Fragment
 					intent=new Intent(getActivity(),LoginActivity.class);
 					startActivity(intent);
 					break;
-				case R.id.scan:
-					Log.e("scan","scanning");
-					intent = new Intent(getActivity(), ScanActivity.class);
-					startActivity(intent);
-					break;
+
 			}
 		}
 		else {
