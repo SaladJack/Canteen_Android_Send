@@ -1,0 +1,310 @@
+[
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/cube_ptr_classic_default_header.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.chanven.lib/cptr/1.0.0/res/layout/cube_ptr_classic_default_header.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/unbind_phone_number_succeess.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/unbind_phone_number_succeess.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/binded_phone.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/binded_phone.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_screen_simple.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/main.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/main.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/activity_sys_message.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/activity_sys_message.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/forgetnumber_tonext.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/forgetnumber_tonext.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/unbind_phone_numer.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/unbind_phone_numer.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/register.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/register.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/phone_number.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/phone_number.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/fragment_disttributing.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/fragment_disttributing.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/show_spinner_text.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/show_spinner_text.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/fragment_distributed.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/fragment_distributed.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/activity_bind_phone.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/activity_bind_phone.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/takeoutfodd_content.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/takeoutfodd_content.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/system_message.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/system_message.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/spinner_item_layout.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/spinner_item_layout.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/wating_fragment.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/wating_fragment.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/set_up.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/set_up.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/loadmore_default_footer.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.chanven.lib/cptr/1.0.0/res/layout/loadmore_default_footer.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/change_password.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/change_password.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/notification_template_lines.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/register_user_agreement.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/register_user_agreement.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_screen_content_include.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/register_next.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/register_next.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/fragment_mine.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/fragment_mine.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/distributed_takeoutfood.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/distributed_takeoutfood.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/show_distributed_spinner_text.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/show_distributed_spinner_text.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/confirm_out_dialog.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/confirm_out_dialog.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/disttributing_fragment.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/disttributing_fragment.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/home_screen.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/home_screen.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/clear_cache_diaolog.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/clear_cache_diaolog.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/activity_change_password.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/activity_change_password.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/clipboard.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/clipboard.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/activity_login.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/forgetnumber.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/forgetnumber.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/confirm_dialog.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/confirm_dialog.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/camera.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/camera.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/activity_scan.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/activity_scan.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/logo.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/logo.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/mine.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/mine.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/comfirm_back_dialog.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/comfirm_back_dialog.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/set_up_version.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/src/main/res/layout/set_up_version.xml"
+    },
+    {
+        "merged": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_list_menu_item_radio.xml"
+    }
+]

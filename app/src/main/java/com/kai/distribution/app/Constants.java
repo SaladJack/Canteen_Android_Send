@@ -30,6 +30,10 @@ public class Constants {
         public static final String BIND_PHONE = BASE_URL + "Canteen/worker/bindPhone";
         //发送短信（获得验证码用）
         public static final String SEND_MESSAGE = BASE_URL + "Canteen/sendMessage/random";
+        //显示待送餐
+        public static final String DISTRIBUTING_URL = BASE_URL + "Canteen/worker/showOrders";
+        //修改密码
+        public static final String CHANGE_PASSWORD = BASE_URL + "Canteen/worker/modifyPassword";
     }
 
     public static  class KEY{

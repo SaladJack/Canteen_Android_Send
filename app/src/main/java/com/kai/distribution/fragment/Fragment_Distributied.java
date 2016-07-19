@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -35,6 +36,7 @@ import com.kai.distribution.utils.RsSharedUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +54,15 @@ public class Fragment_Distributied extends Fragment
 	
 	private List<String> area_spinner_content;
 	private List<String> dorm_spinner_content;
+	private List<String> time_spinner_content;
 
 	private final String[] area_spinner_text={"全部","1区","2区","3区","4区","5区"};
-	private final String[] dorm_spinner_text={"全部","宿舍地址","其他地址"};
+	private final String[] dorm_spinner_text={"全部","宿舍","其他"};
+	private final String[] time_spinner_text={"11:30~11：45","12:00~12:15"};
 	
 	private ArrayAdapter<String> area_spinner_adapter;
 	private ArrayAdapter<String> dorm_spinner_adapter;
+	private ArrayAdapter<String> time_spinner_adapter;
 	
 	private TextView show_distributed_calendar;
 	private LinearLayout distributed_calendar;
@@ -79,6 +84,7 @@ public class Fragment_Distributied extends Fragment
 	private JSONArray unparsedNewDatas;
 	private List<Distributed> ditributedsList = new ArrayList<>();
 
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -94,6 +100,7 @@ public class Fragment_Distributied extends Fragment
 		distributed_dorm=(Spinner) view.findViewById(R.id.distributed_dorm);
 		distributed_time = (Spinner)view.findViewById(R.id.distributed_time);
 
+
 		ptrClassicFrameLayout = (PtrClassicFrameLayout) view.findViewById(R.id.distributed_list_view);
 
 		//TODO 配送区域Spinner
@@ -101,7 +108,7 @@ public class Fragment_Distributied extends Fragment
 		for (int i = 0; i < area_spinner_text.length; i++) {
 			area_spinner_content.add(area_spinner_text[i]);
 		}
-		area_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text,area_spinner_content);
+		area_spinner_adapter = new ArrayAdapter(getActivity(),R.layout.show_distributed_spinner_text,R.id.spinner_tv,area_spinner_content);
 		area_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 		
 		distributed_area.setAdapter(area_spinner_adapter);
@@ -111,13 +118,24 @@ public class Fragment_Distributied extends Fragment
 		for (int i = 0; i < dorm_spinner_text.length; i++) {
 			dorm_spinner_content.add(dorm_spinner_text[i]);
 		}
-		dorm_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text,dorm_spinner_content);
+		dorm_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text,R.id.spinner_tv,dorm_spinner_content);
 		dorm_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
-		
+
 		distributed_dorm.setAdapter(dorm_spinner_adapter);
-		
+
+		//TODO 送达时间Spinner
+		time_spinner_content = new ArrayList<String>();
+		for (int i = 0; i < time_spinner_text.length; i++) {
+			time_spinner_content.add(time_spinner_text[i]);
+		}
+		time_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text,R.id.spinner_tv,time_spinner_content);
+		time_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
+
+		distributed_time.setAdapter(time_spinner_adapter);
+
+
 		distributed_show_list=(ListView) view.findViewById(R.id.distributed_show_list);
-		listview_adapter = new Distributed_listview_adapter(getActivity(), R.layout.distributed_takeoutfood,ditributedsList);
+		listview_adapter = new Distributed_listview_adapter(getActivity(), R.layout.show_time_spinner_text,ditributedsList);
 		distributed_show_list.setAdapter(listview_adapter);
 		
 		//���ʹ������
@@ -163,6 +181,8 @@ public class Fragment_Distributied extends Fragment
 			// TODO Auto-generated method stub
 			switch(view.getId())
 			{
+
+
 			case R.id.show_distributed_calendar:
 				if(calendar_open==true)
 				{
@@ -479,7 +499,7 @@ public class Fragment_Distributied extends Fragment
 
 	private void getDistributedListByHTTP(final boolean clearDataFlag){
 
-		org.json.JSONObject jsonObject = new org.json.JSONObject();
+		JSONObject jsonObject = new JSONObject();
 		String url = Constants.URL.DISTRIBUTED_URL;
 
 //		Student student = getStudent();

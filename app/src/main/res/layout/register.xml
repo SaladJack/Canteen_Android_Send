@@ -113,6 +113,7 @@
         android:layout_marginBottom="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/CustomCheckboxTheme"
         android:layout_alignLeft="@+id/register_name_layout"
         android:layout_below="@+id/register_name_layout" />
 
@@ -120,6 +121,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
         android:layout_alignBaseline="@+id/register_check_agreement"
         android:layout_alignBottom="@+id/register_check_agreement"
         android:layout_toRightOf="@+id/register_check_agreement"

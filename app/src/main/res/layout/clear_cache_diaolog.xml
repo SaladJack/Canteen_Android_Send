@@ -28,7 +28,7 @@
 	             android:text="确定"
                  android:textColor="#3F97E8"
                  android:textSize="18sp" 
-	             ></TextView>
+	             />
 	         
 	         <TextView
 	            android:id="@+id/clear_cache_cancel"
@@ -39,7 +39,7 @@
                 android:text="取消"
                 android:textColor="#3F97E8"
                 android:textSize="18sp"
-	             ></TextView>
+	             />
 	     </LinearLayout>
 
 	     <TextView

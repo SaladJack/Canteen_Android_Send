@@ -1,6 +1,7 @@
 package com.kai.distribution.entity;
 
-import org.json.JSONArray;
+
+import com.alibaba.fastjson.JSONArray;
 
 /**
  * Created by tusm on 16/7/18.
@@ -42,7 +43,7 @@ public class Distributed {
     private int statu;
     private String canteen;
     private int area;
-    private JSONArray goods;
+    private JSONArray goods;//注意：这里是fastjson的JSONArray 不能更改！！！
     private String account;
     private String workerName;
     private String workerPhone;

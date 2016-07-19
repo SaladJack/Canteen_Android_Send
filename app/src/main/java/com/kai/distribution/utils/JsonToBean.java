@@ -1,9 +1,12 @@
 package com.kai.distribution.utils;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kai.distribution.entity.Distributed;
+import com.kai.distribution.entity.Distributing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,5 +28,22 @@ public class JsonToBean {
         distributeds = JSON.parseArray(res.toJSONString(), Distributed.class);
 
         return distributeds;
+    }
+
+
+
+    public static List<Distributing> getDistributings(String json)  {
+
+        JSONArray jsonArray = null;
+        List<Distributing> distributings = new ArrayList<>();
+        Log.e("Fragment_Distributing","json: " + json);
+        //转化为json形式的数据
+        jsonArray = JSON.parseArray(json);
+        Log.e("Fragment_Distributing","jsonArray: " + jsonArray.toString());
+        distributings = JSON.parseArray(jsonArray.toJSONString(), Distributing.class);
+        Log.e("Fragment_Distributing","done");
+        Log.e("Fragment_Distributing","buildingName： "+ distributings.get(0).getBuildingName() );
+
+        return distributings;
     }
 }

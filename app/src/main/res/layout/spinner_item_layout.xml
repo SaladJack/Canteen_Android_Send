@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/text1"
-    style="?android:attr/dropDownItemStyle"
-    android:background="#ffffff"
-    android:singleLine="true"
-    android:gravity="center"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:ellipsize="marquee" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#EEEEEE"/>
+
+    <TextView
+        android:id="@+id/spinner_tv"
+        style="?android:attr/dropDownItemStyle"
+        android:background="#ffffff"
+        android:singleLine="true"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:ellipsize="marquee"
+        />
+</LinearLayout>

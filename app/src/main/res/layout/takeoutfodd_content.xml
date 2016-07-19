@@ -9,7 +9,7 @@
         android:layout_width="match_parent"	
         android:layout_height="8dp"
         android:background="#EEEEEE"
-        ></View>
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -61,7 +61,7 @@
 			android:padding="3dp"
             android:textColor="#DD4C5A"
             android:background="@drawable/bt_bg4"
-            ></Button>
+            />
          </LinearLayout>
         
         <RelativeLayout
@@ -81,7 +81,7 @@
             	android:textColor="#fff"
             	android:visibility="visible"
             	android:background="@drawable/bt_bg2"
-            ></Button>
+            />
         	<ImageButton
         	    android:id="@+id/delivered"
         	    android:layout_width="40dp"
@@ -90,7 +90,7 @@
         	    android:src="@mipmap/checkmark"
         	    android:visibility="gone"
         	    android:background="#898989"
-        	    ></ImageButton>
+        	    />
 		</RelativeLayout>
         	
         <View

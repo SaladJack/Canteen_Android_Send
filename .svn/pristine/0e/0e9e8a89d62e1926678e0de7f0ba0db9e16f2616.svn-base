@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#3092e8">
+
+    <RelativeLayout
+        android:id="@+id/logo_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/plate_main_margin"
+        >
+        <include android:id="@+id/logo"
+            layout="@layout/logo" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/register_next_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/arrow_left_c" />
+
+
+
+
+    <TextView
+        android:id="@+id/toolbarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/register_next_back"
+        android:text="@string/identification"
+        android:textColor="#154b81"
+        android:textSize="@dimen/toolbar__main_textsize" />
+
+
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/register_password_layout"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/logo_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/content_bg">
+        <com.kai.distribution.widget.ClearEditText
+            android:id="@+id/register_password"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:paddingLeft="10dp"
+            android:background="@null"
+            android:layout_marginLeft="@dimen/logo_margin"
+            android:gravity="center|left"
+            android:textSize="16sp"
+            android:hint="新密码"
+            android:textColor="@color/textcolor"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/register_password_again_layout"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/register_password_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/content_bg">
+        <com.kai.distribution.widget.ClearEditText
+            android:id="@+id/register_password_again"
+            android:paddingLeft="10dp"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:layout_marginLeft="@dimen/logo_margin"
+            android:gravity="center|left"
+            android:textSize="16sp"
+            android:hint="再次输入密码"
+            android:textColor="@color/textcolor"
+            />
+    </RelativeLayout>
+
+
+
+    <Button
+        android:id="@+id/register_next_success"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="#fff"
+        android:text="@string/identification"
+        android:textColor="#43a3d0"
+        android:layout_below="@+id/register_password_again_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+
+
+</RelativeLayout>

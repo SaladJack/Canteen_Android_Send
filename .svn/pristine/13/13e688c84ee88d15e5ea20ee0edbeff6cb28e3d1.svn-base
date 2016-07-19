@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#000"
+    android:weightSum="4">
+    
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="50dp"
+
+	    android:background="#0164B7"
+	    android:orientation="horizontal"
+	    >
+
+	    <ImageButton
+	        android:id="@+id/binded_phone_back"
+	        android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_arrow_back"
+
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp" />
+
+	    <TextView
+	        android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="绑定手机"
+            android:textColor="#fff"
+            android:textSize="@dimen/toolbar_textsize"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/binded_phone_back"
+
+            />
+	</RelativeLayout>
+	
+	<LinearLayout
+	    android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:background="#EEEEEE"
+        android:orientation="vertical"
+        android:weightSum="4"
+	    >
+	    
+	    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical"
+            android:padding="15dp" >
+	        
+	    
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="已绑定的手机号："
+                android:textColor="#000"
+                android:textSize="14sp" />
+	    
+            <TextView
+                android:id="@+id/binded_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="1388888888"
+                android:textColor="#3191E8"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                />
+            </LinearLayout>
+            
+	    <Button
+	        android:id="@+id/unbinded_phone_number"
+	        android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bt_bg2"
+            android:text="解绑手机"
+            android:textColor="#fff"
+	        ></Button>
+	</LinearLayout>
+</LinearLayout>

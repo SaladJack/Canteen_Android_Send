@@ -83,14 +83,17 @@ public class Fragment_Mine extends Fragment
 		{
 			switch(view.getId())
 			{
+				//工作汇总
 				case R.id.ll_work:
 					intent=new Intent(getActivity(),Work_Clipboard_Activity.class);
 					startActivity(intent);
 					break;
+				//修改密码
 				case R.id.ll_password:
 					intent=new Intent(getActivity(),Changed_Password_Activity.class);
 					startActivity(intent);
 					break;
+				//绑定手机
 				case R.id.ll_bind:
 					if (TextUtils.isEmpty(RsSharedUtil.getString(getActivity(),Constants.KEY.USER_PHONE))) {
 						intent=new Intent(getActivity(),Bind_Phone_Activity.class);
@@ -102,10 +105,12 @@ public class Fragment_Mine extends Fragment
 						startActivity(intent);
 						break;
 					}
+				//设置
 				case R.id.ll_set:
 					intent=new Intent(getActivity(),Setup_Activity.class);
 					startActivity(intent);
 					break;
+				//系统消息
 				case R.id.ll_system:
 					intent=new Intent(getActivity(),SysMessage_Activity.class);
 					startActivity(intent);

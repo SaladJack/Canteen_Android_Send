@@ -5,52 +5,56 @@
     android:orientation="vertical" 
     android:background="#fff">
     
-	<LinearLayout
+	<RelativeLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="0dp"
 	    android:layout_weight="1"
 	    android:background="#0164B7"
-	    android:orientation="horizontal"
 	    >
-	    
+
+		<Button
+			android:id="@+id/clipboard_return"
+			android:layout_width="30dp"
+			android:layout_height="30dp"
+			android:layout_gravity="center_vertical"
+			android:layout_marginLeft="@dimen/toolbar_text_marginLeft"
+			android:layout_centerVertical="true"
+			android:background="@mipmap/ic_arrow_back"
+			android:textColor="#fff"
+			/>
+
 	    <TextView
-	        android:id="@+id/work_clipboard_return"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center_vertical"
-	        android:padding="15dp"
-	        android:text="返回"
-	        android:textColor="#fff"
-	        android:textSize="18sp"
-	        ></TextView>
-	    
-	    <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="center_vertical"
-	        android:layout_marginLeft="10dp"
+			android:layout_toRightOf="@+id/clipboard_return"
+			android:layout_marginLeft="@dimen/toolbar_title_marginLeft"
+			android:layout_centerVertical="true"
 	        android:layout_weight="1"
 	        android:text="工作汇总"
 	        android:textColor="#fff"
 	        android:textStyle="bold"
 			android:textSize="@dimen/toolbar_textsize"
-	        ></TextView>
+	        />
 	    
 	    <TextView
 	        android:id="@+id/show_calendar_date"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center_vertical"
-	        android:layout_marginLeft="10dp"
-	        android:layout_marginRight="15dp"
+
+			android:layout_marginRight="20dp"
 	        android:textSize="16sp"
 	        android:textColor="#fff"
 	        android:text="2016-5-10"
-	        android:drawableRight="@mipmap/choose2"
-	        />
+	        android:drawableRight="@mipmap/choose2_normal"
+			android:layout_centerVertical="true"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentEnd="true"
+			android:layout_marginEnd="31dp" />
 	    
 	    
-	</LinearLayout>
+	</RelativeLayout>
 	
 	<LinearLayout 
 	    android:layout_width="match_parent"
@@ -71,9 +75,7 @@
 	            android:layout_height="wrap_content"
 	            android:layout_centerVertical="true"
 	            android:layout_marginLeft="20dp"
-	            android:src="@mipmap/clipboard" >
-	        </ImageView>
-
+	            android:src="@mipmap/clipboard" />
 	        <LinearLayout
 	            android:id="@+id/linearLayout1"
 	            android:layout_width="match_parent"
@@ -96,8 +98,9 @@
 	                    android:layout_height="wrap_content"
 	                    android:text="当日完成单数"
 	                    android:textColor="#7000"
-	                    android:textSize="18sp" >
-	                </TextView>
+	                    android:textSize="18sp" />
+
+
 
 	                <TextView
 	                    android:id="@+id/day_complete"
@@ -106,10 +109,37 @@
 	                    android:layout_marginLeft="30dp"
 	                    android:text="180"
 	                    android:textColor="#000"
-	                    android:textSize="35sp"
-	                    android:textStyle="bold" >
+	                    android:textSize="@dimen/clipboard_textSize"
+	                     >
 	                </TextView>
 	            </LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:layout_marginLeft="30dp"
+					android:layout_weight="1"
+					android:orientation="horizontal" >
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="当日配送份数"
+						android:textColor="#7000"
+						android:textSize="18sp" >
+					</TextView>
+
+					<TextView
+						android:id="@+id/day_send"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="30dp"
+						android:text="200"
+						android:textColor="#000"
+						android:textSize="@dimen/clipboard_textSize"
+						/>
+				</LinearLayout>
 
 	            <LinearLayout
 	                android:layout_width="wrap_content"
@@ -124,7 +154,8 @@
 	                    android:layout_height="wrap_content"
 	                    android:text="当日获取黄牌"
 	                    android:textColor="#7000"
-	                    android:textSize="18sp" >
+	                    android:textSize="18sp"
+						>
 	                </TextView>
 
 	                <TextView
@@ -134,7 +165,7 @@
 	                    android:layout_marginLeft="30dp"
 	                    android:text="5"
 	                    android:textColor="#000"
-	                    android:textSize="35sp"
+	                    android:textSize="@dimen/clipboard_textSize"
 	                    android:textStyle="bold" >
 	                </TextView>
 	            </LinearLayout>
@@ -384,14 +415,41 @@
 	                    android:id="@+id/mouth_complete"
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="30dp"
-	                    android:text="180"
+	                    android:layout_marginLeft="50dp"
+	                    android:text="4500"
 	                    android:textColor="#000"
-	                    android:textSize="35sp"
-	                    android:textStyle="bold"
+	                    android:textSize="@dimen/clipboard_textSize"
 	                    />
 	            </LinearLayout>
-	            
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="30dp"
+					android:gravity="center_vertical"
+					android:orientation="horizontal"
+					>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="当月配送份数"
+						android:textColor="#7000"
+						android:textSize="18sp"
+						/>
+
+					<TextView
+						android:id="@+id/mouth_send"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="30dp"
+						android:text="5000"
+						android:textColor="#000"
+						android:textSize="@dimen/clipboard_textSize"
+						/>
+				</LinearLayout>
+
+
 	            <LinearLayout
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
@@ -406,18 +464,18 @@
 	                    android:text="当月总黄牌"
 	                    android:textColor="#7000"
 	                    android:textSize="18sp"
-	                    ></TextView>
+	                    />
 	               	
 	                <TextView
-	                    android:id="@+id/mout_yellowcard"
+	                    android:id="@+id/mouth_yellowcard"
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
-	                    android:layout_marginLeft="30dp"
+	                    android:layout_marginLeft="50dp"
 	                    android:text="5"
 	                    android:textColor="#000"
-	                    android:textSize="35sp"
+	                    android:textSize="@dimen/clipboard_textSize"
 	                    android:textStyle="bold"
-	                    ></TextView>
+	                    />
 	            </LinearLayout>
 	        </LinearLayout>
 	    </RelativeLayout>
@@ -426,6 +484,6 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="2dp"
 	        android:background="#1000"
-	        ></View>
+	        />
 	</LinearLayout>
 </LinearLayout>

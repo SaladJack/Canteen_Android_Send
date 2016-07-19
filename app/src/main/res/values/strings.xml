@@ -18,7 +18,9 @@
     <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
 
 
-
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
 
 
 </resources>

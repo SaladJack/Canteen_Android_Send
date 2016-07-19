@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="x86"
+    api-level="22"
+    density="tvdpi"
+    format="7"
+    timestamp="1612568012330714"
+    verifier="METHOD_ANNOTATION_CHANGE" >
+
+    <task
+        name="javac"
+        duration="680" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="43" />
+    <task
+        name="verifier"
+        duration="4" />
+
+    <artifact
+        location="/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/resources-debug.ap_"
+        type="RESOURCES" />
+    <artifact
+        location="/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
+        type="DEX" />
+    <artifact
+        location="/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
+        type="DEX" />
+
+    <build timestamp="1611391316385552" >
+        <artifact
+            location="/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/outputs/apk/app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build
+        timestamp="1612568012330714"
+        verifier="METHOD_ANNOTATION_CHANGE" >
+        <artifact
+            location="/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/res/resources-debug.ap_"
+            type="RESOURCES" />
+        <artifact
+            location="/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/tusm/AndroidStudioProjects/Canteen_Android_Send/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
+            type="DEX" />
+    </build>
+
+</instant-run>

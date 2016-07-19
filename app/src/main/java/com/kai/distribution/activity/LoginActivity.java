@@ -51,6 +51,7 @@ public class LoginActivity extends Activity implements OnClickListener{
         super.onCreate(savedInstanceState);
 		if(!RsSharedUtil.getString(LoginActivity.this,Constants.KEY.USER_CODE).equals(""))
 		{
+			Log.e("debug","跳过登陆界面");
 			Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
 			startActivity(intent);
 			finish();

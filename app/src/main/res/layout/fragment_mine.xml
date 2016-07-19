@@ -98,13 +98,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@mipmap/navigate_next_black"></ImageView>
+                android:src="@mipmap/navigate_next_black"/>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="#1000"></View>
+            android:background="#1000"/>
 
         <LinearLayout
             android:id="@+id/ll_password"
@@ -117,7 +117,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
-                android:src="@mipmap/password"></ImageView>
+                android:src="@mipmap/password"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -127,19 +127,19 @@
                 android:layout_weight="1"
                 android:text="修改密码"
                 android:textColor="#000"
-                android:textSize="15sp"></TextView>
+                android:textSize="15sp"/>
 
             <ImageView
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/navigate_next_black"></ImageView>
+                android:src="@mipmap/navigate_next_black"/>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#1000"></View>
+            android:background="#1000"/>
 
         <LinearLayout
             android:id="@+id/ll_bind"
@@ -167,13 +167,13 @@
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/navigate_next_black"></ImageView>
+                android:src="@mipmap/navigate_next_black"/>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="#1000"></View>
+            android:background="#1000"/>
 
         <LinearLayout
             android:id="@+id/ll_set"
@@ -185,7 +185,7 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@mipmap/set_up"></ImageView>
+                android:src="@mipmap/set_up"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -195,7 +195,7 @@
                 android:layout_weight="1"
                 android:text="设置"
                 android:textColor="#000"
-                android:textSize="15sp"></TextView>
+                android:textSize="15sp"/>
 
             <ImageView
                 android:layout_gravity="center_vertical"

@@ -165,6 +165,8 @@ public class Setup_Activity extends Activity implements OnClickListener
 						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_PHOTO,"");
 						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_PHONE, "");
 						RsSharedUtil.putInt(Setup_Activity.this, Constants.KEY.WORK_ID, 0);
+						Intent intent = new Intent(Setup_Activity.this,LoginActivity.class);
+						startActivity(intent);
 						finish();
 					}
 					else if(status.equals("no such a student"))
