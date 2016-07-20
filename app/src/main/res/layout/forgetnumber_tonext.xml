@@ -48,6 +48,7 @@
             android:gravity="center|left"
             android:textSize="16sp"
             android:hint="新密码"
+            android:password="true"
             android:textColor="@color/textcolor"
             />
     </RelativeLayout>
@@ -72,7 +73,8 @@
             android:layout_marginLeft="8dp"
             android:gravity="center|left"
             android:textSize="16sp"
-            android:hint="请输入账号"
+            android:hint="再次输入新密码"
+            android:password="true"
             android:textColor="@color/textcolor"
             />
     </RelativeLayout>

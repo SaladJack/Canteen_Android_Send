@@ -13,7 +13,7 @@
 	    >
 
 		<Button
-			android:id="@+id/clipboard_return"
+			android:id="@+id/work_clipboard_return"
 			android:layout_width="30dp"
 			android:layout_height="30dp"
 			android:layout_gravity="center_vertical"
@@ -27,7 +27,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center_vertical"
-			android:layout_toRightOf="@+id/clipboard_return"
+			android:layout_toRightOf="@+id/work_clipboard_return"
 			android:layout_marginLeft="@dimen/toolbar_title_marginLeft"
 			android:layout_centerVertical="true"
 	        android:layout_weight="1"
@@ -42,7 +42,6 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center_vertical"
-
 			android:layout_marginRight="20dp"
 	        android:textSize="16sp"
 	        android:textColor="#fff"
@@ -66,28 +65,33 @@
 
 	    <RelativeLayout
 	        android:layout_width="match_parent"
-	        android:layout_height="0dp"
-	        android:layout_weight="1" >
+	        android:layout_height="wrap_content" >
 
 	        <ImageView
 	            android:id="@+id/ivv_icon1"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="@dimen/clipboard_image_size"
+	            android:layout_height="@dimen/clipboard_image_size"
 	            android:layout_centerVertical="true"
 	            android:layout_marginLeft="20dp"
+                android:layout_marginTop="@dimen/clipboard_margin"
+                android:layout_marginBottom="@dimen/clipboard_margin"
 	            android:src="@mipmap/clipboard" />
+
 	        <LinearLayout
 	            android:id="@+id/linearLayout1"
-	            android:layout_width="match_parent"
+	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_centerVertical="true"
-	            android:layout_toRightOf="@id/ivv_icon1"
-	            android:orientation="vertical" >
+				android:paddingRight="40dp"
+				android:orientation="vertical"
+                android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true"
+				android:layout_alignParentRight="true"
+				android:layout_alignParentEnd="true"
+				>
 
 	            <LinearLayout
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_centerVertical="true"
 	                android:layout_marginLeft="30dp"
 	                android:layout_weight="1"
 	                android:gravity="center_vertical"
@@ -198,7 +202,7 @@
 	                    android:text="+"
 	                    android:textColor="#fff"
 	                    android:textSize="25sp"
-	                    ></TextView>
+	                    />
 	                
 	                <TextView
 	                    android:id="@+id/clipboard_calendar_month_add"
@@ -209,7 +213,7 @@
 	                    android:text="+"
 	                    android:textColor="#fff"
 	                    android:textSize="25sp"
-	                    ></TextView>
+	                    />
 	                
 	                <TextView
 	                    android:id="@+id/clipboard_calendar_day_add"
@@ -220,7 +224,7 @@
 	                    android:text="+"
 	                    android:textColor="#fff"
 	                    android:textSize="25sp"
-	                    ></TextView>
+	                    />
 	            </LinearLayout>
 	            
 	            <LinearLayout
@@ -238,7 +242,7 @@
 	                    android:text="2016"
 	                    android:textColor="#fff"
 	                    android:textSize="20sp"
-	                    ></TextView>
+	                    />
 	                
 	                <TextView
 	                    android:id="@+id/clipboard_calendar_month"
@@ -249,7 +253,7 @@
 	                    android:text="1"
 	                    android:textColor="#fff"
 	                    android:textSize="25sp"
-	                    ></TextView>
+	                    />
 	                
 	                <TextView
 	                    android:id="@+id/clipboard_calendar_day"
@@ -260,7 +264,7 @@
 	                    android:text="1"
 	                    android:textColor="#fff"
 	                    android:textSize="25sp"
-	                    ></TextView>
+	                    />
 	            </LinearLayout>
 	            
 	            <LinearLayout
@@ -278,7 +282,7 @@
 	                    android:text="-"
 	                    android:textColor="#fff"
 	                    android:textSize="20sp"
-	                    ></TextView>
+	                    />
 	                
 	                <TextView
 	                    android:id="@+id/clipboard_calendar_month_reduce"
@@ -289,7 +293,7 @@
 	                    android:text="-"
 	                    android:textColor="#fff"
 	                    android:textSize="20sp"
-	                    ></TextView>
+	                    />
 	                
 	                <TextView
 	                    android:id="@+id/clipboard_calendar_day_reduce"
@@ -373,28 +377,31 @@
 	    
 	    <RelativeLayout 
 	        android:layout_width="match_parent"
-	        android:layout_height="0dp"
-	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
 	        android:gravity="center_vertical"
 	        >
 	        
 	        <ImageView
 	            android:id="@+id/ivv_icon2"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="@dimen/clipboard_image_size"
+	            android:layout_height="@dimen/clipboard_image_size"
 	            android:layout_marginLeft="20dp"
 	            android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/clipboard_margin"
+                android:layout_marginBottom="@dimen/clipboard_margin"
 	            android:src="@mipmap/trends"
 	            />
-	        
-	        <LinearLayout
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:layout_centerVertical="true"
-	            android:layout_toRightOf="@id/ivv_icon2"
-	            android:orientation="vertical"
-	            >
-	            
+
+			<LinearLayout
+				android:id="@+id/linearLayout2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+
+				android:orientation="vertical"
+				android:paddingRight="20dp"
+				android:layout_centerVertical="true"
+				android:layout_alignParentRight="true"
+				android:layout_alignParentEnd="true">
 	            <LinearLayout
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
@@ -412,7 +419,7 @@
 	                    />
 	                
 	                <TextView
-	                    android:id="@+id/mouth_complete"
+	                    android:id="@+id/month_complete"
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:layout_marginLeft="50dp"
@@ -439,7 +446,7 @@
 						/>
 
 					<TextView
-						android:id="@+id/mouth_send"
+						android:id="@+id/month_send"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="30dp"
@@ -467,7 +474,7 @@
 	                    />
 	               	
 	                <TextView
-	                    android:id="@+id/mouth_yellowcard"
+	                    android:id="@+id/month_yellowcard"
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:layout_marginLeft="50dp"

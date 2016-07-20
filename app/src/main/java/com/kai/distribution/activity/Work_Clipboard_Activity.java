@@ -1,8 +1,10 @@
 package com.kai.distribution.activity;
 
 import android.app.Activity;
+import android.app.Application;
 import android.os.Bundle;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -10,66 +12,112 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.kai.distribution.R;
+import com.kai.distribution.app.Constants;
+import com.kai.distribution.app.MyApplication;
+import com.kai.distribution.utils.RsSharedUtil;
+import com.kai.distribution.utils.TimeUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class Work_Clipboard_Activity extends Activity
 {
-	private TextView work_clipboard_return,show_calendar_date;
+	private TextView show_calendar_date;
 	private TextView clipboard_calendar_year_add,clipboard_calendar_month_add,clipboard_calendar_day_add;
 	private TextView clipboard_calendar_year,clipboard_calendar_month,clipboard_calendar_day;
 	private TextView clipboard_calendar_year_reduce,clipboard_calendar_month_reduce,clipboard_calendar_day_reduce;
-	private Button clipboard_calendar_comfirm,clipboard_calendar_today,clipboard_calendar_cancel;
-	
+	private Button clipboard_calendar_comfirm,clipboard_calendar_today,clipboard_calendar_cancel,work_clipboard_return;
+
+    private TextView day_complete,day_send,day_yellowcard;
+
+
 	private LinearLayout clipboard_calendar;
 	private static boolean calendar_open = true;
 	private String old_year;
 	private String old_month;
 	private String old_day;
-	@Override
+
+
+
+    private String time;
+    private static final String TAG = "Work_Clipboard_Activity";
+    private TextView month_complete;
+    private TextView month_send;
+    private TextView month_yellowcard;
+
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.clipboard);
-		
-		work_clipboard_return=(TextView) findViewById(R.id.work_clipboard_return);
-		show_calendar_date=(TextView) findViewById(R.id.show_calendar_date);
-		
-		clipboard_calendar=(LinearLayout) findViewById(R.id.clipboard_calendar);
-		
-		clipboard_calendar_year_add=(TextView) findViewById(R.id.clipboard_calendar_year_add);
-		clipboard_calendar_month_add=(TextView) findViewById(R.id.clipboard_calendar_month_add);
-		clipboard_calendar_day_add=(TextView) findViewById(R.id.clipboard_calendar_day_add);
-		
-		clipboard_calendar_year=(TextView) findViewById(R.id.clipboard_calendar_year);
-		clipboard_calendar_month=(TextView) findViewById(R.id.clipboard_calendar_month);		
-		clipboard_calendar_day=(TextView) findViewById(R.id.clipboard_calendar_day);
-		
-		clipboard_calendar_year_reduce=(TextView) findViewById(R.id.clipboard_calendar_year_reduce);
-		clipboard_calendar_month_reduce=(TextView) findViewById(R.id.clipboard_calendar_month_reduce);
-		clipboard_calendar_day_reduce=(TextView) findViewById(R.id.clipboard_calendar_day_reduce);
-		
-		clipboard_calendar_comfirm=(Button) findViewById(R.id.clipboard_calendar_comfirm);
-		clipboard_calendar_today=(Button) findViewById(R.id.clipboard_calendar_today);
-		clipboard_calendar_cancel=(Button) findViewById(R.id.clipboard_calendar_cancel);
-		
-		work_clipboard_return.setOnClickListener(l);
-		show_calendar_date.setOnClickListener(l);
-		clipboard_calendar_year_add.setOnClickListener(l);
-		clipboard_calendar_month_add.setOnClickListener(l);
-		clipboard_calendar_day_add.setOnClickListener(l);
-		clipboard_calendar_year_reduce.setOnClickListener(l);
-		clipboard_calendar_month_reduce.setOnClickListener(l);
-		clipboard_calendar_day_reduce.setOnClickListener(l);
-		clipboard_calendar_comfirm.setOnClickListener(l);
-		clipboard_calendar_today.setOnClickListener(l);
-		clipboard_calendar_cancel.setOnClickListener(l);
-		
-		old_year=clipboard_calendar_year.getText().toString();
-		old_month=clipboard_calendar_month.getText().toString();
-		old_day=clipboard_calendar_day.getText().toString();
+        initView();
+
+        time = TimeUtils.getTime(old_year,old_month,old_day);
+        findWorkSummary(RsSharedUtil.getString(Work_Clipboard_Activity.this,Constants.KEY.USER_CODE),
+                        RsSharedUtil.getInt(Work_Clipboard_Activity.this,Constants.KEY.WORK_ID),
+                        TimeUtils.getDayMillis(time),
+                        TimeUtils.getMonthMillis(time));
+
 	}
-	
+
+    private void initView(){
+
+        day_complete = (TextView) findViewById(R.id.day_complete);
+        day_send = (TextView) findViewById(R.id.day_send);
+        day_yellowcard = (TextView) findViewById(R.id.day_yellowcard);
+
+        month_complete = (TextView)findViewById(R.id.month_complete);
+        month_send = (TextView)findViewById(R.id.month_send);
+        month_yellowcard = (TextView)findViewById(R.id.month_yellowcard);
+
+
+        work_clipboard_return=(Button) findViewById(R.id.work_clipboard_return);
+        show_calendar_date=(TextView) findViewById(R.id.show_calendar_date);
+
+        clipboard_calendar=(LinearLayout) findViewById(R.id.clipboard_calendar);
+
+        clipboard_calendar_year_add=(TextView) findViewById(R.id.clipboard_calendar_year_add);
+        clipboard_calendar_month_add=(TextView) findViewById(R.id.clipboard_calendar_month_add);
+        clipboard_calendar_day_add=(TextView) findViewById(R.id.clipboard_calendar_day_add);
+
+        clipboard_calendar_year=(TextView) findViewById(R.id.clipboard_calendar_year);
+        clipboard_calendar_month=(TextView) findViewById(R.id.clipboard_calendar_month);
+        clipboard_calendar_day=(TextView) findViewById(R.id.clipboard_calendar_day);
+
+        clipboard_calendar_year_reduce=(TextView) findViewById(R.id.clipboard_calendar_year_reduce);
+        clipboard_calendar_month_reduce=(TextView) findViewById(R.id.clipboard_calendar_month_reduce);
+        clipboard_calendar_day_reduce=(TextView) findViewById(R.id.clipboard_calendar_day_reduce);
+
+        clipboard_calendar_comfirm=(Button) findViewById(R.id.clipboard_calendar_comfirm);
+        clipboard_calendar_today=(Button) findViewById(R.id.clipboard_calendar_today);
+        clipboard_calendar_cancel=(Button) findViewById(R.id.clipboard_calendar_cancel);
+
+        work_clipboard_return.setOnClickListener(l);
+        show_calendar_date.setOnClickListener(l);
+        clipboard_calendar_year_add.setOnClickListener(l);
+        clipboard_calendar_month_add.setOnClickListener(l);
+        clipboard_calendar_day_add.setOnClickListener(l);
+        clipboard_calendar_year_reduce.setOnClickListener(l);
+        clipboard_calendar_month_reduce.setOnClickListener(l);
+        clipboard_calendar_day_reduce.setOnClickListener(l);
+        clipboard_calendar_comfirm.setOnClickListener(l);
+        clipboard_calendar_today.setOnClickListener(l);
+        clipboard_calendar_cancel.setOnClickListener(l);
+
+        old_year=clipboard_calendar_year.getText().toString();
+        old_month=clipboard_calendar_month.getText().toString();
+        old_day=clipboard_calendar_day.getText().toString();
+    }
+
+
 	private OnClickListener l=new OnClickListener() {
 		
 		@Override
@@ -82,14 +130,14 @@ public class Work_Clipboard_Activity extends Activity
 				break;
 				
 			case R.id.show_calendar_date:
-				if(calendar_open==true)
+				if(calendar_open==false)
 				{
 					clipboard_calendar.setVisibility(View.VISIBLE);
-					calendar_open=false;
-				}else if(calendar_open==false)
+					calendar_open=true;
+				}else if(calendar_open==true)
 				{
 					clipboard_calendar.setVisibility(View.GONE);
-					calendar_open=true;
+					calendar_open=false;
 				}
 				break;
 				
@@ -290,9 +338,18 @@ public class Work_Clipboard_Activity extends Activity
 				break;
 				
 			case R.id.clipboard_calendar_comfirm:
+
 				show_calendar_date.setText(clipboard_calendar_year.getText().toString()+"-"
 										+clipboard_calendar_month.getText().toString()+"-"
 										+clipboard_calendar_day.getText().toString());
+
+                old_year = clipboard_calendar_year.getText().toString();
+                old_month = clipboard_calendar_month.getText().toString();
+                old_day = clipboard_calendar_day.getText().toString();
+
+                clipboard_calendar.setVisibility(View.GONE);
+                calendar_open = false;
+
 				break;
 				
 			case R.id.clipboard_calendar_today:
@@ -310,8 +367,75 @@ public class Work_Clipboard_Activity extends Activity
 				clipboard_calendar_year.setText(old_year);
 				clipboard_calendar_month.setText(old_month);
 				clipboard_calendar_day.setText(old_day);
+
+                clipboard_calendar.setVisibility(View.GONE);
+                calendar_open = false;
 				break;
 			}
 		}
 	};
+/*
+查看配送员工作汇总接口
+url：http://milk345.imwork.net:13607/Canteen/worker/findWorkSummary
+方法：POST
+入参：
+ {
+" code":令牌（string）,
+" workerId":配送员Id（int）
+" day":当天00:00:00时的时间毫秒数（long）,
+" monthBegin":该月第一天00:00:00时的时间毫秒数（long）
+}
+Content-Type: application/json
+描述：
+状态200返回值
+{
+" daySendNumber ":日配送量（int）
+" dayYelloNumber ":日黄牌数（int）
+" totalSendNumber ":月配送量（int）
+" totalYellowNumber ":月黄牌数（int）
+}
+{
+"result":"no such a worker"（失败，该配送员不存在）
+"result":" offline"（配送员不在线）
+"result":" wrongcode"（失败，令牌错误）
+"result":" longTimeOffLine"（失败，配送员掉线了）
+}
+ */
+    private void findWorkSummary(String code, int workerId, long day, long monthBegin){
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("code",code);
+            jsonObject.put("workerId",workerId);
+            jsonObject.put("day",day);
+            jsonObject.put("monthBegin",monthBegin);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Constants.URL.FIND_WORK_SUMMARY,
+                jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e(TAG,"response: " + response.toString());
+
+                try {
+                    //day_complete.setText(response.getString("..."));
+                    day_send.setText(response.getString("daySendNumber"));
+                    day_yellowcard.setText(response.getString("dayYelloNumber"));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG,"error: " + error.toString());
+            }
+        });
+
+        MyApplication.getRequestQueue().add(jsonObjectRequest);
+    }
 }	

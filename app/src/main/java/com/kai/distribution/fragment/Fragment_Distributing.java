@@ -252,7 +252,7 @@ goods:
 "result":"no such a worker"（失败，该配送员不存在）
 "result":" offline"（配送员不在线）
 "result":" wrongcode"（失败，令牌错误）
-"result":" longtimeoffline"（失败，配送员掉线了）
+"result":" longTimeOffLine"（失败，配送员掉线了）
 }
      */
 

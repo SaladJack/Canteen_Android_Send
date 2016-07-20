@@ -34,15 +34,19 @@ public class Constants {
         public static final String DISTRIBUTING_URL = BASE_URL + "Canteen/worker/showOrders";
         //修改密码
         public static final String CHANGE_PASSWORD = BASE_URL + "Canteen/worker/modifyPassword";
+        //工作汇总接口
+        public static final String FIND_WORK_SUMMARY = BASE_URL + "Canteen/worker/findWorkSummary";
+        //找回密码
+        public static final String FIND_PASSWORD = BASE_URL + "Canteen/worker/findPassword";
     }
 
     public static  class KEY{
         public static final String USER_NAME="workerName";
-        public static final String USER_CODE="code";
+        public static final String USER_CODE="code"; //令牌
         public static final String USER_PHOTO="photo";
         public static final String USER_PHONE="phoneNumber";
         public static final String WORK_ID="workerId";
-        public static final String USER_ACCOUNT="account";
+        public static final String USER_ACCOUNT="account"; //账号
 
     }
 

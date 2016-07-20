@@ -167,7 +167,7 @@ Content-Type: application/json
 "result":"no such a student"(ID错误)
 "result":"offline"(配送员不在线)
 "result":"wrongcode"(令牌错误)
-"result":"longtimeoffline"(太长时间没操作掉线了)
+"result":"longTimeOffLine"(太长时间没操作掉线了)
 "result":" nullcode"(验证码为空)
 "result":" wrongcode"(验证码错误)
 }

@@ -17,11 +17,10 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.AppStringRequest;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kai.distribution.R;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
-import com.kai.distribution.entity.UserInfo;
+import com.kai.distribution.utils.NetResultUtils;
 import com.kai.distribution.utils.RsSharedUtil;
 
 import org.json.JSONException;
@@ -158,45 +157,23 @@ public class Setup_Activity extends Activity implements OnClickListener
 					String status=jsonObject.getString("result");
 					if (status.equals("logout successfully"))
 					{
-						Toast.makeText(Setup_Activity.this, "退出成功！！", Toast.LENGTH_SHORT).show();
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_ACCOUNT,"");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_NAME, "");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_CODE, "");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_PHOTO,"");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_PHONE, "");
-						RsSharedUtil.putInt(Setup_Activity.this, Constants.KEY.WORK_ID, 0);
-						Intent intent = new Intent(Setup_Activity.this,LoginActivity.class);
-						startActivity(intent);
-						finish();
+						NetResultUtils.logout(Setup_Activity.this);
 					}
 					else if(status.equals("no such a student"))
 					{
-						Toast.makeText(Setup_Activity.this, "退出失败，该学生不存在！！", Toast.LENGTH_SHORT).show();
-
+						NetResultUtils.noSuchAStudent(Setup_Activity.this);
 					}
 					else if(status.equals("offline"))
 					{
-						Toast.makeText(Setup_Activity.this, "退出成功！！", Toast.LENGTH_SHORT).show();
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_ACCOUNT,"");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_NAME, "");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_CODE, "");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_PHOTO,"");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_PHONE, "");
-						RsSharedUtil.putInt(Setup_Activity.this, Constants.KEY.WORK_ID, 0);
-						finish();
+						NetResultUtils.offLine(Setup_Activity.this);
+					}
+					else if(status.equals("longtimeoffline"))
+					{
+						NetResultUtils.longTimeOffLine(Setup_Activity.this);
 
 					}
-					else if(status.equals("wrongcode")||status.equals("longtimeoffline"))
-					{
-						Toast.makeText(Setup_Activity.this, "退出成功！！", Toast.LENGTH_SHORT).show();
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_ACCOUNT,"");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_NAME, "");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_CODE, "");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_PHOTO,"");
-						RsSharedUtil.putString(Setup_Activity.this, Constants.KEY.USER_PHONE, "");
-						RsSharedUtil.putInt(Setup_Activity.this, Constants.KEY.WORK_ID, 0);
-						finish();
-
+					else if(status.equals("wrongcode")){
+						NetResultUtils.wrongCode(Setup_Activity.this);
 					}
 
 				} catch (JSONException e) {

@@ -21,4 +21,7 @@
     <dimen name="bottom_button_padding">50dp</dimen>
 
     <dimen name="clipboard_textSize">30sp</dimen>
+
+    <dimen name="clipboard_image_size">100dp</dimen>
+    <dimen name="clipboard_margin">10dp</dimen>
 </resources>
