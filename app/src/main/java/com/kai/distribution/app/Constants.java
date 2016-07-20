@@ -3,6 +3,13 @@ package com.kai.distribution.app;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 
+import com.kai.distribution.entity.Distributing;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * author:hh
  * Created by Dell on 2016/6/21.
@@ -11,8 +18,8 @@ import android.telephony.TelephonyManager;
 public class Constants {
 
     //SharePreference的存储路径
-    public static final String SHARED_PATH="re_share";
-
+    public static final String SHARED_PATH = "re_share";
+    public static final int REFRESH_REQUEST = 1;
 
     public static  class URL{
         public static final String BASE_URL="http://milk345.imwork.net:13607/";
@@ -30,6 +37,8 @@ public class Constants {
         public static final String BIND_PHONE = BASE_URL + "Canteen/worker/bindPhone";
         //发送短信（获得验证码用）
         public static final String SEND_MESSAGE = BASE_URL + "Canteen/sendMessage/random";
+        //验证验证码是否正确
+        public static final String CONFIRM_CODE = BASE_URL + "Canteen/worker/confirmCode";
         //显示待送餐
         public static final String DISTRIBUTING_URL = BASE_URL + "Canteen/worker/showOrders";
         //修改密码
@@ -38,6 +47,9 @@ public class Constants {
         public static final String FIND_WORK_SUMMARY = BASE_URL + "Canteen/worker/findWorkSummary";
         //找回密码
         public static final String FIND_PASSWORD = BASE_URL + "Canteen/worker/findPassword";
+        //取消绑定手机
+        public static final String  CANCEL_BIND_PHONE = BASE_URL + "Canteen/worker/cancelBindPhone";
+
     }
 
     public static  class KEY{
@@ -51,6 +63,16 @@ public class Constants {
     }
 
     public static  class CODE{
+        public static final int HAVE_DISTRIBUTING = 1;
+        public static final int WAITING = 2;
+        public static final int SCAN = 3;
+    }
+
+    public static class ELEMENTS{
+        public static List<Distributing> distributingList = new ArrayList<>();
+        public static List<Distributing> newDatas = new ArrayList<>();
+        public static int distributingNum = 0;
+        public static JSONArray unparsedNewDatas;
 
     }
 

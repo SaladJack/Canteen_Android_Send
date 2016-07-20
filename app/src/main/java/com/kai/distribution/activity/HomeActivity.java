@@ -1,14 +1,14 @@
 package com.kai.distribution.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kai.distribution.R;
+import com.kai.distribution.app.Constants;
+import com.kai.distribution.fragment.Fragment_AfterScanning;
 import com.kai.distribution.fragment.Fragment_Distributied;
 import com.kai.distribution.fragment.Fragment_Distributing;
 import com.kai.distribution.fragment.Fragment_Mine;
@@ -30,19 +32,54 @@ public class HomeActivity extends FragmentActivity
 	private ImageView distributed,distributing,person;
 	private ViewPager show_different_fragment;
 	private FragmentPagerAdapter frag_adapter;
-	private List<Fragment> frag_list;
+
 	private LinearLayout ll_distributed,ll_distributing,ll_person;
 	private TextView tv_distributed,tv_distributing,tv_person;
 	private int selectedTextColor = 0;
 	private int unselectedTextColor = 0;
 
+
+	private List<Fragment> frag_list;
+	private Fragment_Distributied fragment_distributied;
+	private Fragment_Distributing fragment_distributing;
+	private Fragment_Waiting fragment_waiting;
+	private Fragment_Mine fragment_mine;
+	private Fragment_AfterScanning fragment_afterscanning;
+
+
+	private static HomeActivity mHomeActivity;
+
+	public static Handler sHandler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what){
+				case Constants.CODE.HAVE_DISTRIBUTING:
+					mHomeActivity.frag_list.set(1,mHomeActivity.fragment_distributing);
+					break;
+
+				case Constants.CODE.WAITING:
+					mHomeActivity.frag_list.set(1,mHomeActivity.fragment_waiting);
+					break;
+				case Constants.CODE.SCAN:
+					mHomeActivity.frag_list.set(1,mHomeActivity.fragment_afterscanning);
+					break;
+
+
+			}
+		}
+	};
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-    	
+
+
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.home_screen);
-		
+
+		mHomeActivity = this;
+
 		initView();
 		initOnClick();
 	}
@@ -63,16 +100,18 @@ public class HomeActivity extends FragmentActivity
 
 
 
-		Fragment_Distributied fragment_distributied=new Fragment_Distributied();
-		Fragment_Distributing fragment_distributing=new Fragment_Distributing();
-		Fragment_Waiting fragment_waiting=new Fragment_Waiting();
-		Fragment_Mine fragment_mine=new Fragment_Mine();
+		fragment_distributied=new Fragment_Distributied();
+		fragment_distributing=new Fragment_Distributing();
+		fragment_waiting=new Fragment_Waiting();
+		fragment_mine=new Fragment_Mine();
+		fragment_afterscanning = new Fragment_AfterScanning();
 		
 		frag_list=new ArrayList<Fragment>();
 		frag_list.add(fragment_distributied);
 		frag_list.add(fragment_distributing);
 		frag_list.add(fragment_mine);
-		
+
+
 		frag_adapter=new FragmentPagerAdapter(getSupportFragmentManager()) {
 			
 			@Override
@@ -86,10 +125,13 @@ public class HomeActivity extends FragmentActivity
 			}
 		};
 		show_different_fragment.setAdapter(frag_adapter);
+		frag_adapter.notifyDataSetChanged();
+
 		
 		Intent intent=getIntent();
 		int current_fragment=intent.getIntExtra("current_fragment", -1);
 		show_different_fragment.setCurrentItem(current_fragment);
+
 
 
 
@@ -208,4 +250,15 @@ public class HomeActivity extends FragmentActivity
 			
 		}
 	};
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode){
+			case Constants.REFRESH_REQUEST:
+				fragment_mine.initView();
+				break;
+		}
+	}
+
 }

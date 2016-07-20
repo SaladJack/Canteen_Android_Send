@@ -12,6 +12,22 @@ import com.kai.distribution.app.Constants;
  * Created by tusm on 16/7/20.
  */
 public class NetResultUtils {
+
+
+    public static void badResponse(String res,Activity activity){
+        if (res.equals("no such a worker")){
+            NetResultUtils.noSuchAStudent(activity);
+        }else if (res.equals("offline")){
+            NetResultUtils.offLine(activity);
+        }else if(res.equals("wrongcode")){
+            NetResultUtils.wrongCode(activity);
+        }else if (res.equals("longtimeoffline")){
+            NetResultUtils.longTimeOffLine(activity);
+        }
+
+    }
+
+
     public static void offLine(Activity activity){
         Toast.makeText(activity, "你已离线，系统自动退出", Toast.LENGTH_SHORT).show();
         clearData(activity);

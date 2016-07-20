@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ import org.json.JSONObject;
 
 public class Setup_Activity extends Activity implements OnClickListener
 {
-	private TextView tv_return;
+	private ImageButton tv_return;
 	private LinearLayout ll_version;
 	private LinearLayout ll_clear;
 	private Button btn_logout;
@@ -46,7 +47,7 @@ public class Setup_Activity extends Activity implements OnClickListener
 	}
 
 	private void initView() {
-		tv_return=(TextView) findViewById(R.id.set_up_return);
+		tv_return=(ImageButton) findViewById(R.id.set_up_return);
 		ll_version=(LinearLayout) findViewById(R.id.version);
 		ll_clear=(LinearLayout) findViewById(R.id.clear_cache);
 		btn_logout=(Button) findViewById(R.id.set_up_back);

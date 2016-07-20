@@ -151,18 +151,24 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@mipmap/phone_number"></ImageView>
+                android:src="@mipmap/phone_number"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="绑定手机"
                 android:textColor="#000"
-                android:textSize="15sp"></TextView>
-
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/phone_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:textSize="15sp"/>
             <ImageView
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"

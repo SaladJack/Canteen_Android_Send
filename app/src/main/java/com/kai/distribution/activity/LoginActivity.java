@@ -120,7 +120,6 @@ public class LoginActivity extends Activity implements OnClickListener{
 		try {
 			jsonObject.put("account", user);
 			jsonObject.put("password", password);
-
 			jsonObject.put("recognizeCode", Constants.getDeviceID(this));
 
 		} catch (JSONException e) {

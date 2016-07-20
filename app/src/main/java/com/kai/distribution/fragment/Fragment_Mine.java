@@ -42,6 +42,8 @@ public class Fragment_Mine extends Fragment
 	private LinearLayout ll_user;
 	@ViewInject(R.id.ll_login)
 	private LinearLayout ll_login;
+	@ViewInject(R.id.phone_number)
+	private TextView phone_number;
 
 
 	@Override
@@ -53,11 +55,10 @@ public class Fragment_Mine extends Fragment
 		return view;
 	}
 
-	private void initView()
-	{
-		if (!RsSharedUtil.getString(getActivity(), Constants.KEY.USER_CODE).equals("")||
-				!RsSharedUtil.getString(getActivity(), Constants.KEY.USER_CODE).equalsIgnoreCase("null"))
-		{
+	//返回该Fragment需要刷新界面 public不能更改
+	public void initView() {
+		if (!RsSharedUtil.getString(getActivity(), Constants.KEY.USER_CODE).equals("") ||
+				!RsSharedUtil.getString(getActivity(), Constants.KEY.USER_CODE).equalsIgnoreCase("null")) {
 			ll_user.setVisibility(View.VISIBLE);
 			ll_login.setVisibility(View.GONE);
 			tv_name.setText(RsSharedUtil.getString(getActivity(), Constants.KEY.USER_NAME));
@@ -66,13 +67,16 @@ public class Fragment_Mine extends Fragment
 //					.load(RsSharedUtil.getString(getActivity(), Constants.KEY.USER_PHOTO))
 //					.error(R.drawable.img_load)
 //					.into(iv_logo);
-		}
-		else {
+			if (!TextUtils.isEmpty(RsSharedUtil.getString(getActivity(), Constants.KEY.USER_PHONE))) {
+				phone_number.setText(RsSharedUtil.getString(getActivity(), Constants.KEY.USER_PHONE));
+			}
+		}else {
 			ll_login.setVisibility(View.VISIBLE);
 			ll_user.setVisibility(View.GONE);
 		}
 
 	}
+
 
 	@OnClick({R.id.ll_work,R.id.ll_password,R.id.ll_bind,R.id.ll_set,R.id.ll_system,R.id.ll_login})
 	public void onClick(View view) {
@@ -105,7 +109,7 @@ public class Fragment_Mine extends Fragment
 						startActivity(intent);
 						break;
 					}
-				//设置
+					//设置
 				case R.id.ll_set:
 					intent=new Intent(getActivity(),Setup_Activity.class);
 					startActivity(intent);

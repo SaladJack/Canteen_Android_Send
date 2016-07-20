@@ -1,6 +1,7 @@
 package com.kai.distribution.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,12 +15,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.AppStringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.kai.distribution.R;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
+import com.kai.distribution.utils.NetResultUtils;
 import com.kai.distribution.utils.RsSharedUtil;
 
 import org.json.JSONException;
@@ -34,6 +38,7 @@ public class Bind_Phone_Activity extends Activity
     private Button bing_phone_comfirm;
     private boolean isSendMsg = false; //短信是否已发送
 
+    private static final String TAG = "Bind_Phone_Activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +79,7 @@ public class Bind_Phone_Activity extends Activity
                 case R.id.bing_phone_comfirm:
                     if (isSendMsg){
                         if (!TextUtils.isEmpty(code_input.getText().toString())){
-                            bindPhone(RsSharedUtil.getString(Bind_Phone_Activity.this,Constants.KEY.USER_CODE),
-                                      RsSharedUtil.getInt(Bind_Phone_Activity.this,Constants.KEY.WORK_ID),
-                                      code_input.getText().toString(),
-                                      phone_input.getText().toString());
+                                confirmCode(code_input.getText().toString(), phone_input.getText().toString());
                         }
                     }
                     else {
@@ -130,8 +132,11 @@ public class Bind_Phone_Activity extends Activity
 
                 try {
                     JSONObject result = new JSONObject(response);
-                    if (result.get("result").equals("sucess")){
+                    if (result.getString("result").equals("sucess")){
                         Toast.makeText(Bind_Phone_Activity.this, "验证码发送成功", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else {
+                        NetResultUtils.badResponse(result.getString("result"),Bind_Phone_Activity.this);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -192,9 +197,14 @@ Content-Type: application/json
 
                 try {
                     JSONObject result = new JSONObject(response);
-                    if (result.get("result").equals("sucess")){
+                    if (result.getString("result").equals("success")){
                         Toast.makeText(Bind_Phone_Activity.this, "绑定成功", Toast.LENGTH_SHORT).show();
                         RsSharedUtil.putString(Bind_Phone_Activity.this,Constants.KEY.USER_PHONE,phoneNum);
+                        Intent intent = new Intent(Bind_Phone_Activity.this,HomeActivity.class);
+                        startActivityForResult(intent,Constants.REFRESH_REQUEST);
+                        finish();
+                    }else {
+                            NetResultUtils.badResponse(result.getString("result"),Bind_Phone_Activity.this);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -211,4 +221,46 @@ Content-Type: application/json
 
     }
 
+
+    private void confirmCode(String code,String phoneNumber){
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("code",code);
+            jsonObject.put("phoneNumber",phoneNumber);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest  = new JsonObjectRequest(Request.Method.POST, Constants.URL.CONFIRM_CODE, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e(TAG,"response: " + response.toString());
+                try {
+                    String res = response.getString("result");
+                    if (res.equals("success")){
+                        bindPhone(RsSharedUtil.getString(Bind_Phone_Activity.this,Constants.KEY.USER_CODE),
+                                RsSharedUtil.getInt(Bind_Phone_Activity.this,Constants.KEY.WORK_ID),
+                                code_input.getText().toString(),
+                                phone_input.getText().toString());
+                    }else if (res.equals("nullcode")){
+                        Toast.makeText(Bind_Phone_Activity.this, "验证码为空", Toast.LENGTH_SHORT).show();
+                    }else if (res.equals("wrongcode")){
+                        Toast.makeText(Bind_Phone_Activity.this, "验证码错误", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        MyApplication.getRequestQueue().add(jsonObjectRequest);
+
+    }
 }

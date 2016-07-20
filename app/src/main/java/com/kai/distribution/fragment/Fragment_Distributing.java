@@ -72,13 +72,16 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
     private JSONArray unparsedNewDatas;
     private List<Distributing> distributingList = new ArrayList<>();
 
+
+    private static final String TAG = "Fragment_Distributing";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_disttributing, container, false);
-        initView();
-        initData();
+            view = inflater.inflate(R.layout.fragment_disttributing, container, false);
+            initView();
+            initData();
+
         return view;
     }
 
@@ -264,7 +267,7 @@ goods:
 //		Student student = getStudent();
         try {
 
-            jsonObject.put("code", RsSharedUtil.getString(getContext(),"code"));
+            jsonObject.put("code", RsSharedUtil.getString(getActivity(),"code"));
             jsonObject.put("workerId", RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
             jsonObject.put("buildingId", buildingId);
 
@@ -295,10 +298,6 @@ goods:
                 Log.e("Fragment_Distributing","error:"+error.toString());
             }
         });
-
-
-
-
 
         MyApplication.getRequestQueue().add(jsonArrayRequest);
     }
@@ -339,11 +338,18 @@ goods:
 
 
 
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        if (listview_adapter != null) {
+//            listview_adapter.notifyDataSetChanged();
+//        }
+//    }
+
+
     @Override
-    public void onStart() {
-        super.onStart();
-        if (listview_adapter != null) {
-            listview_adapter.notifyDataSetChanged();
-        }
+    public void onDestroy() {
+        Log.e(TAG,TAG + " : onDestroy()");
+        super.onDestroy();
     }
 }
