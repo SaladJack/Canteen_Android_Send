@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class DistrbutingUtils {
 
     private static final String TAG = "DistrbutingUtils";
-    private static void getDistributedListByHTTP(final Context context, int buildingId){
+    public static void getDistributedListByHTTP(final Context context, int buildingId){
 
         JSONObject jsonObject = new JSONObject();
         String url = Constants.URL.DISTRIBUTING_URL;
@@ -46,7 +46,7 @@ public class DistrbutingUtils {
                     public void onResponse(JSONArray response) {
                         try {
                             Log.e("Fragment_Distributing", response.toString());
-                            Constants.ELEMENTS.unparsedNewDatas = response;
+                            Constants.GLOBOL.unparsedNewDatas = response;
                             manageData(context);//处理数据
                             Log.i("onResponse", "success");
                         } catch (Exception e1) {
@@ -59,7 +59,7 @@ public class DistrbutingUtils {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Fragment_Distributing","error:"+error.toString());
-                //Constants.ELEMENTS.unparsedNewDatas = null;
+                //Constants.GLOBOL.unparsedNewDatas = null;
             }
         });
 
@@ -67,28 +67,28 @@ public class DistrbutingUtils {
     }
 
     public static void manageData(Context context){
-        if (Constants.ELEMENTS.newDatas != null){
-            Constants.ELEMENTS.newDatas.clear();
+        if (Constants.GLOBOL.newDatas != null){
+            Constants.GLOBOL.newDatas.clear();
         }else {
-            Constants.ELEMENTS.newDatas = new ArrayList<>();
+            Constants.GLOBOL.newDatas = new ArrayList<>();
         }
 
-        if (Constants.ELEMENTS.unparsedNewDatas == null || Constants.ELEMENTS.unparsedNewDatas.length()==0){
+        if (Constants.GLOBOL.unparsedNewDatas == null || Constants.GLOBOL.unparsedNewDatas.length()==0){
             // FIXME: 16/7/20
             Toast.makeText(context,"没有代送餐记录",Toast.LENGTH_SHORT).show();
-            Constants.ELEMENTS.distributingNum = 0;
+            Constants.GLOBOL.distributingNum = 0;
             return;
         } else {
 
             Log.e(TAG,"JsonToBean");
             //解析成Bean
-            Constants.ELEMENTS.newDatas = JsonToBean.getDistributings(Constants.ELEMENTS.unparsedNewDatas.toString());
-            Constants.ELEMENTS.distributingNum = Constants.ELEMENTS.newDatas.size();
-            Constants.ELEMENTS.unparsedNewDatas = null;
+            Constants.GLOBOL.newDatas = JsonToBean.getDistributings(Constants.GLOBOL.unparsedNewDatas.toString());
+            Constants.GLOBOL.distributingNum = Constants.GLOBOL.newDatas.size();
+            Constants.GLOBOL.unparsedNewDatas = null;
 
 
-//            distributingList.clear();
-//            distributingList.addAll(newDatas);
+            Constants.GLOBOL.distributingList.clear();
+            Constants.GLOBOL.distributingList.addAll(Constants.GLOBOL.newDatas);
 //            listview_adapter.notifyDataSetChanged();
 
         }

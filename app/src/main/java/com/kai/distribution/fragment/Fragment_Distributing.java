@@ -32,6 +32,7 @@ import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
 import com.kai.distribution.entity.Distributed;
 import com.kai.distribution.entity.Distributing;
+import com.kai.distribution.utils.DistrbutingUtils;
 import com.kai.distribution.utils.JsonToBean;
 import com.kai.distribution.utils.RsSharedUtil;
 import com.zxing.activity.CaptureActivity;
@@ -66,11 +67,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
 
     private PtrClassicFrameLayout ptrClassicFrameLayout;
     private Handler handler = new Handler();
-    private int pageIndex = 1;
 
-    private List<Distributing> newDatas;
-    private JSONArray unparsedNewDatas;
-    private List<Distributing> distributingList = new ArrayList<>();
 
 
     private static final String TAG = "Fragment_Distributing";
@@ -118,7 +115,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         });
 
         show_takeoutfood = (ListView) view.findViewById(R.id.show_takeoutfood);
-        listview_adapter = new Distributing_listview_adapter(getActivity(),R.layout.takeoutfodd_content,distributingList);
+        listview_adapter = new Distributing_listview_adapter(getActivity(),R.layout.takeoutfodd_content,Constants.GLOBOL.distributingList);
         show_takeoutfood.setAdapter(listview_adapter);
 
         int item_amount=show_takeoutfood.getCount();
@@ -171,9 +168,9 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
                     public void run() {
                         //添加刷新事件
                         Log.e("debug","setPtrHandler");
-                        pageIndex = 1;
-                        getDistributedListByHTTP();
+                        DistrbutingUtils.getDistributedListByHTTP(getActivity().getApplicationContext(),buildingId);
                         ptrClassicFrameLayout.refreshComplete();
+                        listview_adapter.notifyDataSetChanged();
                         ptrClassicFrameLayout.setLoadMoreEnable(true);
                     }
                 }, 1000);
@@ -189,8 +186,8 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
                     public void run() {
                         //添加加载事件
                         Log.e("debug","setOnLoadMoreListener");
-                        pageIndex++;
-                        getDistributedListByHTTP();
+                        DistrbutingUtils.getDistributedListByHTTP(getActivity().getApplicationContext(),buildingId);
+                        listview_adapter.notifyDataSetChanged();
                         ptrClassicFrameLayout.loadMoreComplete(true);
                         Toast.makeText(getActivity(), "加载完成", Toast.LENGTH_SHORT).show();
                     }
@@ -200,151 +197,14 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
     }
 
 
-    /*
-    TODO 显示待送餐订单列表接口
-url：http:// milk345.imwork.net:13607/Canteen/worker/showOrders
-方法：POST
-入参：
- {
-"workerId":配送员Id（int）,
-"code":无时间戳的令牌（string）,
-"buildingId":建筑Id（int）(查询全部时为0)
-}
-Content-Type: application/json
-描述：
-状态200返回值
-返回类型为JSONArray，对于每个JSONObject，都有以下属性：
-{
-" groupId":箱子Id(int)
-" sendMoney":配送费(long)
-" getAccount":取餐号(string)
-"statu":订单状态(int)
-" canteen":餐厅名(string)
-" area":校区代号(int)
-" goods":餐品和对应的数量(JSONArray)
-" account":订单号(string)
-" workerName":配送员名字(string)
-" workerPhone":配送员手机号(string)
-" payMoney":实付款(long)
-" stuName":学生名字(string)
-" phoneNumber":学生手机号(string)
-" time":下单时间毫秒数(long)
-" address":配送地址(string)
-" pay":支付方式代号(int) （校园卡0，微信2，支付宝1）
-" sendTimeBegin":送达开始时间毫秒数(long)
-" sendTimeEnd ":送达结束时间毫秒数(long)
-" realTime":实际送达时间毫秒数(long)
-" couLimitMoney":优惠券使用限制金额(long)(单位:分)(无优惠券时返回0)
-" couDecreaseMoney":优惠券减少金额(long)(单位:分) (无优惠券时返回0)
-" actLimitMoney":优惠活动限制金额(long)(单位:分) (无优惠活动时返回0)
-" actDecreaseMoney":优惠活动减少金额(long)(单位:分) (无优惠活动时返回0)
-" orderId":订单Id(int)
-" goodNumber":订单Id(int)
-"buildingId":建筑Id（int）
-"buildingId":建筑名字（string）
-}
-{
-goods:
-" goodName":餐品名字（string）
-" number":每个餐品的数量(int)
-" goodId":餐品Id(int)
-}
-失败时，返回类型为JSONArray，对于第一个JSONObject，可能有以下属性：
-{
-"result":"noorder"（无订单）
-"result":"no such a worker"（失败，该配送员不存在）
-"result":" offline"（配送员不在线）
-"result":" wrongcode"（失败，令牌错误）
-"result":" longTimeOffLine"（失败，配送员掉线了）
-}
-     */
-
-    private void getDistributedListByHTTP(){
-
-        JSONObject jsonObject = new JSONObject();
-        String url = Constants.URL.DISTRIBUTING_URL;
-
-//		Student student = getStudent();
-        try {
-
-            jsonObject.put("code", RsSharedUtil.getString(getActivity(),"code"));
-            jsonObject.put("workerId", RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
-            jsonObject.put("buildingId", buildingId);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.POST, url, jsonObject,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            Log.e("Fragment_Distributing", response.toString());
-                            unparsedNewDatas = response;
-                            manageData();//处理数据
-                            Log.i("onResponse", "success");
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
-                            String result = response.toString();
-
-                        }
-                    }
-                },new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Fragment_Distributing","error:"+error.toString());
-            }
-        });
-
-        MyApplication.getRequestQueue().add(jsonArrayRequest);
-    }
-
-    private void manageData(){
-        if (newDatas != null){
-            newDatas.clear();
-        }else {
-            newDatas = new ArrayList<>();
-        }
-
-        if (unparsedNewDatas == null || unparsedNewDatas.length()==0){
-            Toast.makeText(getActivity(),"没有代送餐记录",Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-
-					/*TODO: 16/7/18
-					  解析成Bean
-					  */
-
-
-            Log.e("Fragment_Distributing","JsonToBean");
-
-            newDatas = JsonToBean.getDistributings(unparsedNewDatas.toString());
-
-            Log.e("Fragment_Distributing","buildingName : ");
-            unparsedNewDatas = null;
-
-
-            distributingList.clear();
-            distributingList.addAll(newDatas);
-            listview_adapter.notifyDataSetChanged();
-
-        }
-
-    }
 
 
 
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        if (listview_adapter != null) {
-//            listview_adapter.notifyDataSetChanged();
-//        }
-//    }
+
+
+
+
 
 
     @Override

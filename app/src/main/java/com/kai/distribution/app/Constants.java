@@ -68,7 +68,7 @@ public class Constants {
         public static final int SCAN = 3;
     }
 
-    public static class ELEMENTS{
+    public static class GLOBOL {
         public static List<Distributing> distributingList = new ArrayList<>();
         public static List<Distributing> newDatas = new ArrayList<>();
         public static int distributingNum = 0;
