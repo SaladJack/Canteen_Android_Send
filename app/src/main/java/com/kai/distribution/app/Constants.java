@@ -49,6 +49,8 @@ public class Constants {
         public static final String FIND_PASSWORD = BASE_URL + "Canteen/worker/findPassword";
         //取消绑定手机
         public static final String  CANCEL_BIND_PHONE = BASE_URL + "Canteen/worker/cancelBindPhone";
+        //显示系统消息
+        public static final String SHOW_MESSAGES = BASE_URL + "Canteen/worker/showMessages";
 
     }
 

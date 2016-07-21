@@ -108,7 +108,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         show_takeoutfood.setAdapter(listview_adapter);
 
         int item_amount=show_takeoutfood.getCount();
-        show_count.setText("配送中"+Integer.toString(item_amount)+")");
+        show_count.setText("配送中"+"("+item_amount+")");
 
 
         scan.setOnClickListener(this);

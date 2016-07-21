@@ -10,9 +10,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.AppStringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.kai.distribution.R;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
@@ -40,6 +42,9 @@ public class SysMessage_Activity extends Activity
 		ViewUtils.inject(this);
 		initView();
 
+
+
+
 		tv_back.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -61,34 +66,27 @@ public class SysMessage_Activity extends Activity
 
 		JSONObject jsonObject = new JSONObject();
 		try {
-			jsonObject.put("pageIndex", 1);
+			jsonObject.put("sign", 1);
 			jsonObject.put("code", RsSharedUtil.getString(SysMessage_Activity.this, Constants.KEY.USER_CODE));
 			jsonObject.put("workerId", RsSharedUtil.getInt(SysMessage_Activity.this, Constants.KEY.WORK_ID));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		AppStringRequest stringRequest = new AppStringRequest(com.android.volley.Request.Method.POST,
-				Constants.URL.SYS_MESSAGE_URL, jsonObject, new Response.Listener<String>() {
-
+		JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,
+				Constants.URL.SYS_MESSAGE_URL, jsonObject, new Response.Listener<JSONObject>() {
 			@Override
-			public void onResponse(String response) {
-				Log.d("getMessageSuccess", response );
-
-
+			public void onResponse(JSONObject response) {
 
 			}
 		}, new Response.ErrorListener() {
-
 			@Override
 			public void onErrorResponse(VolleyError error) {
 
-				Toast.makeText(SysMessage_Activity.this, "服务器错误，获取系统消息失败！！", Toast.LENGTH_SHORT).show();
 			}
-
 		});
-		stringRequest.setTag("Sys_Activity");
-		MyApplication.getRequestQueue().add(stringRequest);
+
+				MyApplication.getRequestQueue().add(stringRequest);
 	}
 
 	@Override

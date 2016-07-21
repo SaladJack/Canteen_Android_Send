@@ -53,12 +53,10 @@
         	android:layout_weight="1" >
         <Button
             android:id="@+id/is_out"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="外出"
+			android:text="外出"
 			android:textSize="16sp"
-			android:padding="3dp"
             android:textColor="#DD4C5A"
             android:background="@drawable/bt_bg4"
             />

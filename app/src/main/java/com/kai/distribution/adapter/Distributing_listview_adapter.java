@@ -50,6 +50,8 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
             holder = (ViewHolder) view.getTag();
         }
 
+
+
         holder.which_area.setText(distributing.getBuildingName());
         holder.which_people.setText(distributing.getStuName());
 
