@@ -49,7 +49,10 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
         } else {
             holder = (ViewHolder) view.getTag();
         }
+
         holder.which_area.setText(distributing.getBuildingName());
+        holder.which_people.setText(distributing.getStuName());
+
 
         holder.is_out.setOnClickListener(new View.OnClickListener() {
 

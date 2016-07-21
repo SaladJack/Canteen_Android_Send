@@ -68,11 +68,13 @@ public class Constants {
         public static final int SCAN = 3;
     }
 
-    public static class GLOBOL {
+    public static class GLOBAL {
         public static List<Distributing> distributingList = new ArrayList<>();
         public static List<Distributing> newDatas = new ArrayList<>();
-        public static int distributingNum = 0;
+        public static int DISTRIBUTING_NUM = 0;
         public static JSONArray unparsedNewDatas;
+        public static boolean UPDATE_FRAGMENT = false;
+        public static boolean HAVE_SCANNED = false;
 
     }
 

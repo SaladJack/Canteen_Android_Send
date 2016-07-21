@@ -26,6 +26,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="10dp"
+                android:text="@string/agreement_content"
+                />
         </LinearLayout>
     </ScrollView>
 
@@ -45,11 +51,11 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="13dp"
         android:layout_toRightOf="@+id/agreement_back"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
-        android:text="用户协议"
+        android:text="员工准则"
         android:textColor="#124d80"
         android:textSize="@dimen/toolbar_textsize" />
 
@@ -59,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="18dp"
         android:text="华工云餐厅合作协议"
         android:textColor="#072432"
         android:textSize="30sp" />

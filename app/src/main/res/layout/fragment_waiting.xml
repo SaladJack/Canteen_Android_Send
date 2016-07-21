@@ -4,10 +4,42 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical" >
+    <RelativeLayout
+        android:id="@+id/rl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#0164B7">
+
+        <TextView
+            android:id="@+id/show_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/toolbar_textsize"
+            android:layout_marginLeft="@dimen/toolbar_return_marginLeft"
+            android:text="配送中（）"
+            />
+
+        <ImageButton
+            android:id="@+id/fragment_waiting_scan"
+            android:src="@mipmap/saoma"
+            android:background="@color/transparent"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            android:layout_marginRight="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_below="@+id/rl_toolbar"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="96dp"

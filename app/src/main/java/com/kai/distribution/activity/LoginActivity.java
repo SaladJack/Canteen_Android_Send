@@ -133,35 +133,38 @@ public class LoginActivity extends Activity implements OnClickListener{
 			public void onResponse(String response) {
 				Log.d("loginSuccess",response+"dd");
 				dialog.dismiss();
-				Toast.makeText(LoginActivity.this,"登录成功！！",Toast.LENGTH_SHORT).show();
-				Intent intent=new Intent();
+
 				try {
 
 					JSONObject jsonObject = new JSONObject(response);
-					if (jsonObject.getString("result").equals("alreadylogined")) {
-						intent.setClass(LoginActivity.this,HomeActivity.class);
-						startActivity(intent);
-						finish();
+					String res = jsonObject.getString("result");
+					if (res.equals("alreadylogined")) {
+						Toast.makeText(LoginActivity.this, "配送员已经登录", Toast.LENGTH_SHORT).show();
+					}else if(res.equals("success")){
+						Toast.makeText(LoginActivity.this,"登录成功！！",Toast.LENGTH_SHORT).show();
+						userInfo =new ObjectMapper().readValue(response, UserInfo.class);
+						if (userInfo!=null)
+						{
+							Log.d("loginUserInfo",userInfo.toString());
+							RsSharedUtil.putString(LoginActivity.this,Constants.KEY.USER_ACCOUNT,userInfo.getAccount());
+							RsSharedUtil.putString(LoginActivity.this,Constants.KEY.USER_NAME,userInfo.getWorkerName());
+							RsSharedUtil.putString(LoginActivity.this,Constants.KEY.USER_CODE,userInfo.getCode());
+							RsSharedUtil.putString(LoginActivity.this,Constants.KEY.USER_PHOTO,userInfo.getPhoto());
+							RsSharedUtil.putString(LoginActivity.this,Constants.KEY.USER_PHONE,userInfo.getPhoneNumber());
+							RsSharedUtil.putInt(LoginActivity.this,Constants.KEY.WORK_ID,userInfo.getWorkerId());
+							Intent intent=new Intent();
+							intent.setClass(LoginActivity.this,HomeActivity.class);
+							startActivity(intent);
+							finish();
+						}else if(res.equals("no such a worker")){
+							Toast.makeText(LoginActivity.this, "账号不存在", Toast.LENGTH_SHORT).show();
+						}else if(res.equals("wrongformat")){
+							Toast.makeText(LoginActivity.this, "账号或密码错误", Toast.LENGTH_SHORT).show();
+						}else {
+							Toast.makeText(LoginActivity.this, res, Toast.LENGTH_SHORT).show();
+						}
 					}
 				}catch (Exception e) {
-					e.printStackTrace();
-				}
-				try{
-					userInfo =new ObjectMapper().readValue(response, UserInfo.class);
-					if (userInfo!=null)
-					{
-						Log.d("loginUserInfo",userInfo.toString());
-						RsSharedUtil.putString(LoginActivity.this,Constants.KEY.USER_ACCOUNT,userInfo.getAccount());
-						RsSharedUtil.putString(LoginActivity.this,Constants.KEY.USER_NAME,userInfo.getWorkerName());
-						RsSharedUtil.putString(LoginActivity.this,Constants.KEY.USER_CODE,userInfo.getCode());
-						RsSharedUtil.putString(LoginActivity.this,Constants.KEY.USER_PHOTO,userInfo.getPhoto());
-						RsSharedUtil.putString(LoginActivity.this,Constants.KEY.USER_PHONE,userInfo.getPhoneNumber());
-						RsSharedUtil.putInt(LoginActivity.this,Constants.KEY.WORK_ID,userInfo.getWorkerId());
-						intent.setClass(LoginActivity.this,HomeActivity.class);
-						startActivity(intent);
-						finish();
-					}
-				} catch (Exception e) {
 					e.printStackTrace();
 				}
 

@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,7 +16,6 @@ import com.kai.distribution.activity.Bind_Phone_Activity;
 import com.kai.distribution.activity.Binded_Phone_Activity;
 import com.kai.distribution.activity.Changed_Password_Activity;
 import com.kai.distribution.activity.LoginActivity;
-import com.kai.distribution.activity.ScanActivity;
 import com.kai.distribution.activity.Setup_Activity;
 import com.kai.distribution.activity.SysMessage_Activity;
 import com.kai.distribution.activity.Work_Clipboard_Activity;
@@ -27,7 +24,6 @@ import com.kai.distribution.utils.RsSharedUtil;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.squareup.picasso.Picasso;
 
 
 public class Fragment_Mine extends Fragment

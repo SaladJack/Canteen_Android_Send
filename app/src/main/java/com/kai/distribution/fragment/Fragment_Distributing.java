@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,28 +19,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.chanven.lib.cptr.PtrClassicFrameLayout;
 import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
 import com.chanven.lib.cptr.loadmore.OnLoadMoreListener;
 import com.kai.distribution.R;
+import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.adapter.Distributing_listview_adapter;
 import com.kai.distribution.app.Constants;
-import com.kai.distribution.app.MyApplication;
-import com.kai.distribution.entity.Distributed;
-import com.kai.distribution.entity.Distributing;
 import com.kai.distribution.utils.DistrbutingUtils;
-import com.kai.distribution.utils.JsonToBean;
-import com.kai.distribution.utils.RsSharedUtil;
 import com.zxing.activity.CaptureActivity;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +104,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         });
 
         show_takeoutfood = (ListView) view.findViewById(R.id.show_takeoutfood);
-        listview_adapter = new Distributing_listview_adapter(getActivity(),R.layout.takeoutfodd_content,Constants.GLOBOL.distributingList);
+        listview_adapter = new Distributing_listview_adapter(getActivity(),R.layout.takeoutfodd_content, Constants.GLOBAL.distributingList);
         show_takeoutfood.setAdapter(listview_adapter);
 
         int item_amount=show_takeoutfood.getCount();
@@ -138,14 +127,14 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK){
-            String result = data.getExtras().getString("result");
-            Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
-        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == Activity.RESULT_OK){
+//            String result = data.getExtras().getString("result");
+//            Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
+//        }
+//    }
 
 
     private void initData(){
@@ -169,6 +158,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
                         //添加刷新事件
                         Log.e("debug","setPtrHandler");
                         DistrbutingUtils.getDistributedListByHTTP(getActivity().getApplicationContext(),buildingId);
+
                         ptrClassicFrameLayout.refreshComplete();
                         listview_adapter.notifyDataSetChanged();
                         ptrClassicFrameLayout.setLoadMoreEnable(true);
@@ -186,24 +176,18 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
                     public void run() {
                         //添加加载事件
                         Log.e("debug","setOnLoadMoreListener");
+//                        DistrbutingUtils.getDistributedListByHTTP(getActivity().getApplicationContext(),buildingId);
+//                        listview_adapter.notifyDataSetChanged();
                         DistrbutingUtils.getDistributedListByHTTP(getActivity().getApplicationContext(),buildingId);
+                        ptrClassicFrameLayout.refreshComplete();
                         listview_adapter.notifyDataSetChanged();
-                        ptrClassicFrameLayout.loadMoreComplete(true);
+                        ptrClassicFrameLayout.setLoadMoreEnable(true);
                         Toast.makeText(getActivity(), "加载完成", Toast.LENGTH_SHORT).show();
                     }
                 }, 1000);
             }
         });
     }
-
-
-
-
-
-
-
-
-
 
 
 

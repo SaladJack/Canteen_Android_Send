@@ -9,7 +9,9 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -21,6 +23,8 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.kai.distribution.R;
+import com.kai.distribution.activity.HomeActivity;
+import com.kai.distribution.app.Constants;
 import com.zxing.camera.CameraManager;
 import com.zxing.decoding.CaptureActivityHandler;
 import com.zxing.decoding.InactivityTimer;
@@ -45,7 +49,8 @@ public class CaptureActivity extends Activity implements Callback {
 	private boolean playBeep;
 	private static final float BEEP_VOLUME = 0.10f;
 	private boolean vibrate;
-	private Button cancelScanButton;
+
+	private Button button;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -55,10 +60,24 @@ public class CaptureActivity extends Activity implements Callback {
 		//ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
 		CameraManager.init(getApplication());
 		viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
-		cancelScanButton = (Button) this.findViewById(R.id.btn_cancel_scan);
+		button = (Button)findViewById(R.id.skip);
+		button.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Constants.GLOBAL.HAVE_SCANNED = true;
+				Log.e("Click","click : "+Constants.GLOBAL.HAVE_SCANNED );
+				Message msg = Message.obtain();
+				msg.what = Constants.CODE.SCAN;
+				HomeActivity.sHandler.sendMessage(msg);
+				finish();
+			}
+		});
 		hasSurface = false;
 		inactivityTimer = new InactivityTimer(this);
 	}
+
+
+
 
 	@Override
 	protected void onResume() {
@@ -82,14 +101,7 @@ public class CaptureActivity extends Activity implements Callback {
 		initBeepSound();
 		vibrate = true;
 		
-		//quit the scan view
-		cancelScanButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				CaptureActivity.this.finish();
-			}
-		});
+
 	}
 
 	@Override

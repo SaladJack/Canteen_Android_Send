@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.activity.LoginActivity;
 import com.kai.distribution.app.Constants;
 
@@ -66,6 +67,7 @@ public class NetResultUtils {
         Intent intent = new Intent(activity,LoginActivity.class);
         activity.startActivity(intent);
         activity.finish();
+        HomeActivity.mHomeActivity.finish();
     }
 
 

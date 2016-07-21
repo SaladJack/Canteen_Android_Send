@@ -89,10 +89,6 @@
             android:name="com.kai.distribution.activity.Register_Next_Activity">
         </activity>
 
-        <activity
-            android:name=".activity.ScanActivity">
-        </activity>
-
 
         <activity
             android:configChanges="orientation|keyboardHidden"

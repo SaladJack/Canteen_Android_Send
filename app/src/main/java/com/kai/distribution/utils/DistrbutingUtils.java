@@ -1,6 +1,7 @@
 package com.kai.distribution.utils;
 
 import android.content.Context;
+import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -8,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
 
@@ -46,7 +48,7 @@ public class DistrbutingUtils {
                     public void onResponse(JSONArray response) {
                         try {
                             Log.e("Fragment_Distributing", response.toString());
-                            Constants.GLOBOL.unparsedNewDatas = response;
+                            Constants.GLOBAL.unparsedNewDatas = response;
                             manageData(context);//处理数据
                             Log.i("onResponse", "success");
                         } catch (Exception e1) {
@@ -59,7 +61,7 @@ public class DistrbutingUtils {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Fragment_Distributing","error:"+error.toString());
-                //Constants.GLOBOL.unparsedNewDatas = null;
+                //Constants.GLOBAL.unparsedNewDatas = null;
             }
         });
 
@@ -67,32 +69,48 @@ public class DistrbutingUtils {
     }
 
     public static void manageData(Context context){
-        if (Constants.GLOBOL.newDatas != null){
-            Constants.GLOBOL.newDatas.clear();
+        if (Constants.GLOBAL.newDatas != null){
+            Constants.GLOBAL.newDatas.clear();
         }else {
-            Constants.GLOBOL.newDatas = new ArrayList<>();
+            Constants.GLOBAL.newDatas = new ArrayList<>();
         }
 
-        if (Constants.GLOBOL.unparsedNewDatas == null || Constants.GLOBOL.unparsedNewDatas.length()==0){
+        if (Constants.GLOBAL.unparsedNewDatas == null || Constants.GLOBAL.unparsedNewDatas.length()==0){
             // FIXME: 16/7/20
             Toast.makeText(context,"没有代送餐记录",Toast.LENGTH_SHORT).show();
-            Constants.GLOBOL.distributingNum = 0;
+            Constants.GLOBAL.DISTRIBUTING_NUM = 0;
             return;
         } else {
 
             Log.e(TAG,"JsonToBean");
             //解析成Bean
-            Constants.GLOBOL.newDatas = JsonToBean.getDistributings(Constants.GLOBOL.unparsedNewDatas.toString());
-            Constants.GLOBOL.distributingNum = Constants.GLOBOL.newDatas.size();
-            Constants.GLOBOL.unparsedNewDatas = null;
+            Constants.GLOBAL.newDatas = JsonToBean.getDistributings(Constants.GLOBAL.unparsedNewDatas.toString());
+            Constants.GLOBAL.DISTRIBUTING_NUM = Constants.GLOBAL.newDatas.size();
+            Log.e(TAG,TAG+" : DISTRIBUTING_NUM: " + Constants.GLOBAL.DISTRIBUTING_NUM);
 
 
-            Constants.GLOBOL.distributingList.clear();
-            Constants.GLOBOL.distributingList.addAll(Constants.GLOBOL.newDatas);
+
+            Constants.GLOBAL.unparsedNewDatas = null;
+
+
+            Constants.GLOBAL.distributingList.clear();
+            Constants.GLOBAL.distributingList.addAll(Constants.GLOBAL.newDatas);
 //            listview_adapter.notifyDataSetChanged();
+
+            Log.e(TAG," "+Constants.GLOBAL.HAVE_SCANNED);
+            if (Constants.GLOBAL.HAVE_SCANNED && Constants.GLOBAL.DISTRIBUTING_NUM > 0) {
+                Message msg = Message.obtain();
+                msg.what = Constants.CODE.HAVE_DISTRIBUTING;
+                HomeActivity.sHandler.sendMessage(msg);
+            }else if(Constants.GLOBAL.HAVE_SCANNED && Constants.GLOBAL.DISTRIBUTING_NUM == 0){
+                Message msg = Message.obtain();
+                msg.what = Constants.CODE.WAITING;
+                HomeActivity.sHandler.sendMessage(msg);
+            }
+        }
 
         }
 
     }
 
-}
+

@@ -1,22 +1,31 @@
 package com.kai.distribution.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kai.distribution.R;
+import com.kai.distribution.adapter.MyFragmentPagerAdapter;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.fragment.Fragment_AfterScanning;
 import com.kai.distribution.fragment.Fragment_Distributied;
@@ -31,7 +40,7 @@ public class HomeActivity extends FragmentActivity
 {
 	private ImageView distributed,distributing,person;
 	private ViewPager show_different_fragment;
-	private FragmentPagerAdapter frag_adapter;
+	private MyFragmentPagerAdapter frag_adapter;
 
 	private LinearLayout ll_distributed,ll_distributing,ll_person;
 	private TextView tv_distributed,tv_distributing,tv_person;
@@ -39,29 +48,47 @@ public class HomeActivity extends FragmentActivity
 	private int unselectedTextColor = 0;
 
 
-	private List<Fragment> frag_list;
+	public List<Fragment> frag_list;
 	private Fragment_Distributied fragment_distributied;
 	private Fragment_Distributing fragment_distributing;
 	private Fragment_Waiting fragment_waiting;
 	private Fragment_Mine fragment_mine;
 	private Fragment_AfterScanning fragment_afterscanning;
 
+	private static final String TAG = "HomeActivity";
 
-	private static HomeActivity mHomeActivity;
+	public static HomeActivity mHomeActivity;
+
+
 
 	public static Handler sHandler = new Handler(){
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what){
 				case Constants.CODE.HAVE_DISTRIBUTING:
-					mHomeActivity.frag_list.set(1,mHomeActivity.fragment_distributing);
+                    Constants.GLOBAL.UPDATE_FRAGMENT = true;
+
+                    if (mHomeActivity.frag_list.get(1)!=mHomeActivity.fragment_distributing) {
+                        mHomeActivity.frag_list.set(1, mHomeActivity.fragment_distributing);
+                        mHomeActivity.frag_adapter.notifyDataSetChanged();
+                    }
 					break;
 
 				case Constants.CODE.WAITING:
-					mHomeActivity.frag_list.set(1,mHomeActivity.fragment_waiting);
+                    Constants.GLOBAL.UPDATE_FRAGMENT = true;
+
+                    if (mHomeActivity.frag_list.get(1)!=mHomeActivity.fragment_waiting) {
+                        mHomeActivity.frag_list.set(1, mHomeActivity.fragment_waiting);
+                        mHomeActivity.frag_adapter.notifyDataSetChanged();
+                    }
+
 					break;
 				case Constants.CODE.SCAN:
-					mHomeActivity.frag_list.set(1,mHomeActivity.fragment_afterscanning);
+                    Constants.GLOBAL.UPDATE_FRAGMENT = true;
+                    if (mHomeActivity.frag_list.get(1)!=mHomeActivity.fragment_afterscanning) {
+                        mHomeActivity.frag_list.set(1, mHomeActivity.fragment_afterscanning);
+                        mHomeActivity.frag_adapter.notifyDataSetChanged();
+                    }
 					break;
 
 
@@ -70,7 +97,12 @@ public class HomeActivity extends FragmentActivity
 	};
 
 
-	@Override
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 
@@ -99,7 +131,6 @@ public class HomeActivity extends FragmentActivity
 		tv_person = (TextView)findViewById(R.id.tv_person);
 
 
-
 		fragment_distributied=new Fragment_Distributied();
 		fragment_distributing=new Fragment_Distributing();
 		fragment_waiting=new Fragment_Waiting();
@@ -108,22 +139,15 @@ public class HomeActivity extends FragmentActivity
 		
 		frag_list=new ArrayList<Fragment>();
 		frag_list.add(fragment_distributied);
-		frag_list.add(fragment_distributing);
+		frag_list.add(fragment_waiting);
 		frag_list.add(fragment_mine);
 
 
-		frag_adapter=new FragmentPagerAdapter(getSupportFragmentManager()) {
+		frag_adapter=new MyFragmentPagerAdapter(getSupportFragmentManager());
+
+
 			
-			@Override
-			public int getCount() {
-				return frag_list.size();
-			}
-			
-			@Override
-			public Fragment getItem(int position) {
-				return frag_list.get(position);
-			}
-		};
+
 		show_different_fragment.setAdapter(frag_adapter);
 		frag_adapter.notifyDataSetChanged();
 
@@ -254,10 +278,23 @@ public class HomeActivity extends FragmentActivity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		switch(requestCode){
+		switch(resultCode){
 			case Constants.REFRESH_REQUEST:
 				fragment_mine.initView();
 				break;
+            case Activity.RESULT_OK:
+                String res = data.getExtras().getString("result");
+                if (TextUtils.isEmpty(res))
+                    return;
+                if (res.equals("success")){
+                    Log.e(TAG,"success");
+                    Message msg = Message.obtain();
+                    msg.what = Constants.CODE.SCAN;
+                    HomeActivity.sHandler.sendMessage(msg);
+                    Constants.GLOBAL.HAVE_SCANNED = true;
+            }else{
+                    Toast.makeText(HomeActivity.this, "二维码数据错误", Toast.LENGTH_SHORT).show();
+                }
 		}
 	}
 
