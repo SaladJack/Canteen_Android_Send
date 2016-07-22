@@ -324,7 +324,7 @@
     </LinearLayout>
 
 
-	<com.chanven.lib.cptr.PtrClassicFrameLayout
+	<com.chanven.lib.cptr.PtrFrameLayout
 		xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
 		android:id="@+id/distributed_list_view"
 		android:layout_width="match_parent"
@@ -344,5 +344,5 @@
         android:background="#ffffff" 
         android:divider="@null"
         />
-	</com.chanven.lib.cptr.PtrClassicFrameLayout>
+	</com.chanven.lib.cptr.PtrFrameLayout>
 </LinearLayout>

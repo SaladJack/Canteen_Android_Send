@@ -11,7 +11,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -25,7 +24,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.chanven.lib.cptr.PtrClassicFrameLayout;
 import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
-import com.chanven.lib.cptr.loadmore.OnLoadMoreListener;
+import com.chanven.lib.cptr.PtrHandler;
+import com.chanven.lib.cptr.header.MaterialHeader;
 import com.kai.distribution.R;
 import com.kai.distribution.adapter.Distributed_listview_adapter;
 import com.kai.distribution.app.Constants;
@@ -44,7 +44,7 @@ import java.util.List;
 public class Fragment_Distributied extends Fragment
 {
 
-	private PtrClassicFrameLayout ptrClassicFrameLayout;
+	private PtrFrameLayout mPtrFrameLayout;
 	private Handler handler = new Handler();
 
 	private View view;
@@ -101,7 +101,17 @@ public class Fragment_Distributied extends Fragment
 		distributed_time = (Spinner)view.findViewById(R.id.distributed_time);
 
 
-		ptrClassicFrameLayout = (PtrClassicFrameLayout) view.findViewById(R.id.distributed_list_view);
+		mPtrFrameLayout = (PtrFrameLayout) view.findViewById(R.id.distributed_list_view);
+
+		// header
+		final MaterialHeader header = new MaterialHeader(getContext());
+		int[] colors = getResources().getIntArray(R.array.google_colors);
+		header.setColorSchemeColors(colors);
+		header.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
+		header.setPadding(0, 15, 0, 15);
+		header.setPtrFrameLayout(mPtrFrameLayout);
+		mPtrFrameLayout.setHeaderView(header);
+		mPtrFrameLayout.addPtrUIHandler(header);
 
 		//TODO 配送区域Spinner
 		area_spinner_content = new ArrayList<String>();
@@ -419,17 +429,24 @@ public class Fragment_Distributied extends Fragment
 
 
 	private void initData(){
-		ptrClassicFrameLayout.postDelayed(new Runnable() {
+		mPtrFrameLayout.postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				Log.e("debug","postDelayed");
-				ptrClassicFrameLayout.autoRefresh(true);
+				mPtrFrameLayout.autoRefresh(true);
 			}
 		}, 1);
 
-		ptrClassicFrameLayout.setLoadMoreEnable(true);
+//		mPtrFrameLayout.setLoadMoreEnable(false);
 
-		ptrClassicFrameLayout.setPtrHandler(new PtrDefaultHandler() {
+
+		mPtrFrameLayout.setPtrHandler(new PtrHandler() {
+
+
+			@Override
+			public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+				return true;
+			}
 
 			@Override
 			public void onRefreshBegin(PtrFrameLayout frame) {
@@ -442,31 +459,30 @@ public class Fragment_Distributied extends Fragment
 						Log.e("debug","onRefreshBegin访问网络");
 						getDistributedListByHTTP(true);
 
-						ptrClassicFrameLayout.refreshComplete();
-						ptrClassicFrameLayout.setLoadMoreEnable(true);
+						mPtrFrameLayout.refreshComplete();
 					}
 				}, 1000);
 			}
 		});
 
-		ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-
-			@Override
-			public void loadMore() {
-				handler.postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						//添加加载事件
-						Log.e("debug","setPtrHandler--onRefreshBegin");
-						pageIndex++;
-						Log.e("debug","onRefreshBegin访问网络");
-						getDistributedListByHTTP(false);
-						ptrClassicFrameLayout.loadMoreComplete(true);
-						Toast.makeText(getActivity(), "加载完成", Toast.LENGTH_SHORT).show();
-					}
-				}, 1000);
-			}
-		});
+//		mPtrFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+//
+//			@Override
+//			public void loadMore() {
+//				handler.postDelayed(new Runnable() {
+//					@Override
+//					public void run() {
+//						//添加加载事件
+//						Log.e("debug","setPtrHandler--onRefreshBegin");
+//						pageIndex++;
+//						Log.e("debug","onRefreshBegin访问网络");
+//						getDistributedListByHTTP(false);
+//						mPtrFrameLayout.loadMoreComplete(true);
+//						Toast.makeText(getActivity(), "加载完成", Toast.LENGTH_SHORT).show();
+//					}
+//				}, 1000);
+//			}
+//		});
 	}
 
 
