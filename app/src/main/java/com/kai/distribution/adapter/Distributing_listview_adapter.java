@@ -29,11 +29,13 @@ import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
 import com.kai.distribution.entity.Distributed;
 import com.kai.distribution.entity.Distributing;
+import com.kai.distribution.utils.RsSharedUtil;
 
 import org.apache.http.protocol.RequestUserAgent;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,16 +54,64 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
     }
 
 
+    private final int STATU_DELIVERED = 5;
+    private final int STATU_ISOUT = 10;
+    private final int FLAG_NOYELLOW = 0;
+    private final int FLAG_YELLO = 1;
+
+    private  final int NOYELLO_DELIVERED = 1;
+    private  final int NOYELLO_ISOUT = 2;
+    private  final int YELLO_DELIVERED = 3;
+    private  final int YELLO_ISOUT = 4;
 
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
 
-                case 1:
+                case NOYELLO_DELIVERED:
+                    holder.is_confirm.setVisibility(View.GONE);
+                    holder.delivered.setVisibility(View.VISIBLE);
+                    holder.delivered.setEnabled(false);
+
+
+                    holder.which_people.setEnabled(false);
+                    holder.which_people.setTextColor(0xFFC7C6C6);
+                    holder.which_area.setBackground(context.getResources().getDrawable(R.mipmap.ic_phone_gray));
+                    break;
+                case NOYELLO_ISOUT:
                     holder.is_out.setVisibility(View.GONE);
                     holder.is_confirm.setVisibility(View.GONE);
                     holder.deliverToBuilding.setVisibility(View.VISIBLE);
+                    holder.deliverToBuilding.setEnabled(false);
+
+
+                    holder.which_people.setEnabled(false);
+                    holder.which_people.setTextColor(0xFFC7C6C6);
+                    holder.which_area.setBackground(context.getResources().getDrawable(R.mipmap.ic_phone_gray));
+
+                    break;
+                case YELLO_DELIVERED:
+                    holder.is_confirm.setVisibility(View.GONE);
+                    holder.delivered.setVisibility(View.VISIBLE);
+                    holder.delivered.setEnabled(false);
+
+                    holder.which_people.setEnabled(false);
+                    holder.which_people.setTextColor(0xFFC7C6C6);
+                    holder.which_area.setBackground(context.getResources().getDrawable(R.mipmap.ic_phone_gray));
+                    showCardDialog();
+
+                    break;
+                case YELLO_ISOUT:
+                    holder.is_out.setVisibility(View.GONE);
+                    holder.is_confirm.setVisibility(View.GONE);
+                    holder.deliverToBuilding.setVisibility(View.VISIBLE);
+
+                    holder.which_people.setEnabled(false);
+                    holder.which_people.setTextColor(0xFFC7C6C6);
+                    holder.which_area.setBackground(context.getResources().getDrawable(R.mipmap.ic_phone_gray));
+                    showCardDialog();
+
                     break;
 
             }
@@ -112,22 +162,18 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
 
                     @Override
                     public void onClick(View arg0) {
-
-
-
-                        holder.is_out.setVisibility(View.GONE);
-                        holder.is_confirm.setVisibility(View.GONE);
-                        holder.deliverToBuilding.setVisibility(View.VISIBLE);
-
-
                         alertDialog.dismiss();
+                        // TODO: 16/7/22 判断是否超时
+
+                        confirmOrder(RsSharedUtil.getString(context,Constants.KEY.USER_CODE),
+                                     RsSharedUtil.getInt(context,Constants.KEY.WORK_ID),
+                                     distributing.getOrderId(),
+                                     STATU_ISOUT);
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {
-
                     @Override
                     public void onClick(View arg0) {
-                        // TODO Auto-generated method stub
                         alertDialog.dismiss();
                     }
                 });
@@ -145,16 +191,16 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
                 Window window = alertDialog.getWindow();
                 window.setContentView(R.layout.confirm_dialog);
                 Button confirm=(Button) window.findViewById(R.id.confirm);
+
                 confirm.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View view) {
                         // TODO Auto-generated method stub
-                        holder.is_confirm.setVisibility(View.GONE);
-                        holder.delivered.setVisibility(View.VISIBLE);
-                        holder.delivered.setEnabled(false);
-
-
+                        confirmOrder(RsSharedUtil.getString(context,Constants.KEY.USER_CODE),
+                                RsSharedUtil.getInt(context,Constants.KEY.WORK_ID),
+                                distributing.getOrderId(),
+                                STATU_ISOUT);
                         alertDialog.dismiss();
                     }
                 });
@@ -173,23 +219,25 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
     }
 
 
-    private void confirmOrder(String code, int workerId, int orderId, int statu, int flag, long day){
+    private void confirmOrder(String code, int workerId, int orderId, final int statu){
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("code",code);
             jsonObject.put("workedId",workerId);
             jsonObject.put("orderId",orderId);
             jsonObject.put("statu",statu);
-            jsonObject.put("flag",flag);
-            jsonObject.put("day",day);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        /*" orderId":订单Id（int）
+
+        /*
+        " orderId":订单Id（int）
         " statu":订单状态（int）（5：确认送达，10：学生外出）
         " flag":添加黄牌的标记（int）(0:不添加黄牌;1:添加黄牌)
         " day":当日凌晨时间毫秒数（long）
         */
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Constants.URL.CONFIRM_ORDER, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -197,9 +245,25 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
                         try {
                             String res = response.getString("result");
                             if (res.equals("confirmsuccess")){
-                                Message msg = Message.obtain();
-                                msg.what =
-                                mHandler.sendMessage()
+                                int flag = 0;//获得黄牌
+
+                               if(flag == 0 && statu == 5){
+                                   Message msg = Message.obtain();
+                                   msg.what = NOYELLO_DELIVERED;
+                                   mHandler.sendMessage(msg);
+                               }else if (flag == 0 && statu == 10){
+                                   Message msg = Message.obtain();
+                                   msg.what = NOYELLO_ISOUT;
+                                   mHandler.sendMessage(msg);
+                               }else if (flag == 1 && statu == 5){
+                                   Message msg = Message.obtain();
+                                   msg.what = YELLO_DELIVERED;
+                                   mHandler.sendMessage(msg);
+                               }else if (flag == 1 && statu == 10){
+                                   Message msg = Message.obtain();
+                                   msg.what = YELLO_ISOUT;
+                                   mHandler.sendMessage(msg);
+                               }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -214,6 +278,20 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
         });
 
         MyApplication.getRequestQueue().add(jsonObjectRequest);
+    }
+
+    private void showCardDialog(){
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.show();
+        Window window = alertDialog.getWindow();
+        window.setContentView(R.layout.yellowcard_dialog);
+        Button confirm=(Button) window.findViewById(R.id.confirm);
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
     }
 }
 

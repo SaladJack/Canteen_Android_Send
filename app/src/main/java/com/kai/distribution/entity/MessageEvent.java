@@ -5,7 +5,7 @@ package com.kai.distribution.entity;
  */
 public class MessageEvent {
     int intMsg;
-    String strMsg;
+    String area;
 
     public int getIntMsg() {
         return intMsg;
@@ -15,19 +15,23 @@ public class MessageEvent {
         this.intMsg = intMsg;
     }
 
-    public String getStrMsg() {
-        return strMsg;
+    public String getArea() {
+        return area;
     }
 
-    public void setStrMsg(String strMsg) {
-        this.strMsg = strMsg;
+    public void setArea(String area) {
+        this.area = area;
     }
+
 
     public MessageEvent(int intMsg) {
         this.intMsg = intMsg;
     }
 
     public MessageEvent(String strMsg) {
-        this.strMsg = strMsg;
+        this.area = strMsg;
     }
+
+
+
 }

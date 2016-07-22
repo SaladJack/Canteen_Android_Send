@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:textSize="@dimen/toolbar_textsize"
             android:layout_marginLeft="@dimen/toolbar_return_marginLeft"
-            android:text="配送中（）"
+            android:text="配送中"
             />
 
         <ImageButton
@@ -36,14 +36,18 @@
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/rl_toolbar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="96dp"
-        android:src="@mipmap/logo" />
+
+    <ImageButton
+        android:id="@+id/after_scanning_gif"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/textView1"
+        android:background="@color/transparent"
+        android:src="@mipmap/bike14"
+        android:layout_centerHorizontal="true" />
+
+
 
     <TextView
         android:id="@+id/textView1"
@@ -51,7 +55,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:gravity="center"
         android:textSize="25sp"
         android:textColor="#969696"
         android:text="您已进入下一轮配送," />
@@ -64,7 +67,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
         android:textSize="25sp"
-        android:gravity="center"
         android:textColor="#969696"
         android:text="请耐心等待" />
 

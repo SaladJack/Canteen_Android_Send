@@ -49,12 +49,11 @@ public class Fragment_AfterScanning extends Fragment {
 
         view=inflater.inflate(R.layout.fragment_afterscanning, container,false);
 
-        Fresco.initialize(getActivity());
         afterScanningGif = (SimpleDraweeView) view.findViewById(R.id.after_scanning_gif);
 
         DraweeController draweeController = Fresco.newDraweeControllerBuilder()
                 .setAutoPlayAnimations(true)//自动播放动画
-                .setUri(Uri.parse("asset://null/waiting.gif"))//路径
+                .setUri(Uri.parse("res://"+getActivity().getPackageName()+"/" + R.drawable.waiting))//路径
                 .build();
         afterScanningGif.setController(draweeController);
 

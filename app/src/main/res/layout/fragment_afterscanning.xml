@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:textSize="@dimen/toolbar_textsize"
             android:layout_marginLeft="@dimen/toolbar_return_marginLeft"
-            android:text="配送中（）"
+            android:text="配送中"
             />
 
         <ImageButton

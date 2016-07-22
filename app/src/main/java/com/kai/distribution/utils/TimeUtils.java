@@ -2,14 +2,21 @@ package com.kai.distribution.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
 
-public class TimeUtils extends Thread {
+public class TimeUtils {
 	
 
-
+	public static String MillisToString(long time){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//		long now = System.currentTimeMillis();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(time);
+		return formatter.format(calendar.getTime()).substring(11,16);
+	}
 
 
     public static long getDayMillis(String time){

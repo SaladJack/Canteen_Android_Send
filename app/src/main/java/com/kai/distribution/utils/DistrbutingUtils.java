@@ -49,13 +49,16 @@ public class DistrbutingUtils {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            Log.e("Fragment_Distributing", response.toString());
-                            Constants.GLOBAL.unparsedNewDatas = response;
-                            manageData(context);//处理数据
-                            Log.i("onResponse", "success");
+                            String res = response.getJSONObject(0).getString("result");
+                            if(res.equals("success")) {
+                                Log.e("Fragment_Distributing", response.toString());
+                                Constants.GLOBAL.unparsedNewDatas = response;
+                                manageData(context);//处理数据
+                            }else if (res.equals("noorder")){
+                                return;
+                            }
                         } catch (Exception e1) {
                             e1.printStackTrace();
-                            String result = response.toString();
 
                         }
                     }
@@ -105,7 +108,8 @@ public class DistrbutingUtils {
                 Message msg = Message.obtain();
                 msg.what = Constants.CODE.HAVE_DISTRIBUTING;
                 EventBus.getDefault().post(msg);
-                EventBus.getDefault().post(new MessageEvent(Constants.GLOBAL.newDatas.get(0).getSendArea()));
+
+                EventBus.getDefault().post(Constants.GLOBAL.newDatas);
 
             }else if(Constants.GLOBAL.HAVE_SCANNED && Constants.GLOBAL.DISTRIBUTING_NUM == 0){
                 Message msg = Message.obtain();

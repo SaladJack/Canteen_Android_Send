@@ -138,7 +138,7 @@ public class Fragment_Distributied extends Fragment
 		listview_adapter = new Distributed_listview_adapter(getActivity(), R.layout.show_time_spinner_text,ditributedsList);
 		distributed_show_list.setAdapter(listview_adapter);
 		
-		//���ʹ������
+		//设置时间选择
 		show_distributed_calendar=(TextView) view.findViewById(R.id.show_distributed_calendar);
 		distributed_calendar=(LinearLayout) view.findViewById(R.id.distributed_calendar);
 		

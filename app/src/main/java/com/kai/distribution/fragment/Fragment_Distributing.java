@@ -27,8 +27,10 @@ import com.kai.distribution.R;
 import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.adapter.Distributing_listview_adapter;
 import com.kai.distribution.app.Constants;
+import com.kai.distribution.entity.Distributing;
 import com.kai.distribution.entity.MessageEvent;
 import com.kai.distribution.utils.DistrbutingUtils;
+import com.kai.distribution.utils.TimeUtils;
 import com.zxing.activity.CaptureActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -49,14 +51,12 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
     private List<String> spinner_content;
     private ArrayAdapter<String> spinner_adapter;
     private Distributing_listview_adapter listview_adapter;
-    private final String[] spinner_text = { "北一", "北二", "北三", "北四", "北五", "北六",
-            "北七", "北八", "北九", "北十", "北十一", "北十二", "北十三", "北十四", "北十五", "北十六",
-            "北十七", "北十八", "北十九", "北二十" };
+    private final String[] spinner_text = { "全部" };
 
     //TODO 下面这两个参数有映射关系
     private String current_area;
     private int buildingId = 0;
-
+    private TextView sendArea;
     private ImageButton scan;
 
 
@@ -89,14 +89,8 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         show_count=(TextView) view.findViewById(R.id.show_count);
         spinner = (Spinner) view.findViewById(R.id.show_listview);
         scan = (ImageButton)view.findViewById(R.id.scan);
+        sendArea = (TextView)view.findViewById(R.id.sendArea);
 
-        spinner_content = new ArrayList<String>();
-        for (int i = 0; i < spinner_text.length; i++) {
-            spinner_content.add(spinner_text[i]);
-        }
-        spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text,R.id.spinner_tv,spinner_content);
-        spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
-        spinner.setAdapter(spinner_adapter);
 
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
@@ -152,12 +146,45 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         listview_adapter.notifyDataSetChanged();
     }
 
-    //监听区域变化并获得
+    //监听区域、时间变化并更改UI
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent messageEvent) {
+    public void onMessageEvent( List<Distributing> distributings) {
         Log.e(TAG,"onMessageEvent()");
-        area.setText(""+messageEvent.getIntMsg());
+        //设置区域
+
+        sendArea.setText("" + distributings.get(0).getSendArea()+"区");
+        //设置时间段
+        service_time.setText(TimeUtils.MillisToString(distributings.get(0).getSendTimeBegin())
+                + "~" + TimeUtils.MillisToString(distributings.get(0).getSendTimeEnd()));
+        //设置配送地区spinner
+        synchronized (this) {
+            if (spinner_content == null) {
+                spinner_content = new ArrayList<String>();
+                spinner_content.add("全部");
+            } else {
+                spinner_content.clear();
+            }
+
+            int size = distributings.size();
+            for (int i = 0; i < size; ++i){
+                if (!spinner_content.contains(distributings.get(i).getBuildingName()))
+                    spinner_content.add(distributings.get(i).getBuildingName());
+            }
+
+
+            if (spinner_adapter == null) {
+                spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text, R.id.spinner_tv, spinner_content);
+                spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
+                spinner.setAdapter(spinner_adapter);
+            }else{
+                spinner_adapter.notifyDataSetChanged();
+            }
+        }
+
+
+
     }
+
 
 
 
@@ -169,6 +196,15 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
 
     @Override
     public void onDestroy() {
+        if (spinner_content != null) {
+            spinner_content.clear();
+            spinner_content = null;
+        }
+
+        if (spinner_adapter != null){
+            spinner_adapter.clear();
+            spinner_adapter = null;
+        }
         super.onDestroy();
     }
 

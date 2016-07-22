@@ -25,7 +25,8 @@ public class GifTest extends Activity {
 
         DraweeController draweeController = Fresco.newDraweeControllerBuilder()
                 .setAutoPlayAnimations(true)//自动播放动画
-                .setUri(Uri.parse("asset://com.kai.distribution.activity/waiting.gif"))//路径
+//                .setUri(Uri.parse("http://img2.tuicool.com/6Rzamy7.gif"))
+                .setUri(Uri.parse("res://"+getPackageName()+"/" + R.drawable.test))//路径
                 .build();
         afterScanningGif.setController(draweeController);
     }
