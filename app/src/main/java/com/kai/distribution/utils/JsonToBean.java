@@ -36,14 +36,9 @@ public class JsonToBean {
 
         JSONArray jsonArray = null;
         List<Distributing> distributings = new ArrayList<>();
-        Log.e("Fragment_Distributing","json: " + json);
         //转化为json形式的数据
         jsonArray = JSON.parseArray(json);
-        Log.e("Fragment_Distributing","jsonArray: " + jsonArray.toString());
         distributings = JSON.parseArray(jsonArray.toJSONString(), Distributing.class);
-        Log.e("Fragment_Distributing","done");
-        Log.e("Fragment_Distributing","buildingName： "+ distributings.get(0).getBuildingName() );
-
         return distributings;
     }
 }

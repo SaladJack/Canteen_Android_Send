@@ -182,6 +182,18 @@ public class Fragment_Distributied extends Fragment
 		old_year=distributed_calendar_year.getText().toString();
 		old_month=distributed_calendar_month.getText().toString();
 		old_day=distributed_calendar_day.getText().toString();
+
+
+		//初始化时间数据
+		Time t=new Time();
+		t.setToNow();
+		int year = t.year;
+		int month = t.month+1;
+		int day = t.monthDay;
+		distributed_calendar_year.setText(Integer.toString(year));
+		distributed_calendar_month.setText(Integer.toString(month));
+		distributed_calendar_day.setText(Integer.toString(day));
+//============================================================================================================
 	}
 	
 	private OnClickListener click=new OnClickListener() {
@@ -405,6 +417,10 @@ public class Fragment_Distributied extends Fragment
 				show_distributed_calendar.setText(distributed_calendar_year.getText().toString()+"-"
 										+distributed_calendar_month.getText().toString()+"-"
 										+distributed_calendar_day.getText().toString());
+
+				distributed_calendar.setVisibility(View.GONE);
+				calendar_open = false;
+
 				break;
 				
 			case R.id.distributed_calendar_today:
@@ -422,6 +438,10 @@ public class Fragment_Distributied extends Fragment
 				distributed_calendar_year.setText(old_year);
 				distributed_calendar_month.setText(old_month);
 				distributed_calendar_day.setText(old_day);
+
+				distributed_calendar.setVisibility(View.GONE);
+				calendar_open = false;
+
 				break;
 			}
 		}
@@ -457,7 +477,7 @@ public class Fragment_Distributied extends Fragment
 						Log.e("debug","setPtrHandler--onRefreshBegin");
 						pageIndex = 1;
 						Log.e("debug","onRefreshBegin访问网络");
-						getDistributedListByHTTP(true);
+						getDistributedListByHTTP();
 
 						mPtrFrameLayout.refreshComplete();
 					}
@@ -513,7 +533,7 @@ public class Fragment_Distributied extends Fragment
 
  */
 
-	private void getDistributedListByHTTP(final boolean clearDataFlag){
+	private void getDistributedListByHTTP(){
 
 		JSONObject jsonObject = new JSONObject();
 		String url = Constants.URL.DISTRIBUTED_URL;
@@ -544,7 +564,7 @@ public class Fragment_Distributied extends Fragment
 							Log.e("searchFragmentResponse",response.toString());
 //							totalPage = response.getInt("totalPage");
 							unparsedNewDatas = response.getJSONArray("array");
-							manageData(clearDataFlag);//处理数据
+							manageData();//处理数据
 							Log.i("onResponse","success");
 						} catch (Exception e1) {
 							e1.printStackTrace();
@@ -573,7 +593,7 @@ public class Fragment_Distributied extends Fragment
 		MyApplication.getRequestQueue().add(jsonObjectRequest);
 	}
 
-	private void manageData(boolean clearDataFlag){
+	private void manageData(){
 		if (newDatas != null){
 			newDatas.clear();
 		}else {
@@ -581,7 +601,7 @@ public class Fragment_Distributied extends Fragment
 		}
 
 		if (unparsedNewDatas == null || unparsedNewDatas.length()==0){
-			Toast.makeText(getActivity(),"没有更多的餐厅了",Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(),"无已送达记录",Toast.LENGTH_SHORT).show();
 			return;
 		} else {
 
@@ -594,8 +614,8 @@ public class Fragment_Distributied extends Fragment
 
 			unparsedNewDatas = null;
 
-			if(clearDataFlag)
-				ditributedsList.clear();
+
+			ditributedsList.clear();
 			ditributedsList.addAll(newDatas);
 			Log.e("searchFragment","canteensList.size() = "+ ditributedsList.size());
 			listview_adapter.notifyDataSetChanged();

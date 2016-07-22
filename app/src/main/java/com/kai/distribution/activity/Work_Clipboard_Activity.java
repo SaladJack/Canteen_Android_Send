@@ -115,6 +115,18 @@ public class Work_Clipboard_Activity extends Activity
         old_year=clipboard_calendar_year.getText().toString();
         old_month=clipboard_calendar_month.getText().toString();
         old_day=clipboard_calendar_day.getText().toString();
+
+//初始化时间数据
+		Time t=new Time();
+		t.setToNow();
+		int year = t.year;
+		int month = t.month+1;
+		int day = t.monthDay;
+		clipboard_calendar_year.setText(Integer.toString(year));
+		clipboard_calendar_month.setText(Integer.toString(month));
+		clipboard_calendar_day.setText(Integer.toString(day));
+//============================================================================================================
+
     }
 
 
@@ -145,8 +157,8 @@ public class Work_Clipboard_Activity extends Activity
 				int current_year_add = Integer.parseInt(clipboard_calendar_year.getText().toString());
 				current_year_add++;
 				clipboard_calendar_year.setText(Integer.toString(current_year_add));
-				clipboard_calendar_month.setText("1");
-				clipboard_calendar_day.setText("1");
+//				clipboard_calendar_month.setText("1");
+//				clipboard_calendar_day.setText("1");
 				break;
 				
 			case R.id.clipboard_calendar_month_add:
@@ -244,8 +256,8 @@ public class Work_Clipboard_Activity extends Activity
 				int current_year_reduce = Integer.parseInt(clipboard_calendar_year.getText().toString());
 				current_year_reduce--;
 				clipboard_calendar_year.setText(Integer.toString(current_year_reduce));
-				clipboard_calendar_month.setText("1");
-				clipboard_calendar_day.setText("1");
+//				clipboard_calendar_month.setText("1");
+//				clipboard_calendar_day.setText("1");
 				break;
 				
 			case R.id.clipboard_calendar_month_reduce:
@@ -349,6 +361,8 @@ public class Work_Clipboard_Activity extends Activity
 
                 clipboard_calendar.setVisibility(View.GONE);
                 calendar_open = false;
+
+
 
 				break;
 				

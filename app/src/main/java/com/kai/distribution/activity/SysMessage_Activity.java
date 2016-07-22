@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +30,11 @@ import org.json.JSONObject;
 @ContentView(R.layout.activity_sys_message)
 public class SysMessage_Activity extends Activity
 {
-	@ViewInject(R.id.tv_back)
-	private TextView tv_back;
+	@ViewInject(R.id.system_message_back)
+	private Button tv_back;
 	@ViewInject(R.id.lv_message)
 	private ListView lv_message;
-	
+	private static final String TAG = "SysMessage_Activity";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -86,13 +87,14 @@ public class SysMessage_Activity extends Activity
 			}
 		});
 
-				MyApplication.getRequestQueue().add(stringRequest);
+		stringRequest.setTag(TAG);
+		MyApplication.getRequestQueue().add(stringRequest);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		MyApplication.getRequestQueue().cancelAll("Sys_Activity");
+		MyApplication.getRequestQueue().cancelAll(TAG);
 	}
 
 
