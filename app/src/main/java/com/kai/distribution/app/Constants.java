@@ -51,7 +51,10 @@ public class Constants {
         public static final String  CANCEL_BIND_PHONE = BASE_URL + "Canteen/worker/cancelBindPhone";
         //显示系统消息
         public static final String SHOW_MESSAGES = BASE_URL + "Canteen/worker/showMessages";
-
+        //设置配送员接口
+        public static final String CHANGE_STATU = BASE_URL + "Canteen/worker/changeStatu";
+        //确认订单
+        public static final String CONFIRM_ORDER = BASE_URL + "Canteen/worker/confirmOrder";
     }
 
     public static  class KEY{

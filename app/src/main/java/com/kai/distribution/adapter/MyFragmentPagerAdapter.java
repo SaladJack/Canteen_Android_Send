@@ -50,25 +50,24 @@ public  class MyFragmentPagerAdapter extends FragmentPagerAdapter{
         //得到tag，这点很重要
         String fragmentTag = fragment.getTag();
 
-        if (Constants.GLOBAL.UPDATE_FRAGMENT) {
-            //如果这个fragment需要更新
-            FragmentTransaction ft = fm.beginTransaction();
-            //移除旧的fragment
-            ft.remove(fragment);
-            //换成新的fragment
-            fragment = HomeActivity.mHomeActivity.frag_list.get(position);
-            //添加新fragment时必须用前面获得的tag，这点很重要
-            ft.add(container.getId(), fragment, fragmentTag);
-            ft.attach(fragment);
-            ft.commitAllowingStateLoss();
-            //复位更新标志
-            Constants.GLOBAL.UPDATE_FRAGMENT= false;
-        }
-
-
+            if (Constants.GLOBAL.UPDATE_FRAGMENT && !HomeActivity.mHomeActivity.frag_list.get(position).isAdded()) {
+                //如果这个fragment需要更新
+                FragmentTransaction ft = fm.beginTransaction();
+                //移除旧的fragment
+                ft.remove(fragment);
+                //换成新的fragment
+                fragment = HomeActivity.mHomeActivity.frag_list.get(position);
+                //添加新fragment时必须用前面获得的tag，这点很重要
+                ft.add(container.getId(), fragment, fragmentTag);
+                ft.attach(fragment);
+                ft.commitAllowingStateLoss();
+                //复位更新标志
+                Constants.GLOBAL.UPDATE_FRAGMENT = false;
+            }
         return fragment;
     }
 
 
+    }
 
-}
+

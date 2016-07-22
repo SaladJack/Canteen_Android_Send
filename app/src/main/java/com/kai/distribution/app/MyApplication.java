@@ -1,9 +1,15 @@
 package com.kai.distribution.app;
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.kai.distribution.activity.LoginActivity;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Dell on 2016/6/22.
@@ -22,4 +28,7 @@ public class MyApplication extends Application {
     public static RequestQueue getRequestQueue() {
         return requestQueue;
     }
+
+
+
 }

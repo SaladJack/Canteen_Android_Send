@@ -128,7 +128,7 @@ public class Fragment_Distributied extends Fragment
 		for (int i = 0; i < time_spinner_text.length; i++) {
 			time_spinner_content.add(time_spinner_text[i]);
 		}
-		time_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text,R.id.spinner_tv,time_spinner_content);
+		time_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_time_spinner_text,R.id.spinner_tv,time_spinner_content);
 		time_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 
 		distributed_time.setAdapter(time_spinner_adapter);

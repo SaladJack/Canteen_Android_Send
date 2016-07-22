@@ -46,7 +46,6 @@ public class Bind_Phone_Activity extends Activity
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_bind_phone);
-
         initView();
         initClick();
     }

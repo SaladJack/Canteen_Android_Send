@@ -41,4 +41,5 @@ dependencies {
     compile 'com.chanven.lib:cptr:1.0.0'
     compile files('libs/zxing.jar')
     compile files('libs/fastjson-1.2.2.jar')
+    compile 'com.facebook.fresco:fresco:0.11.0'
 }

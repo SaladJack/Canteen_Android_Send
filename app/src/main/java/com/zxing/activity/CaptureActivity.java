@@ -20,15 +20,24 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.kai.distribution.R;
 import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.app.Constants;
+import com.kai.distribution.app.MyApplication;
 import com.zxing.camera.CameraManager;
 import com.zxing.decoding.CaptureActivityHandler;
 import com.zxing.decoding.InactivityTimer;
 import com.zxing.view.ViewfinderView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -51,6 +60,7 @@ public class CaptureActivity extends Activity implements Callback {
 	private boolean vibrate;
 
 	private Button button;
+	private static final String TAG = "CaptureActivity";
 
 	/** Called when the activity is first created. */
 	@Override
@@ -68,7 +78,8 @@ public class CaptureActivity extends Activity implements Callback {
 				Log.e("Click","click : "+Constants.GLOBAL.HAVE_SCANNED );
 				Message msg = Message.obtain();
 				msg.what = Constants.CODE.SCAN;
-				HomeActivity.sHandler.sendMessage(msg);
+				Log.e(TAG,"toAfterScanning");
+				EventBus.getDefault().post(msg);
 				finish();
 			}
 		});
@@ -236,4 +247,4 @@ public class CaptureActivity extends Activity implements Callback {
 		}
 	};
 
-}
+	}

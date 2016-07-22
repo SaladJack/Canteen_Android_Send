@@ -12,7 +12,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
+import com.kai.distribution.entity.MessageEvent;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -99,13 +101,16 @@ public class DistrbutingUtils {
 
             Log.e(TAG," "+Constants.GLOBAL.HAVE_SCANNED);
             if (Constants.GLOBAL.HAVE_SCANNED && Constants.GLOBAL.DISTRIBUTING_NUM > 0) {
+                Log.e(TAG,"sendArea:"+ Constants.GLOBAL.newDatas.get(0).getSendArea());
                 Message msg = Message.obtain();
                 msg.what = Constants.CODE.HAVE_DISTRIBUTING;
-                HomeActivity.sHandler.sendMessage(msg);
+                EventBus.getDefault().post(msg);
+                EventBus.getDefault().post(new MessageEvent(Constants.GLOBAL.newDatas.get(0).getSendArea()));
+
             }else if(Constants.GLOBAL.HAVE_SCANNED && Constants.GLOBAL.DISTRIBUTING_NUM == 0){
                 Message msg = Message.obtain();
                 msg.what = Constants.CODE.WAITING;
-                HomeActivity.sHandler.sendMessage(msg);
+                EventBus.getDefault().post(msg);
             }
         }
 

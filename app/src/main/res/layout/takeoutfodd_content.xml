@@ -89,6 +89,15 @@
         	    android:visibility="gone"
         	    android:background="#898989"
         	    />
+			<Button
+				android:id="@+id/deliverToBuilding"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:layout_gravity="center"
+				android:text="已放楼下"
+				android:visibility="gone"
+				android:background="#898989"
+				/>
 		</RelativeLayout>
         	
         <View

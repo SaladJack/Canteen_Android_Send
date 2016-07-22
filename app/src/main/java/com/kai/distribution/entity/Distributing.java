@@ -65,6 +65,7 @@ public class Distributing {
     private int goodNumber;
     private int buildingId;
     private String buildingName;
+    private int sendArea;
 
     public Distributing() {
     }
@@ -284,4 +285,13 @@ public class Distributing {
     public void setBuildingName(String buildingName) {
         this.buildingName = buildingName;
     }
+
+    public int getSendArea() {
+        return sendArea;
+    }
+
+    public void setSendArea(int sendArea) {
+        this.sendArea = sendArea;
+    }
+
 }

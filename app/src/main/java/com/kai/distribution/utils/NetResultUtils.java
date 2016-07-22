@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.activity.LoginActivity;
 import com.kai.distribution.app.Constants;
+import com.kai.distribution.app.MyApplication;
 
 /**
  * Created by tusm on 16/7/20.
@@ -64,10 +65,15 @@ public class NetResultUtils {
         RsSharedUtil.putString(activity, Constants.KEY.USER_PHOTO,"");
         RsSharedUtil.putString(activity, Constants.KEY.USER_PHONE, "");
         RsSharedUtil.putInt(activity, Constants.KEY.WORK_ID, 0);
+        if (HomeActivity.mHomeActivity != null) {
+            HomeActivity.mHomeActivity.finish();
+        }
         Intent intent = new Intent(activity,LoginActivity.class);
         activity.startActivity(intent);
-        activity.finish();
-        HomeActivity.mHomeActivity.finish();
+
+
+
+
     }
 
 

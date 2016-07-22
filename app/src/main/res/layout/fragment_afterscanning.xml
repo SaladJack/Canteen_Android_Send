@@ -36,14 +36,16 @@
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/rl_toolbar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="96dp"
-        android:src="@mipmap/logo" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/after_scanning_gif"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/textView1"
+        android:layout_centerHorizontal="true" />
+
+
 
     <TextView
         android:id="@+id/textView1"

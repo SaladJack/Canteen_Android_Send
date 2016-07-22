@@ -27,8 +27,13 @@ import com.kai.distribution.R;
 import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.adapter.Distributing_listview_adapter;
 import com.kai.distribution.app.Constants;
+import com.kai.distribution.entity.MessageEvent;
 import com.kai.distribution.utils.DistrbutingUtils;
 import com.zxing.activity.CaptureActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,12 +59,17 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
 
     private ImageButton scan;
 
-    private PtrClassicFrameLayout ptrClassicFrameLayout;
-    private Handler handler = new Handler();
 
 
 
     private static final String TAG = "Fragment_Distributing";
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,13 +81,14 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         return view;
     }
 
+
+
     private void initView() {
         area = (TextView) view.findViewById(R.id.area);
         service_time = (TextView) view.findViewById(R.id.service_time);
         show_count=(TextView) view.findViewById(R.id.show_count);
         spinner = (Spinner) view.findViewById(R.id.show_listview);
         scan = (ImageButton)view.findViewById(R.id.scan);
-        ptrClassicFrameLayout = (PtrClassicFrameLayout) view.findViewById(R.id.distributing_list_view);
 
         spinner_content = new ArrayList<String>();
         for (int i = 0; i < spinner_text.length; i++) {
@@ -137,63 +148,30 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
 //    }
 
 
-    private void initData(){
-        ptrClassicFrameLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log.e("debug","postDelayed");
-                ptrClassicFrameLayout.autoRefresh(true);
-            }
-        }, 1);
+    private void initData() {
+        listview_adapter.notifyDataSetChanged();
+    }
 
-        ptrClassicFrameLayout.setLoadMoreEnable(true);
-
-        ptrClassicFrameLayout.setPtrHandler(new PtrDefaultHandler() {
-
-            @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //添加刷新事件
-                        Log.e("debug","setPtrHandler");
-                        DistrbutingUtils.getDistributedListByHTTP(getActivity().getApplicationContext(),buildingId);
-
-                        ptrClassicFrameLayout.refreshComplete();
-                        listview_adapter.notifyDataSetChanged();
-                        ptrClassicFrameLayout.setLoadMoreEnable(true);
-                    }
-                }, 1000);
-            }
-        });
-
-        ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-
-            @Override
-            public void loadMore() {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //添加加载事件
-                        Log.e("debug","setOnLoadMoreListener");
-//                        DistrbutingUtils.getDistributedListByHTTP(getActivity().getApplicationContext(),buildingId);
-//                        listview_adapter.notifyDataSetChanged();
-                        DistrbutingUtils.getDistributedListByHTTP(getActivity().getApplicationContext(),buildingId);
-                        ptrClassicFrameLayout.refreshComplete();
-                        listview_adapter.notifyDataSetChanged();
-                        ptrClassicFrameLayout.setLoadMoreEnable(true);
-                        Toast.makeText(getActivity(), "加载完成", Toast.LENGTH_SHORT).show();
-                    }
-                }, 1000);
-            }
-        });
+    //监听区域变化并获得
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent messageEvent) {
+        Log.e(TAG,"onMessageEvent()");
+        area.setText(""+messageEvent.getIntMsg());
     }
 
 
 
     @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Override
     public void onDestroy() {
-        Log.e(TAG,TAG + " : onDestroy()");
         super.onDestroy();
     }
+
+
+
 }

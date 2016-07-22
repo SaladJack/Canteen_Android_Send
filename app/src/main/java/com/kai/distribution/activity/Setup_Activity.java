@@ -41,7 +41,6 @@ public class Setup_Activity extends Activity implements OnClickListener
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.set_up);
-		
 		initView();
 		initClick();
 	}

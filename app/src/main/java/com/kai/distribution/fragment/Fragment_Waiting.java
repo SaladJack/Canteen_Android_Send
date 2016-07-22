@@ -19,23 +19,28 @@ import com.kai.distribution.app.Constants;
 import com.kai.distribution.utils.DistrbutingUtils;
 import com.zxing.activity.CaptureActivity;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Fragment_Waiting extends Fragment implements View.OnClickListener {
 	private View view;
 	private ImageButton scan;
 	private static final String TAG = "Fragment_Waiting";
-
+	private Timer timer;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 
 		if (Constants.GLOBAL.HAVE_SCANNED) {
-			new Thread(new Runnable() {
+			timer = new Timer();
+			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
 					DistrbutingUtils.getDistributedListByHTTP(getActivity().getApplicationContext(), 0);
 				}
-			}).start();
+			},0,60000);//一分钟请求一次网络
+
 		}
 
 		view = inflater.inflate(R.layout.fragment_waiting, container, false);
@@ -78,4 +83,14 @@ public class Fragment_Waiting extends Fragment implements View.OnClickListener {
 //				}
 //		}
 //	}
+
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (timer!=null) {
+			timer.cancel();
+			timer = null;
+		}
+	}
 }

@@ -41,6 +41,7 @@ public class Binded_Phone_Activity extends Activity
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.binded_phone);
 
+
 		binded_phone_back=(ImageButton) findViewById(R.id.binded_phone_back);
 		binded_phone_number=(TextView) findViewById(R.id.binded_phone_number);
 		unbinded_phone_number=(Button) findViewById(R.id.unbinded_phone_number);

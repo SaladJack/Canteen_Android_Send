@@ -24,14 +24,28 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.kai.distribution.R;
 import com.kai.distribution.adapter.MyFragmentPagerAdapter;
 import com.kai.distribution.app.Constants;
+import com.kai.distribution.app.MyApplication;
+import com.kai.distribution.entity.MessageEvent;
 import com.kai.distribution.fragment.Fragment_AfterScanning;
 import com.kai.distribution.fragment.Fragment_Distributied;
 import com.kai.distribution.fragment.Fragment_Distributing;
 import com.kai.distribution.fragment.Fragment_Mine;
 import com.kai.distribution.fragment.Fragment_Waiting;
+import com.kai.distribution.utils.RsSharedUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,40 +75,37 @@ public class HomeActivity extends FragmentActivity
 
 
 
-	public static Handler sHandler = new Handler(){
-		@Override
-		public void handleMessage(Message msg) {
-			switch (msg.what){
-				case Constants.CODE.HAVE_DISTRIBUTING:
-                    Constants.GLOBAL.UPDATE_FRAGMENT = true;
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void onMessageEvent(Message msg) {
+		Log.e(TAG,"onMessageEvent()");
+		Log.e(TAG,"msg.what = " + msg.what);
+		switch (msg.what) {
 
-                    if (mHomeActivity.frag_list.get(1)!=mHomeActivity.fragment_distributing) {
-                        mHomeActivity.frag_list.set(1, mHomeActivity.fragment_distributing);
-                        mHomeActivity.frag_adapter.notifyDataSetChanged();
-                    }
-					break;
-
-				case Constants.CODE.WAITING:
-                    Constants.GLOBAL.UPDATE_FRAGMENT = true;
-
-                    if (mHomeActivity.frag_list.get(1)!=mHomeActivity.fragment_waiting) {
-                        mHomeActivity.frag_list.set(1, mHomeActivity.fragment_waiting);
-                        mHomeActivity.frag_adapter.notifyDataSetChanged();
-                    }
-
-					break;
-				case Constants.CODE.SCAN:
-                    Constants.GLOBAL.UPDATE_FRAGMENT = true;
-                    if (mHomeActivity.frag_list.get(1)!=mHomeActivity.fragment_afterscanning) {
-                        mHomeActivity.frag_list.set(1, mHomeActivity.fragment_afterscanning);
-                        mHomeActivity.frag_adapter.notifyDataSetChanged();
-                    }
-					break;
-
-
-			}
+			case Constants.CODE.HAVE_DISTRIBUTING:
+				Constants.GLOBAL.UPDATE_FRAGMENT = true;
+				Log.e(TAG,"DISTRIBUTING_CHANGED");
+				if (mHomeActivity.frag_list.get(1) != mHomeActivity.fragment_distributing) {
+					mHomeActivity.frag_list.set(1, mHomeActivity.fragment_distributing);
+					mHomeActivity.frag_adapter.notifyDataSetChanged();
+				}
+				break;
+			case Constants.CODE.WAITING:
+				Constants.GLOBAL.UPDATE_FRAGMENT = true;
+				if (mHomeActivity.frag_list.get(1) != mHomeActivity.fragment_waiting) {
+					mHomeActivity.frag_list.set(1, mHomeActivity.fragment_waiting);
+					mHomeActivity.frag_adapter.notifyDataSetChanged();
+				}
+				break;
+			case Constants.CODE.SCAN:
+				Log.e(TAG,"scan");
+				Constants.GLOBAL.UPDATE_FRAGMENT = true;
+				if (mHomeActivity.frag_list.get(1) != mHomeActivity.fragment_afterscanning) {
+					mHomeActivity.frag_list.set(1, mHomeActivity.fragment_afterscanning);
+					mHomeActivity.frag_adapter.notifyDataSetChanged();
+				}
+				break;
 		}
-	};
+	}
 
 
     @Override
@@ -108,6 +119,8 @@ public class HomeActivity extends FragmentActivity
 
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		EventBus.getDefault().register(this);
+		Fresco.initialize(this);
 		setContentView(R.layout.home_screen);
 
 		mHomeActivity = this;
@@ -278,24 +291,77 @@ public class HomeActivity extends FragmentActivity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		switch(resultCode){
+		switch (resultCode) {
 			case Constants.REFRESH_REQUEST:
 				fragment_mine.initView();
 				break;
-            case Activity.RESULT_OK:
-                String res = data.getExtras().getString("result");
-                if (TextUtils.isEmpty(res))
-                    return;
-                if (res.equals("success")){
-                    Log.e(TAG,"success");
-                    Message msg = Message.obtain();
-                    msg.what = Constants.CODE.SCAN;
-                    HomeActivity.sHandler.sendMessage(msg);
-                    Constants.GLOBAL.HAVE_SCANNED = true;
-            }else{
-                    Toast.makeText(HomeActivity.this, "二维码数据错误", Toast.LENGTH_SHORT).show();
-                }
+			case Activity.RESULT_OK:
+				String res = data.getExtras().getString("result");
+				if (TextUtils.isEmpty(res))
+					return;
+				if (res.equals("success")) {
+					Log.e(TAG, "success");
+					changeStatu(RsSharedUtil.getString(this,Constants.KEY.USER_CODE),RsSharedUtil.getInt(this,Constants.KEY.WORK_ID));
+					Message msg = Message.obtain();
+					msg.what = Constants.CODE.SCAN;
+					EventBus.getDefault().post(msg);
+					Constants.GLOBAL.HAVE_SCANNED = true;
+				} else {
+					Toast.makeText(HomeActivity.this, "二维码数据错误", Toast.LENGTH_SHORT).show();
+				}
 		}
 	}
 
+		//设置有空
+	private void changeStatu(String code, int workerId){
+		JSONObject jsonObject = new JSONObject();
+
+		try {
+			jsonObject.put("code",code);
+			jsonObject.put("workerId",workerId);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Constants.URL.CHANGE_STATU, jsonObject,
+				new Response.Listener<JSONObject>() {
+					@Override
+					public void onResponse(JSONObject response) {
+						String res = null ;
+						try {
+							res = response.getString("result");
+							if (res.equals("success")){
+
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+
+					}
+				}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+
+			}
+		});
+		MyApplication.getRequestQueue().add(jsonObjectRequest);
+	}
+
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		EventBus.getDefault().unregister(this);
+		//数据重置
+		Constants.GLOBAL.UPDATE_FRAGMENT = false;
+		Constants.GLOBAL.HAVE_SCANNED = false;
+		frag_list.clear();
+		Log.e(TAG,"onDestroy");
+	}
 }
+
+

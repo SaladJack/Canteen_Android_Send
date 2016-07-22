@@ -96,9 +96,10 @@ public class LoginActivity extends Activity implements OnClickListener{
 				dialog.setMessage("正在登录...");
 				dialog.setCancelable(true);
 				dialog.show();
-				//startActivity(new Intent(this,HomeActivity.class));
 
 				postLogin(user,password);
+//				Intent intent1 = new Intent(this,GifTest.class);
+//				startActivity(intent1);
 				break;
 
 			case R.id.forgetnumber_Tv:
