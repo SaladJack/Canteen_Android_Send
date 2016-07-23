@@ -125,6 +125,8 @@ public class Work_Clipboard_Activity extends Activity
 		clipboard_calendar_year.setText(Integer.toString(year));
 		clipboard_calendar_month.setText(Integer.toString(month));
 		clipboard_calendar_day.setText(Integer.toString(day));
+
+		show_calendar_date.setText("" + year + "-" + month + "-" + day);
 //============================================================================================================
 
     }

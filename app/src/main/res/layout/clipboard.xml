@@ -45,7 +45,7 @@
 			android:layout_marginRight="20dp"
 	        android:textSize="16sp"
 	        android:textColor="#fff"
-	        android:text="2016-5-10"
+	        android:text=""
 	        android:drawableRight="@mipmap/choose2_normal"
 			android:layout_centerVertical="true"
 			android:layout_alignParentRight="true"

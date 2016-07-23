@@ -3,6 +3,7 @@ package com.kai.distribution.app;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 
+import com.kai.distribution.entity.Distributed;
 import com.kai.distribution.entity.Distributing;
 
 import org.json.JSONArray;
@@ -81,6 +82,8 @@ public class Constants {
         public static boolean UPDATE_FRAGMENT = false;
         public static boolean HAVE_SCANNED = false;
 
+
+        public static List<Distributed> distributedList = new ArrayList<>();
     }
 
 

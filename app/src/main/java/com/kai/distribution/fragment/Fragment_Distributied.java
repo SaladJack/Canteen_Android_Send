@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -21,8 +22,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.chanven.lib.cptr.PtrClassicFrameLayout;
-import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
 import com.chanven.lib.cptr.PtrHandler;
 import com.chanven.lib.cptr.header.MaterialHeader;
@@ -33,7 +32,11 @@ import com.kai.distribution.app.MyApplication;
 import com.kai.distribution.entity.Distributed;
 import com.kai.distribution.utils.JsonToBean;
 import com.kai.distribution.utils.RsSharedUtil;
+import com.kai.distribution.utils.TimeUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,9 +59,9 @@ public class Fragment_Distributied extends Fragment
 	private List<String> dorm_spinner_content;
 	private List<String> time_spinner_content;
 
-	private final String[] area_spinner_text={"全部","1区","2区","3区","4区","5区"};
-	private final String[] dorm_spinner_text={"全部","宿舍","其他"};
-	private final String[] time_spinner_text={"11:30~11：45","12:00~12:15"};
+//	private final String[] area_spinner_text={"全部"};
+//	private final String[] dorm_spinner_text={"全部","宿舍","其他"};
+//	private final String[] time_spinner_text={"11:30~11：45","12:00~12:15"};
 	
 	private ArrayAdapter<String> area_spinner_adapter;
 	private ArrayAdapter<String> dorm_spinner_adapter;
@@ -82,13 +85,13 @@ public class Fragment_Distributied extends Fragment
 	private long sendTimeEnd = 0l;
 	private List<Distributed> newDatas;
 	private JSONArray unparsedNewDatas;
-	private List<Distributed> ditributedsList = new ArrayList<>();
+	private List<Distributed> distributedList = new ArrayList<>();
+    private String current_area = "全部",current_dorm = "全部",current_time = "全部" ;
 
 
-	@Override
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
 		view=inflater.inflate(R.layout.fragment_distributed, container,false);
 		initView();
 		initData();
@@ -115,9 +118,7 @@ public class Fragment_Distributied extends Fragment
 
 		//TODO 配送区域Spinner
 		area_spinner_content = new ArrayList<String>();
-		for (int i = 0; i < area_spinner_text.length; i++) {
-			area_spinner_content.add(area_spinner_text[i]);
-		}
+        area_spinner_content.add("全部");
 		area_spinner_adapter = new ArrayAdapter(getActivity(),R.layout.show_distributed_spinner_text,R.id.spinner_tv,area_spinner_content);
 		area_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 		
@@ -125,9 +126,8 @@ public class Fragment_Distributied extends Fragment
 		
 		//TODO 配送楼栋Spinner
 		dorm_spinner_content = new ArrayList<String>();
-		for (int i = 0; i < dorm_spinner_text.length; i++) {
-			dorm_spinner_content.add(dorm_spinner_text[i]);
-		}
+        dorm_spinner_content.add("全部");
+
 		dorm_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text,R.id.spinner_tv,dorm_spinner_content);
 		dorm_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 
@@ -135,17 +135,54 @@ public class Fragment_Distributied extends Fragment
 
 		//TODO 送达时间Spinner
 		time_spinner_content = new ArrayList<String>();
-		for (int i = 0; i < time_spinner_text.length; i++) {
-			time_spinner_content.add(time_spinner_text[i]);
-		}
+        time_spinner_content.add("全部");
+
 		time_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_time_spinner_text,R.id.spinner_tv,time_spinner_content);
 		time_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 
 		distributed_time.setAdapter(time_spinner_adapter);
 
 
+        distributed_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                current_area = (String)distributed_area.getSelectedItem();
+                selected(current_area,current_dorm,current_time);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        distributed_dorm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                current_dorm = (String)distributed_dorm.getSelectedItem();
+                selected(current_area,current_dorm,current_time);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        distributed_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                current_time = (String)distributed_time.getSelectedItem();
+                selected(current_area,current_dorm,current_time);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 		distributed_show_list=(ListView) view.findViewById(R.id.distributed_show_list);
-		listview_adapter = new Distributed_listview_adapter(getActivity(), R.layout.show_time_spinner_text,ditributedsList);
+		listview_adapter = new Distributed_listview_adapter(getActivity(), R.layout.show_time_spinner_text, distributedList);
 		distributed_show_list.setAdapter(listview_adapter);
 		
 		//设置时间选择
@@ -193,6 +230,8 @@ public class Fragment_Distributied extends Fragment
 		distributed_calendar_year.setText(Integer.toString(year));
 		distributed_calendar_month.setText(Integer.toString(month));
 		distributed_calendar_day.setText(Integer.toString(day));
+
+        show_distributed_calendar.setText("" + year + "-" + month + "-" + day);
 //============================================================================================================
 	}
 	
@@ -203,6 +242,8 @@ public class Fragment_Distributied extends Fragment
 			// TODO Auto-generated method stub
 			switch(view.getId())
 			{
+
+
 
 
 			case R.id.show_distributed_calendar:
@@ -457,7 +498,6 @@ public class Fragment_Distributied extends Fragment
 			}
 		}, 1);
 
-//		mPtrFrameLayout.setLoadMoreEnable(false);
 
 
 		mPtrFrameLayout.setPtrHandler(new PtrHandler() {
@@ -474,9 +514,7 @@ public class Fragment_Distributied extends Fragment
 					@Override
 					public void run() {
 						//添加刷新事件
-						Log.e("debug","setPtrHandler--onRefreshBegin");
 						pageIndex = 1;
-						Log.e("debug","onRefreshBegin访问网络");
 						getDistributedListByHTTP();
 
 						mPtrFrameLayout.refreshComplete();
@@ -485,24 +523,6 @@ public class Fragment_Distributied extends Fragment
 			}
 		});
 
-//		mPtrFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-//
-//			@Override
-//			public void loadMore() {
-//				handler.postDelayed(new Runnable() {
-//					@Override
-//					public void run() {
-//						//添加加载事件
-//						Log.e("debug","setPtrHandler--onRefreshBegin");
-//						pageIndex++;
-//						Log.e("debug","onRefreshBegin访问网络");
-//						getDistributedListByHTTP(false);
-//						mPtrFrameLayout.loadMoreComplete(true);
-//						Toast.makeText(getActivity(), "加载完成", Toast.LENGTH_SHORT).show();
-//					}
-//				}, 1000);
-//			}
-//		});
 	}
 
 
@@ -510,6 +530,7 @@ public class Fragment_Distributied extends Fragment
 	@Override
 	public void onStart() {
 		super.onStart();
+		EventBus.getDefault().register(this);
 		if (listview_adapter != null) {
 			listview_adapter.notifyDataSetChanged();
 		}
@@ -517,110 +538,157 @@ public class Fragment_Distributied extends Fragment
 
 
 /*
-  url：http:// milk345.imwork.net:13607/Canteen/worker/showSendedOrders
-方法：POST
-入参：
- {
-"code":不含时间戳的令牌（string）
-"workerId":配送员Id（int）
-"pageIndex":页码(int)        ？一页有多少个数据？
-"date":日期,当天凌晨毫秒数(long)
-"sendAreaId":配送区域Id(int)    (0:全部)				  **********
-"buildingType":建筑类型(int) (0:全部；1：宿舍；5：其他)   **********
-"sendTimeBegin":送达开始时间(long)
-"sendTimeEnd":送达结束时间(long)
-}
-
+    private final String[] area_spinner_text={"全部"};
+	private final String[] dorm_spinner_text={"全部","宿舍","其他"};
+	private final String[] time_spinner_text={"11:30~11：45","12:00~12:15"};
  */
 
-	private void getDistributedListByHTTP(){
-
-		JSONObject jsonObject = new JSONObject();
-		String url = Constants.URL.DISTRIBUTED_URL;
-
-//		Student student = getStudent();
-		try {
-			jsonObject.put("code", RsSharedUtil.getString(getContext(),"code"));
-			jsonObject.put("workerId", RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
-			jsonObject.put("pageIndex",pageIndex);
-			jsonObject.put("date", System.currentTimeMillis());
-			jsonObject.put("sendAreaId", sendAreId);
-			jsonObject.put("buildingType", buildingtype);
-			jsonObject.put("sendTimeBegin",sendTimeBegin );
-			jsonObject.put("sendTimeEnd", sendTimeEnd);
 
 
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(List<Distributed> distributeds){
+
+        if (area_spinner_content != null) {
+            area_spinner_content.clear();
+            area_spinner_content.add("全部");
+            area_spinner_content.add("test");
+        }
+
+        if (dorm_spinner_content != null) {
+            dorm_spinner_content.clear();
+            dorm_spinner_content.add("全部");
+            dorm_spinner_content.add("test");
+        }
+
+        if (time_spinner_content != null) {
+            time_spinner_content.clear();
+//            time_spinner_content.add();
+        }
+
+        int size = distributeds.size();
+        for (int i = 0; i < size; ++i){
+            if (!area_spinner_content.contains(distributeds.get(i).getArea() + "区"))
+                area_spinner_content.add(distributeds.get(i).getArea() + "区");
+
+            if (!dorm_spinner_content.contains(distributeds.get(i).getAddress()))
+                dorm_spinner_content.add(distributeds.get(i).getAddress());
+
+            if (!area_spinner_content.contains(TimeUtils.MillisToString(distributeds.get(i).getSendTimeBegin())
+                    + "~" + TimeUtils.MillisToString(distributeds.get(i).getSendTimeEnd())))
+                area_spinner_content.add(TimeUtils.MillisToString(distributeds.get(i).getSendTimeBegin())
+                        + "~" + TimeUtils.MillisToString(distributeds.get(i).getSendTimeEnd()));
+        }
+
+        selected(current_area,current_dorm,current_time);
+    }
 
 
-		JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-				Request.Method.POST,  url, jsonObject,
-				new Response.Listener<org.json.JSONObject>() {
-					@Override
-					public void onResponse(org.json.JSONObject response) {
-						try {
-							Log.e("searchFragmentResponse",response.toString());
-//							totalPage = response.getInt("totalPage");
-							unparsedNewDatas = response.getJSONArray("array");
-							manageData();//处理数据
-							Log.i("onResponse","success");
-						} catch (Exception e1) {
-							e1.printStackTrace();
-							try {
-								String result = response.getString("result");
-//								onFailResponse(result);
-							} catch (JSONException e) {
-								e.printStackTrace();
-							}
-						}
-					}
-				}, new Response.ErrorListener() {
-
-			@Override
-			public void onErrorResponse(VolleyError error) {
-				try {
-					Toast.makeText(getActivity(), "网络不给力", Toast.LENGTH_SHORT).show();
-					Log.i("searchFragmentError",error.toString());
-				} catch (Exception e) {
-				}
-			}
-
-		}
-
-		);
-		MyApplication.getRequestQueue().add(jsonObjectRequest);
+	@Override
+	public void onStop() {
+		super.onStop();
+		EventBus.getDefault().unregister(this);
 	}
 
-	private void manageData(){
-		if (newDatas != null){
-			newDatas.clear();
-		}else {
-			newDatas = new ArrayList<>();
-		}
+    private void getDistributedListByHTTP(){
 
-		if (unparsedNewDatas == null || unparsedNewDatas.length()==0){
-			Toast.makeText(getActivity(),"无已送达记录",Toast.LENGTH_SHORT).show();
-			return;
-		} else {
+        JSONObject jsonObject = new JSONObject();
+        String url = Constants.URL.DISTRIBUTED_URL;
 
-					/*TODO: 16/7/18
-					  解析成Bean
-					  */
-
-
-			newDatas = JsonToBean.getDistributeds(unparsedNewDatas.toString());
-
-			unparsedNewDatas = null;
+        try {
+            jsonObject.put("code", RsSharedUtil.getString(getContext(),"code"));
+            jsonObject.put("workerId", RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
+            jsonObject.put("pageIndex",pageIndex);
+            jsonObject.put("date", System.currentTimeMillis());
+            jsonObject.put("sendAreaId", sendAreId);
+            jsonObject.put("buildingType", buildingtype);
+            jsonObject.put("sendTimeBegin",sendTimeBegin );
+            jsonObject.put("sendTimeEnd", sendTimeEnd);
 
 
-			ditributedsList.clear();
-			ditributedsList.addAll(newDatas);
-			Log.e("searchFragment","canteensList.size() = "+ ditributedsList.size());
-			listview_adapter.notifyDataSetChanged();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-		}
 
-	}
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,  url, jsonObject,
+                new Response.Listener<org.json.JSONObject>() {
+                    @Override
+                    public void onResponse(org.json.JSONObject response) {
+                        try {
+
+                            unparsedNewDatas = response.getJSONArray("array");
+                            manageData();//处理数据
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                            try {
+                                String result = response.getString("result");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try {
+                    Toast.makeText(getActivity(), "网络不给力", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                }
+            }
+
+        }
+        );
+        MyApplication.getRequestQueue().add(jsonObjectRequest);
+    }
+
+    private void manageData(){
+        if (newDatas != null){
+            newDatas.clear();
+        }else {
+            newDatas = new ArrayList<>();
+        }
+        if (unparsedNewDatas == null || unparsedNewDatas.length()==0){
+            Toast.makeText(getActivity(),"无已送达记录",Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            newDatas = JsonToBean.getDistributeds(unparsedNewDatas.toString());
+            unparsedNewDatas = null;
+
+
+            Constants.GLOBAL.distributedList.clear();
+            Constants.GLOBAL.distributedList.addAll(newDatas);
+
+
+            EventBus.getDefault().post(Constants.GLOBAL.distributedList);
+        }
+
+
+    }
+
+    private void selected(String area, String dorm, String time){
+        distributedList.clear();
+        int size = Constants.GLOBAL.distributedList.size();
+
+        String tempArea;
+        String tempDorm;
+        String tempTime;
+
+        for (int i = 0; i < size; ++i){
+            tempArea = Integer.toString(Constants.GLOBAL.distributedList.get(i).getArea())+"区";
+            tempDorm = Constants.GLOBAL.distributedList.get(i).getAddress();
+            tempTime = TimeUtils.MillisToString(Constants.GLOBAL.distributedList.get(i).getSendTimeBegin())
+                    + "~" + TimeUtils.MillisToString(Constants.GLOBAL.distributedList.get(i).getSendTimeEnd());
+            if ((area.equals("全部")||area.equals(tempArea)) &&
+                    (dorm.equals("全部")||dorm.equals(tempDorm)) &&
+                    (time.equals("全部")||time.equals(tempTime)) ){
+                distributedList.add(Constants.GLOBAL.distributedList.get(i));
+            }
+        }
+
+        listview_adapter.notifyDataSetChanged();
+
+    }
+
 }

@@ -51,10 +51,13 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
     private List<String> spinner_content;
     private ArrayAdapter<String> spinner_adapter;
     private Distributing_listview_adapter listview_adapter;
-    private final String[] spinner_text = { "全部" };
+
+
+    private List<Distributing> distributingList;
+
 
     //TODO 下面这两个参数有映射关系
-    private String current_area;
+    private String current_area = "全部";
     private int buildingId = 0;
     private TextView sendArea;
     private ImageButton scan;
@@ -97,7 +100,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 current_area = (String) spinner.getSelectedItem();
-                listview_adapter.notifyDataSetChanged();
+                selectLocation(current_area);
             }
 
             @Override
@@ -107,10 +110,19 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
             }
 
         });
-
+        distributingList = new ArrayList<>();
         show_takeoutfood = (ListView) view.findViewById(R.id.show_takeoutfood);
-        listview_adapter = new Distributing_listview_adapter(getActivity(),R.layout.takeoutfodd_content, Constants.GLOBAL.distributingList);
+        listview_adapter = new Distributing_listview_adapter(getActivity(),R.layout.takeoutfodd_content, distributingList);
         show_takeoutfood.setAdapter(listview_adapter);
+
+        spinner_content = new ArrayList<String>();
+        spinner_content.add("全部");
+        spinner_content.add("test");
+
+
+        spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text, R.id.spinner_tv, spinner_content);
+        spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
+        spinner.setAdapter(spinner_adapter);
 
         int item_amount=show_takeoutfood.getCount();
         show_count.setText("配送中"+"("+item_amount+")");
@@ -132,14 +144,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         }
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == Activity.RESULT_OK){
-//            String result = data.getExtras().getString("result");
-//            Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
-//        }
-//    }
+
 
 
     private void initData() {
@@ -149,22 +154,30 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
     //监听区域、时间变化并更改UI
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent( List<Distributing> distributings) {
-        Log.e(TAG,"onMessageEvent()");
         //设置区域
-
         sendArea.setText("" + distributings.get(0).getSendArea()+"区");
         //设置时间段
         service_time.setText(TimeUtils.MillisToString(distributings.get(0).getSendTimeBegin())
                 + "~" + TimeUtils.MillisToString(distributings.get(0).getSendTimeEnd()));
+
         //设置配送地区spinner
         synchronized (this) {
-            if (spinner_content == null) {
-                spinner_content = new ArrayList<String>();
-                spinner_content.add("全部");
-            } else {
-                spinner_content.clear();
+
+
+
+
+            if (distributingList != null) {
+                distributingList.clear();
             }
 
+
+
+
+            if (spinner_content != null) {
+                spinner_content.clear();
+                spinner_content.add("全部");
+                spinner_content.add("test");
+            }
             int size = distributings.size();
             for (int i = 0; i < size; ++i){
                 if (!spinner_content.contains(distributings.get(i).getBuildingName()))
@@ -173,13 +186,13 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
 
 
             if (spinner_adapter == null) {
-                spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text, R.id.spinner_tv, spinner_content);
-                spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
-                spinner.setAdapter(spinner_adapter);
+
             }else{
                 spinner_adapter.notifyDataSetChanged();
             }
         }
+
+        selectLocation(current_area);
 
 
 
@@ -209,5 +222,22 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
     }
 
 
+    private void selectLocation(String location){
+        distributingList.clear();
+        int size = Constants.GLOBAL.distributingList.size();
+        if (location.equals("全部")){
+            distributingList.addAll(Constants.GLOBAL.distributingList);
+        }else {
+            String str;
+            for (int i = 0; i < size; ++i) {
+                str = Constants.GLOBAL.distributingList.get(i).getBuildingName();
+                if (str.equals(location)) {
+                    distributingList.add(Constants.GLOBAL.distributingList.get(i));
+                }
+            }
+        }
+
+        listview_adapter.notifyDataSetChanged();
+    }
 
 }
