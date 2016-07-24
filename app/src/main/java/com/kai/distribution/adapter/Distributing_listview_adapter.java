@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -46,11 +47,16 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
     private String current_area;
     private int resourceId;
     private ViewHolder holder;
+    private Drawable drawable;
 
     public Distributing_listview_adapter(Context context, int resourceId, List<Distributing> objects) {
         super(context, resourceId, objects);
         this.context = context;
         this.resourceId = resourceId;
+
+
+        drawable= context.getResources().getDrawable(R.mipmap.ic_phone_gray);
+        drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
     }
 
 
@@ -59,25 +65,26 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
     private final int FLAG_NOYELLOW = 0;
     private final int FLAG_YELLO = 1;
 
-    private  final int NOYELLO_DELIVERED = 1;
-    private  final int NOYELLO_ISOUT = 2;
-    private  final int YELLO_DELIVERED = 3;
-    private  final int YELLO_ISOUT = 4;
+    private final int NOYELLO_DELIVERED = 1;
+    private final int NOYELLO_ISOUT = 2;
+    private final int YELLO_DELIVERED = 3;
+    private final int YELLO_ISOUT = 4;
 
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
 
                 case NOYELLO_DELIVERED:
                     holder.is_confirm.setVisibility(View.GONE);
+                    holder.is_out.setVisibility(View.GONE);
                     holder.delivered.setVisibility(View.VISIBLE);
                     holder.delivered.setEnabled(false);
 
 
                     holder.which_people.setEnabled(false);
                     holder.which_people.setTextColor(0xFFC7C6C6);
-                    holder.which_area.setBackground(context.getResources().getDrawable(R.mipmap.ic_phone_gray));
+                    holder.which_people.setCompoundDrawables(drawable,null,null,null);
                     break;
                 case NOYELLO_ISOUT:
                     holder.is_out.setVisibility(View.GONE);
@@ -88,17 +95,19 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
 
                     holder.which_people.setEnabled(false);
                     holder.which_people.setTextColor(0xFFC7C6C6);
-                    holder.which_area.setBackground(context.getResources().getDrawable(R.mipmap.ic_phone_gray));
+                    holder.which_people.setCompoundDrawables(drawable,null,null,null);
 
                     break;
                 case YELLO_DELIVERED:
                     holder.is_confirm.setVisibility(View.GONE);
+                    holder.is_out.setVisibility(View.GONE);
                     holder.delivered.setVisibility(View.VISIBLE);
                     holder.delivered.setEnabled(false);
 
                     holder.which_people.setEnabled(false);
                     holder.which_people.setTextColor(0xFFC7C6C6);
-                    holder.which_area.setBackground(context.getResources().getDrawable(R.mipmap.ic_phone_gray));
+
+                    holder.which_people.setCompoundDrawables(drawable,null,null,null);
                     showCardDialog();
 
                     break;
@@ -109,7 +118,7 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
 
                     holder.which_people.setEnabled(false);
                     holder.which_people.setTextColor(0xFFC7C6C6);
-                    holder.which_area.setBackground(context.getResources().getDrawable(R.mipmap.ic_phone_gray));
+                    holder.which_people.setCompoundDrawables(drawable,null,null,null);
                     showCardDialog();
 
                     break;
@@ -117,6 +126,7 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
             }
         }
     };
+
     @Override
     public View getView(int position, View view, ViewGroup viewgroup) {
         final Distributing distributing = getItem(position);
@@ -142,6 +152,16 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + distributing.getPhoneNumber()));
 
+                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
                 context.startActivity(intent);
             }
         });
@@ -175,6 +195,10 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
                     @Override
                     public void onClick(View arg0) {
                         alertDialog.dismiss();
+                        confirmOrder(RsSharedUtil.getString(context,Constants.KEY.USER_CODE),
+                                RsSharedUtil.getInt(context,Constants.KEY.WORK_ID),
+                                distributing.getOrderId(),
+                                STATU_ISOUT);
                     }
                 });
             }
@@ -197,11 +221,11 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
                     @Override
                     public void onClick(View view) {
                         // TODO Auto-generated method stub
+                        alertDialog.dismiss();
                         confirmOrder(RsSharedUtil.getString(context,Constants.KEY.USER_CODE),
                                 RsSharedUtil.getInt(context,Constants.KEY.WORK_ID),
                                 distributing.getOrderId(),
-                                STATU_ISOUT);
-                        alertDialog.dismiss();
+                                STATU_DELIVERED);
                     }
                 });
             }
@@ -223,7 +247,7 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("code",code);
-            jsonObject.put("workedId",workerId);
+            jsonObject.put("workerId",workerId);
             jsonObject.put("orderId",orderId);
             jsonObject.put("statu",statu);
 
@@ -243,10 +267,14 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            Log.e("confirm",response.toString());
                             String res = response.getString("result");
                             if (res.equals("confirmsuccess")){
-                                int flag = 0;//获得黄牌
-
+                                int flag = response.getInt("flag");
+                                /*
+                                " statu":订单状态（int）（5：确认送达，10：学生外出）
+                                " flag":添加黄牌的标记（int）(0:不添加黄牌;1:添加黄牌)
+                                */
                                if(flag == 0 && statu == 5){
                                    Message msg = Message.obtain();
                                    msg.what = NOYELLO_DELIVERED;

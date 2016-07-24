@@ -88,6 +88,7 @@ public class Fragment_Distributied extends Fragment
 	private List<Distributed> distributedList = new ArrayList<>();
     private String current_area = "全部",current_dorm = "全部",current_time = "全部" ;
 
+    private static final String TAG = "Fragment_Distributied";
 
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,7 +120,8 @@ public class Fragment_Distributied extends Fragment
 		//TODO 配送区域Spinner
 		area_spinner_content = new ArrayList<String>();
         area_spinner_content.add("全部");
-		area_spinner_adapter = new ArrayAdapter(getActivity(),R.layout.show_distributed_spinner_text,R.id.spinner_tv,area_spinner_content);
+        //show_distributed_spinner_text
+		area_spinner_adapter = new ArrayAdapter(getActivity(),R.layout.show_time_spinner_text,R.id.spinner_tv,area_spinner_content);
 		area_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 		
 		distributed_area.setAdapter(area_spinner_adapter);
@@ -128,7 +130,7 @@ public class Fragment_Distributied extends Fragment
 		dorm_spinner_content = new ArrayList<String>();
         dorm_spinner_content.add("全部");
 
-		dorm_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text,R.id.spinner_tv,dorm_spinner_content);
+		dorm_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_time_spinner_text,R.id.spinner_tv,dorm_spinner_content);
 		dorm_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 
 		distributed_dorm.setAdapter(dorm_spinner_adapter);
@@ -516,7 +518,6 @@ public class Fragment_Distributied extends Fragment
 						//添加刷新事件
 						pageIndex = 1;
 						getDistributedListByHTTP();
-
 						mPtrFrameLayout.refreshComplete();
 					}
 				}, 1000);
@@ -548,6 +549,92 @@ public class Fragment_Distributied extends Fragment
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(List<Distributed> distributeds){
 
+        Log.e("onMessage","error!!!!");
+    }
+
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		EventBus.getDefault().unregister(this);
+	}
+
+    private void getDistributedListByHTTP(){
+
+        JSONObject jsonObject = new JSONObject();
+        String url = Constants.URL.DISTRIBUTED_URL;
+
+        try {
+            jsonObject.put("code", RsSharedUtil.getString(getContext(),"code"));
+            jsonObject.put("workerId", RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
+            jsonObject.put("pageIndex",pageIndex);
+            jsonObject.put("date", System.currentTimeMillis());
+            jsonObject.put("sendAreaId", sendAreId);
+            jsonObject.put("buildingType", buildingtype);
+            jsonObject.put("sendTimeBegin",sendTimeBegin);
+            jsonObject.put("sendTimeEnd",sendTimeEnd);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,  url, jsonObject,
+                new Response.Listener<org.json.JSONObject>() {
+                    @Override
+                    public void onResponse(org.json.JSONObject response) {
+                        try {
+                            Log.e(TAG,response.toString());
+                            unparsedNewDatas = response.getJSONArray("array");
+                            manageData();//处理数据
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                            try {
+                                String result = response.getString("result");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+
+        }
+        );
+        MyApplication.getRequestQueue().add(jsonObjectRequest);
+    }
+
+    private void manageData(){
+        if (newDatas != null){
+            newDatas.clear();
+        }else {
+            newDatas = new ArrayList<>();
+        }
+        if (unparsedNewDatas == null || unparsedNewDatas.length()==0){
+//            Toast.makeText(getActivity(),"无已送达记录",Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            newDatas = JsonToBean.getDistributeds(unparsedNewDatas.toString());
+            unparsedNewDatas = null;
+
+
+            Constants.GLOBAL.distributedList.clear();
+            Constants.GLOBAL.distributedList.addAll(newDatas);
+
+
+            setData(Constants.GLOBAL.distributedList);
+        }
+
+
+    }
+
+    private void setData(List<Distributed> distributeds) {
         if (area_spinner_content != null) {
             area_spinner_content.clear();
             area_spinner_content.add("全部");
@@ -580,91 +667,6 @@ public class Fragment_Distributied extends Fragment
         }
 
         selected(current_area,current_dorm,current_time);
-    }
-
-
-	@Override
-	public void onStop() {
-		super.onStop();
-		EventBus.getDefault().unregister(this);
-	}
-
-    private void getDistributedListByHTTP(){
-
-        JSONObject jsonObject = new JSONObject();
-        String url = Constants.URL.DISTRIBUTED_URL;
-
-        try {
-            jsonObject.put("code", RsSharedUtil.getString(getContext(),"code"));
-            jsonObject.put("workerId", RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
-            jsonObject.put("pageIndex",pageIndex);
-            jsonObject.put("date", System.currentTimeMillis());
-            jsonObject.put("sendAreaId", sendAreId);
-            jsonObject.put("buildingType", buildingtype);
-            jsonObject.put("sendTimeBegin",sendTimeBegin );
-            jsonObject.put("sendTimeEnd", sendTimeEnd);
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST,  url, jsonObject,
-                new Response.Listener<org.json.JSONObject>() {
-                    @Override
-                    public void onResponse(org.json.JSONObject response) {
-                        try {
-
-                            unparsedNewDatas = response.getJSONArray("array");
-                            manageData();//处理数据
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
-                            try {
-                                String result = response.getString("result");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                try {
-                    Toast.makeText(getActivity(), "网络不给力", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                }
-            }
-
-        }
-        );
-        MyApplication.getRequestQueue().add(jsonObjectRequest);
-    }
-
-    private void manageData(){
-        if (newDatas != null){
-            newDatas.clear();
-        }else {
-            newDatas = new ArrayList<>();
-        }
-        if (unparsedNewDatas == null || unparsedNewDatas.length()==0){
-            Toast.makeText(getActivity(),"无已送达记录",Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            newDatas = JsonToBean.getDistributeds(unparsedNewDatas.toString());
-            unparsedNewDatas = null;
-
-
-            Constants.GLOBAL.distributedList.clear();
-            Constants.GLOBAL.distributedList.addAll(newDatas);
-
-
-            EventBus.getDefault().post(Constants.GLOBAL.distributedList);
-        }
-
-
     }
 
     private void selected(String area, String dorm, String time){

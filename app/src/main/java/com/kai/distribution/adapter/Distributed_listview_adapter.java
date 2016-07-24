@@ -3,6 +3,7 @@ package com.kai.distribution.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.kai.distribution.R;
 import com.kai.distribution.entity.Distributed;
+import com.kai.distribution.utils.TimeUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +28,7 @@ import java.util.List;
  */
 public class Distributed_listview_adapter extends ArrayAdapter<Distributed> {
     private int resourceId;
+    private Context context;
 
     public Distributed_listview_adapter(Context context, int resourceId, List<Distributed> objects) {
         super(context, resourceId, objects);
@@ -55,8 +58,10 @@ public class Distributed_listview_adapter extends ArrayAdapter<Distributed> {
         viewHolder.distributed_person_name.setText(distributed.getStuName());
         viewHolder.distributed_which_area.setText(distributed.getAddress());
         //TODO：这里未实现时间的转化
-        viewHolder.distributed_which_time.setText(String.valueOf(distributed.getRealTime()));
-
+        viewHolder.distributed_which_time.setText(String.valueOf(TimeUtils.MillisToString(distributed.getRealTime())));
+        if (distributed.getFlag() == 1){
+            viewHolder.distributed_which_time.setTextColor(context.getResources().getColor(R.color.red));
+        }
 
         return view;
     }

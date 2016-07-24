@@ -81,6 +81,8 @@ public class CaptureActivity extends Activity implements Callback {
 				Log.e(TAG,"toAfterScanning");
 				EventBus.getDefault().post(msg);
 				finish();
+
+
 			}
 		});
 		hasSurface = false;

@@ -50,7 +50,7 @@
         	android:layout_width="0dp"
         	android:layout_height="50dp"
         	android:orientation="horizontal"
-        	android:layout_weight="1" >
+        	android:layout_weight="0.8" >
         <Button
             android:id="@+id/is_out"
             android:layout_width="50dp"
@@ -105,12 +105,12 @@
             android:layout_weight="0.3"
         	android:layout_height="match_parent"
         	android:background="#EEEEEE"
-            ></View>
+            />
     </LinearLayout>
 	<View
         android:layout_width="match_parent"	
         android:layout_height="7dp"
         android:background="#EEEEEE"
-        ></View>
+        />
     
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,21 +118,44 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
 
         spinner_content = new ArrayList<String>();
         spinner_content.add("全部");
-        spinner_content.add("test");
+
 
 
         spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text, R.id.spinner_tv, spinner_content);
         spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
         spinner.setAdapter(spinner_adapter);
 
-        int item_amount=show_takeoutfood.getCount();
-        show_count.setText("配送中"+"("+item_amount+")");
+
 
 
         scan.setOnClickListener(this);
 
 
 
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+            case Activity.RESULT_OK:
+                Log.e(TAG,"DISPATCH");
+                String res = data.getExtras().getString("result");
+                if (TextUtils.isEmpty(res))
+                    return;
+                if (res.equals("success")) {
+                    Log.e(TAG, "success");
+                    Constants.GLOBAL.HAVE_SCANNED = true;
+                    Log.e("Click","click : "+Constants.GLOBAL.HAVE_SCANNED );
+                    Message msg = Message.obtain();
+                    msg.what = Constants.CODE.SCAN;
+                    Log.e(TAG,"toAfterScanning");
+                    EventBus.getDefault().post(msg);
+                } else {
+                    Toast.makeText(getContext(), "二维码数据错误", Toast.LENGTH_SHORT).show();
+                }
+        }
     }
 
     @Override
@@ -160,11 +184,10 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         service_time.setText(TimeUtils.MillisToString(distributings.get(0).getSendTimeBegin())
                 + "~" + TimeUtils.MillisToString(distributings.get(0).getSendTimeEnd()));
 
+        show_count.setText("配送中"+"("+distributings.size()+")");
+
         //设置配送地区spinner
         synchronized (this) {
-
-
-
 
             if (distributingList != null) {
                 distributingList.clear();
@@ -176,7 +199,6 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
             if (spinner_content != null) {
                 spinner_content.clear();
                 spinner_content.add("全部");
-                spinner_content.add("test");
             }
             int size = distributings.size();
             for (int i = 0; i < size; ++i){

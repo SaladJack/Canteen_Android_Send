@@ -62,6 +62,8 @@ public class Distributed {
     private long actDecreaseMoney;
     private int orderId;
     private int goodNumber;
+    private int flag;
+
 
     public Distributed(){
 
@@ -265,5 +267,13 @@ public class Distributed {
 
     public void setGoodNumber(int goodNumber) {
         this.goodNumber = goodNumber;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 }

@@ -108,10 +108,6 @@ public class HomeActivity extends FragmentActivity
 	}
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -295,17 +291,19 @@ public class HomeActivity extends FragmentActivity
 			case Constants.REFRESH_REQUEST:
 				fragment_mine.initView();
 				break;
-			case Activity.RESULT_OK:
+			case RESULT_OK:
+				Log.e(TAG,"DISPATCH");
 				String res = data.getExtras().getString("result");
 				if (TextUtils.isEmpty(res))
 					return;
 				if (res.equals("success")) {
 					Log.e(TAG, "success");
-					changeStatu(RsSharedUtil.getString(this,Constants.KEY.USER_CODE),RsSharedUtil.getInt(this,Constants.KEY.WORK_ID));
+					Constants.GLOBAL.HAVE_SCANNED = true;
+					Log.e("Click","click : "+Constants.GLOBAL.HAVE_SCANNED );
 					Message msg = Message.obtain();
 					msg.what = Constants.CODE.SCAN;
+					Log.e(TAG,"toAfterScanning");
 					EventBus.getDefault().post(msg);
-					Constants.GLOBAL.HAVE_SCANNED = true;
 				} else {
 					Toast.makeText(HomeActivity.this, "二维码数据错误", Toast.LENGTH_SHORT).show();
 				}
