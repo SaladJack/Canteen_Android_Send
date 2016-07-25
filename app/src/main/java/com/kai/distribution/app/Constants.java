@@ -31,7 +31,7 @@ public class Constants {
         //认证
         public static final String REGISTER_URL=BASE_URL+"Canteen/worker/setPassword";
         //系统消息
-        public static final String SYS_MESSAGE_URL=BASE_URL+"Canteen/worker/showMessages";
+
         //已送达订单
         public static final String DISTRIBUTED_URL = BASE_URL+"Canteen/worker/showSendedOrders";
         //绑定手机
@@ -43,7 +43,7 @@ public class Constants {
         //显示待送餐
         public static final String DISTRIBUTING_URL = BASE_URL + "Canteen/worker/showOrders";
         //修改密码
-        public static final String CHANGE_PASSWORD = BASE_URL + "Canteen/worker/modifyPassword";
+        public static final String CHANGE_PASSWORD = BASE_URL + "/worker/modifyPassword";
         //工作汇总接口
         public static final String FIND_WORK_SUMMARY = BASE_URL + "Canteen/worker/findWorkSummary";
         //找回密码

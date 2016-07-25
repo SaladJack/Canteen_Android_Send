@@ -1,23 +1,16 @@
 package com.kai.distribution.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,13 +26,11 @@ import com.kai.distribution.R;
 import com.kai.distribution.adapter.MyFragmentPagerAdapter;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
-import com.kai.distribution.entity.MessageEvent;
 import com.kai.distribution.fragment.Fragment_AfterScanning;
 import com.kai.distribution.fragment.Fragment_Distributied;
 import com.kai.distribution.fragment.Fragment_Distributing;
 import com.kai.distribution.fragment.Fragment_Mine;
 import com.kai.distribution.fragment.Fragment_Waiting;
-import com.kai.distribution.utils.RsSharedUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -286,13 +277,14 @@ public class HomeActivity extends FragmentActivity
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.e(TAG,"onActivityResult()");
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (resultCode) {
 			case Constants.REFRESH_REQUEST:
 				fragment_mine.initView();
 				break;
 			case RESULT_OK:
-				Log.e(TAG,"DISPATCH");
+				Log.e(TAG,"二维码扫描成功");
 				String res = data.getExtras().getString("result");
 				if (TextUtils.isEmpty(res))
 					return;

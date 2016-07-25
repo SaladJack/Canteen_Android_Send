@@ -9,10 +9,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
-import com.kai.distribution.entity.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;

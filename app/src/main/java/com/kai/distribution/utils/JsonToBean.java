@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kai.distribution.entity.Distributed;
 import com.kai.distribution.entity.Distributing;
+import com.kai.distribution.entity.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +21,13 @@ public class JsonToBean {
 
     public static List<Distributed> getDistributeds(String json)  {
 
-        JSONObject jsonObj = null;
+        JSONArray jsonArray = null;
         List<Distributed> distributeds = new ArrayList<>();
-        //转化为json形式的数据
-        jsonObj = JSON.parseObject(json);
-        JSONArray res = jsonObj.getJSONArray("array");
-        distributeds = JSON.parseArray(res.toJSONString(), Distributed.class);
 
+        jsonArray = JSON.parseArray(json);
+        distributeds = JSON.parseArray(jsonArray.toJSONString(),Distributed.class);
         return distributeds;
+
     }
 
 
@@ -40,5 +40,14 @@ public class JsonToBean {
         jsonArray = JSON.parseArray(json);
         distributings = JSON.parseArray(jsonArray.toJSONString(), Distributing.class);
         return distributings;
+    }
+
+    public static List<Message> getMessages(String json){
+        JSONArray jsonArray = null;
+        List<Message> messages = new ArrayList<>();
+
+        jsonArray = JSON.parseArray(json);
+        messages = JSON.parseArray(jsonArray.toJSONString(),Message.class);
+        return messages;
     }
 }

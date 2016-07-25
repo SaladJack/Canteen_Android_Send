@@ -81,7 +81,7 @@
 	            android:id="@+id/linearLayout1"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-				android:paddingRight="40dp"
+				android:layout_toRightOf="@+id/ivv_icon1"
 				android:orientation="vertical"
                 android:layout_centerHorizontal="true"
 				android:layout_centerVertical="true"
@@ -98,6 +98,7 @@
 	                android:orientation="horizontal" >
 
 	                <TextView
+
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:text="当日完成单数"
@@ -107,7 +108,7 @@
 
 
 	                <TextView
-	                    android:id="@+id/day_complete"
+	                    android:id="@+id/day_good_number"
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:layout_marginLeft="30dp"
@@ -135,7 +136,7 @@
 					</TextView>
 
 					<TextView
-						android:id="@+id/day_send"
+						android:id="@+id/day_send_number"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="30dp"
@@ -163,7 +164,7 @@
 	                </TextView>
 
 	                <TextView
-	                    android:id="@+id/day_yellowcard"
+	                    android:id="@+id/day_yellow_number"
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:layout_marginLeft="30dp"
@@ -398,7 +399,7 @@
 				android:layout_height="wrap_content"
 
 				android:orientation="vertical"
-				android:paddingRight="20dp"
+				android:layout_toRightOf="@+id/ivv_icon2"
 				android:layout_centerVertical="true"
 				android:layout_alignParentRight="true"
 				android:layout_alignParentEnd="true">
@@ -419,7 +420,7 @@
 	                    />
 	                
 	                <TextView
-	                    android:id="@+id/month_complete"
+	                    android:id="@+id/total_good_number"
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:layout_marginLeft="50dp"
@@ -446,7 +447,7 @@
 						/>
 
 					<TextView
-						android:id="@+id/month_send"
+						android:id="@+id/total_send_number"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="30dp"
@@ -474,7 +475,7 @@
 	                    />
 	               	
 	                <TextView
-	                    android:id="@+id/month_yellowcard"
+	                    android:id="@+id/total_yello_number"
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:layout_marginLeft="50dp"

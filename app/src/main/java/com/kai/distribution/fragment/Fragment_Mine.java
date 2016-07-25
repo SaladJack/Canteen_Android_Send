@@ -11,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.kai.distribution.R;
 import com.kai.distribution.activity.Bind_Phone_Activity;
 import com.kai.distribution.activity.Binded_Phone_Activity;
@@ -20,10 +24,20 @@ import com.kai.distribution.activity.Setup_Activity;
 import com.kai.distribution.activity.SysMessage_Activity;
 import com.kai.distribution.activity.Work_Clipboard_Activity;
 import com.kai.distribution.app.Constants;
+import com.kai.distribution.app.MyApplication;
+import com.kai.distribution.entity.Message;
+import com.kai.distribution.utils.JsonToBean;
 import com.kai.distribution.utils.RsSharedUtil;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.util.List;
 
 
 public class Fragment_Mine extends Fragment
@@ -40,6 +54,10 @@ public class Fragment_Mine extends Fragment
 	private LinearLayout ll_login;
 	@ViewInject(R.id.phone_number)
 	private TextView phone_number;
+	@ViewInject(R.id.system_message_num)
+	private TextView system_message_num;
+	private List<Message> messages;
+	private int messageNum;
 
 
 	@Override
@@ -48,6 +66,10 @@ public class Fragment_Mine extends Fragment
 		View view=inflater.inflate(R.layout.fragment_mine, container,false);
 		ViewUtils.inject(this, view);
 		initView();
+
+		showMessage(1,RsSharedUtil.getString(getActivity(),Constants.KEY.USER_CODE),
+				    RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
+
 		return view;
 	}
 
@@ -113,6 +135,7 @@ public class Fragment_Mine extends Fragment
 				//系统消息
 				case R.id.ll_system:
 					intent=new Intent(getActivity(),SysMessage_Activity.class);
+					intent.putExtra("messages", (Serializable) messages);
 					startActivity(intent);
 					break;
 				case R.id.ll_login:
@@ -126,6 +149,47 @@ public class Fragment_Mine extends Fragment
 			intent=new Intent(getActivity(),LoginActivity.class);
 			startActivity(intent);
 		}
+	}
+
+	private void showMessage(int sign,String code, int workerId){
+		JSONObject jsonObject = new JSONObject();
+
+		try {
+			jsonObject.put("sign", sign);
+			jsonObject.put("code",code);
+			jsonObject.put("workerId",workerId);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Constants.URL.SHOW_MESSAGES,
+				jsonObject, new Response.Listener<JSONObject>() {
+			@Override
+			public void onResponse(JSONObject response) {
+				try {
+					JSONArray jsonArray = response.getJSONArray("array");
+					messages = JsonToBean.getMessages(jsonArray.toString());
+					messageNum = messages.size();
+					if(messageNum > 0){
+						system_message_num.setVisibility(View.VISIBLE);
+						system_message_num.setText(""+messageNum);
+					}else{
+						system_message_num.setVisibility(View.GONE);
+						system_message_num.setText("");
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+
+			}
+		});
+
+		MyApplication.getRequestQueue().add(jsonObjectRequest);
 	}
 
 }

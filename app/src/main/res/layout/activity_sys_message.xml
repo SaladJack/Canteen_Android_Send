@@ -40,7 +40,6 @@
             />
     </RelativeLayout>
     <ListView
-
         android:background="#fff"
         android:cacheColorHint="#0000"
         android:id="@+id/lv_message"

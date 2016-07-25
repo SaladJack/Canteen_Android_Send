@@ -184,7 +184,7 @@ public class Fragment_Distributied extends Fragment
         });
 
 		distributed_show_list=(ListView) view.findViewById(R.id.distributed_show_list);
-		listview_adapter = new Distributed_listview_adapter(getActivity(), R.layout.show_time_spinner_text, distributedList);
+		listview_adapter = new Distributed_listview_adapter(getContext(), R.layout.distributed_takeoutfood, distributedList);
 		distributed_show_list.setAdapter(listview_adapter);
 		
 		//设置时间选择
@@ -232,6 +232,11 @@ public class Fragment_Distributied extends Fragment
 		distributed_calendar_year.setText(Integer.toString(year));
 		distributed_calendar_month.setText(Integer.toString(month));
 		distributed_calendar_day.setText(Integer.toString(day));
+		Log.e(TAG,"init()");
+
+		old_year = Integer.toString(year);
+		old_month = Integer.toString(month);
+		old_day = Integer.toString(day);
 
         show_distributed_calendar.setText("" + year + "-" + month + "-" + day);
 //============================================================================================================
@@ -457,9 +462,13 @@ public class Fragment_Distributied extends Fragment
 				break;
 				
 			case R.id.distributed_calendar_comfrim:
-				show_distributed_calendar.setText(distributed_calendar_year.getText().toString()+"-"
-										+distributed_calendar_month.getText().toString()+"-"
-										+distributed_calendar_day.getText().toString());
+				show_distributed_calendar.setText(distributed_calendar_year.getText().toString() + "-"
+										 + distributed_calendar_month.getText().toString()+"-"
+										 + distributed_calendar_day.getText().toString());
+
+				old_year = distributed_calendar_year.getText().toString();
+				old_month = distributed_calendar_month.getText().toString();
+				old_day = distributed_calendar_day.getText().toString();
 
 				distributed_calendar.setVisibility(View.GONE);
 				calendar_open = false;
@@ -568,7 +577,9 @@ public class Fragment_Distributied extends Fragment
             jsonObject.put("code", RsSharedUtil.getString(getContext(),"code"));
             jsonObject.put("workerId", RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
             jsonObject.put("pageIndex",pageIndex);
-            jsonObject.put("date", System.currentTimeMillis());
+			Log.e(TAG,"year: "+old_year+ " month:"+old_month+" day:"+old_day);
+			Log.e(TAG,"currentDayTime: " + TimeUtils.getDayMillis(TimeUtils.getTime(old_year,old_month,old_day)));
+            jsonObject.put("date", TimeUtils.getDayMillis(TimeUtils.getTime(old_year,old_month,old_day)));
             jsonObject.put("sendAreaId", sendAreId);
             jsonObject.put("buildingType", buildingtype);
             jsonObject.put("sendTimeBegin",sendTimeBegin);
@@ -587,15 +598,14 @@ public class Fragment_Distributied extends Fragment
                     public void onResponse(org.json.JSONObject response) {
                         try {
                             Log.e(TAG,response.toString());
-                            unparsedNewDatas = response.getJSONArray("array");
-                            manageData();//处理数据
+							String res = response.getString("result");
+							if (res.equals("success")) {
+								Log.e(TAG,"success");
+								unparsedNewDatas = response.getJSONArray("array");
+								manageData();//处理数据
+							}
                         } catch (Exception e1) {
                             e1.printStackTrace();
-                            try {
-                                String result = response.getString("result");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -635,21 +645,21 @@ public class Fragment_Distributied extends Fragment
     }
 
     private void setData(List<Distributed> distributeds) {
+
+
         if (area_spinner_content != null) {
             area_spinner_content.clear();
             area_spinner_content.add("全部");
-            area_spinner_content.add("test");
         }
 
         if (dorm_spinner_content != null) {
             dorm_spinner_content.clear();
             dorm_spinner_content.add("全部");
-            dorm_spinner_content.add("test");
         }
 
         if (time_spinner_content != null) {
-            time_spinner_content.clear();
-//            time_spinner_content.add();
+			time_spinner_content.clear();
+			time_spinner_content.add("全部");
         }
 
         int size = distributeds.size();
@@ -660,9 +670,9 @@ public class Fragment_Distributied extends Fragment
             if (!dorm_spinner_content.contains(distributeds.get(i).getAddress()))
                 dorm_spinner_content.add(distributeds.get(i).getAddress());
 
-            if (!area_spinner_content.contains(TimeUtils.MillisToString(distributeds.get(i).getSendTimeBegin())
+            if (!time_spinner_content.contains(TimeUtils.MillisToString(distributeds.get(i).getSendTimeBegin())
                     + "~" + TimeUtils.MillisToString(distributeds.get(i).getSendTimeEnd())))
-                area_spinner_content.add(TimeUtils.MillisToString(distributeds.get(i).getSendTimeBegin())
+				time_spinner_content.add(TimeUtils.MillisToString(distributeds.get(i).getSendTimeBegin())
                         + "~" + TimeUtils.MillisToString(distributeds.get(i).getSendTimeEnd()));
         }
 
@@ -689,6 +699,8 @@ public class Fragment_Distributied extends Fragment
             }
         }
 
+
+		Log.e(TAG,"size: "+distributedList.size());
         listview_adapter.notifyDataSetChanged();
 
     }

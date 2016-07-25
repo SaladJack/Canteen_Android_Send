@@ -1,7 +1,6 @@
 package com.kai.distribution.activity;
 
 import android.app.Activity;
-import android.app.Application;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.util.Log;
@@ -24,7 +23,6 @@ import com.kai.distribution.utils.TimeUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 public class Work_Clipboard_Activity extends Activity
 {
@@ -34,8 +32,8 @@ public class Work_Clipboard_Activity extends Activity
 	private TextView clipboard_calendar_year_reduce,clipboard_calendar_month_reduce,clipboard_calendar_day_reduce;
 	private Button clipboard_calendar_comfirm,clipboard_calendar_today,clipboard_calendar_cancel,work_clipboard_return;
 
-    private TextView day_complete,day_send,day_yellowcard;
-
+    private TextView dayGoodNumber, daySendNumber, dayYelloNumber;
+	private TextView totalGoodNumber, totalSendNumber, totalYelloNumber;
 
 	private LinearLayout clipboard_calendar;
 	private static boolean calendar_open = true;
@@ -47,9 +45,7 @@ public class Work_Clipboard_Activity extends Activity
 
     private String time;
     private static final String TAG = "Work_Clipboard_Activity";
-    private TextView month_complete;
-    private TextView month_send;
-    private TextView month_yellowcard;
+
 
 
     @Override
@@ -70,13 +66,13 @@ public class Work_Clipboard_Activity extends Activity
 
     private void initView(){
 
-        day_complete = (TextView) findViewById(R.id.day_complete);
-        day_send = (TextView) findViewById(R.id.day_send);
-        day_yellowcard = (TextView) findViewById(R.id.day_yellowcard);
+        dayGoodNumber = (TextView) findViewById(R.id.day_good_number);
+        daySendNumber = (TextView) findViewById(R.id.day_send_number);
+        dayYelloNumber = (TextView) findViewById(R.id.day_yellow_number);
 
-        month_complete = (TextView)findViewById(R.id.month_complete);
-        month_send = (TextView)findViewById(R.id.month_send);
-        month_yellowcard = (TextView)findViewById(R.id.month_yellowcard);
+        totalGoodNumber = (TextView)findViewById(R.id.total_good_number);
+        totalSendNumber = (TextView)findViewById(R.id.total_send_number);
+        totalYelloNumber = (TextView)findViewById(R.id.total_yello_number);
 
 
         work_clipboard_return=(Button) findViewById(R.id.work_clipboard_return);
@@ -436,9 +432,13 @@ Content-Type: application/json
                 Log.e(TAG,"response: " + response.toString());
 
                 try {
-                    //day_complete.setText(response.getString("..."));
-                    day_send.setText(response.getString("daySendNumber"));
-                    day_yellowcard.setText(response.getString("dayYelloNumber"));
+                    dayGoodNumber.setText(response.getString("dayGoodNumber"));
+                    daySendNumber.setText(response.getString("daySendNumber"));
+                    dayYelloNumber.setText(response.getString("dayYelloNumber"));
+
+					totalGoodNumber.setText(response.getString("totalGoodNumber"));
+					totalSendNumber.setText(response.getString("totalSendNumber"));
+					totalYelloNumber.setText(response.getString("totalYellowNumber"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();

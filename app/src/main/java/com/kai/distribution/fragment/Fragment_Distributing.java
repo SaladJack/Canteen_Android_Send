@@ -3,7 +3,6 @@ package com.kai.distribution.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -20,17 +19,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chanven.lib.cptr.PtrClassicFrameLayout;
-import com.chanven.lib.cptr.PtrDefaultHandler;
-import com.chanven.lib.cptr.PtrFrameLayout;
-import com.chanven.lib.cptr.loadmore.OnLoadMoreListener;
 import com.kai.distribution.R;
-import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.adapter.Distributing_listview_adapter;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.entity.Distributing;
-import com.kai.distribution.entity.MessageEvent;
-import com.kai.distribution.utils.DistrbutingUtils;
 import com.kai.distribution.utils.TimeUtils;
 import com.zxing.activity.CaptureActivity;
 

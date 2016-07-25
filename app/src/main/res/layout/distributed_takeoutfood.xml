@@ -44,10 +44,21 @@
 	                android:layout_alignParentLeft="true"
 	                android:layout_marginLeft="20dp"
 					android:layout_marginBottom="8dp"
-					android:textSize="20dp"
+					android:textSize="20sp"
 					android:textStyle="bold"
 	                android:text="梁同学"
 	                android:textColor="@color/lv_text_color" />
+
+				<TextView
+					android:id="@+id/goodNumber"
+					android:textSize="20sp"
+					android:layout_marginLeft="5dp"
+					android:text="[-1份]"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignTop="@+id/distributed_person_name"
+					android:layout_toRightOf="@+id/distributed_person_name"
+					android:layout_toEndOf="@+id/distributed_person_name" />
 
 	            <TextView
 	                android:layout_width="wrap_content"
@@ -59,7 +70,8 @@
 					android:layout_marginEnd="19dp"
 					android:layout_alignBottom="@+id/distributed_person_name"
 					android:layout_alignParentRight="true"
-					android:layout_alignParentEnd="true" />
+					android:layout_alignParentEnd="true"
+					android:id="@+id/textView3" />
 	            
 	        </RelativeLayout>
 	        
@@ -100,7 +112,7 @@
 	                android:textColor="#565656"
 	                android:textSize="20dp"
 					android:textStyle="bold"
-	                android:text="12:14"
+	                android:text="00:00"
 					android:layout_marginEnd="16dp"
 					android:layout_alignTop="@+id/distributed_which_area"
 					android:layout_alignParentRight="true"

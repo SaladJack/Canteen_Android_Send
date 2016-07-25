@@ -18,7 +18,7 @@ public class TimeUtils {
 		return formatter.format(calendar.getTime()).substring(11,16);
 	}
 
-
+	//获得所选日期的毫秒数
     public static long getDayMillis(String time){
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -32,7 +32,7 @@ public class TimeUtils {
 		return 0;
 	}
 
-
+	//获得所选月份的毫秒数
 	public static long getMonthMillis(String time){
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

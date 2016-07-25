@@ -44,7 +44,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 	private TextView tv_forget;
 	private ProgressDialog dialog;
 	private UserInfo userInfo;
-
+	private static final String TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,16 +132,19 @@ public class LoginActivity extends Activity implements OnClickListener{
 
 			@Override
 			public void onResponse(String response) {
-				Log.d("loginSuccess",response+"dd");
+				Log.e(TAG,"login: "+response);
 				dialog.dismiss();
 
 				try {
 
 					JSONObject jsonObject = new JSONObject(response);
 					String res = jsonObject.getString("result");
+					Log.e(TAG,res);
 					if (res.equals("alreadylogined")) {
-						Toast.makeText(LoginActivity.this, "配送员已经登录", Toast.LENGTH_SHORT).show();
+						Log.e(TAG,"alreadylogined:::");
+						Toast.makeText(LoginActivity.this, "配送员已经登录", Toast.LENGTH_LONG).show();
 					}else if(res.equals("success")){
+						Log.e(TAG,"success");
 						Toast.makeText(LoginActivity.this,"登录成功！！",Toast.LENGTH_SHORT).show();
 						userInfo =new ObjectMapper().readValue(response, UserInfo.class);
 						if (userInfo!=null)
@@ -158,15 +161,19 @@ public class LoginActivity extends Activity implements OnClickListener{
 							startActivity(intent);
 							finish();
 						}else if(res.equals("no such a worker")){
+							Log.e(TAG,"no such a worker");
 							Toast.makeText(LoginActivity.this, "账号不存在", Toast.LENGTH_SHORT).show();
 						}else if(res.equals("wrongformat")){
+							Log.e(TAG,"wrongformat");
 							Toast.makeText(LoginActivity.this, "账号或密码错误", Toast.LENGTH_SHORT).show();
 						}else {
+							Log.e(TAG,"else");
 							Toast.makeText(LoginActivity.this, res, Toast.LENGTH_SHORT).show();
 						}
 					}
 				}catch (Exception e) {
 					e.printStackTrace();
+					Log.e(TAG,e.toString());
 				}
 
 			}
