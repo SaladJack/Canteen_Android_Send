@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.kai.distribution.R;
 import com.kai.distribution.entity.Message;
+import com.kai.distribution.utils.TimeUtils;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class Message_listview_adapter extends ArrayAdapter<Message> {
             view  = LayoutInflater.from(context).inflate(resourceId,parent,false);
             viewholder = new ViewHolder();
             viewholder.messageContent = (TextView) view.findViewById(R.id.message_content);
+            viewholder.messageDate = (TextView)view.findViewById(R.id.message_date);
             view.setTag(viewholder);
         } else {
             view = convertView;
@@ -45,11 +47,13 @@ public class Message_listview_adapter extends ArrayAdapter<Message> {
         }
 
         viewholder.messageContent.setText(message.getContent());
+        viewholder.messageDate.setText(TimeUtils.MillisToString_Point(message.getTime()));
 
         return view;
     }
 
     static class ViewHolder{
         TextView messageContent;
+        TextView messageDate;
     }
 }

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp" 
         android:orientation="horizontal"
-        android:background="#0164B7">
+        android:background="@color/toolbar_color">
         
         <TextView
             android:id="@+id/show_count"

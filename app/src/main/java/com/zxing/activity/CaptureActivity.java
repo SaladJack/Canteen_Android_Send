@@ -18,6 +18,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -59,8 +60,9 @@ public class CaptureActivity extends Activity implements Callback {
 	private static final float BEEP_VOLUME = 0.10f;
 	private boolean vibrate;
 
-	private Button button;
+//	private Button button;
 	private static final String TAG = "CaptureActivity";
+	private ImageView back;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -70,21 +72,16 @@ public class CaptureActivity extends Activity implements Callback {
 		//ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
 		CameraManager.init(getApplication());
 		viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
-		button = (Button)findViewById(R.id.skip);
-		button.setOnClickListener(new OnClickListener() {
+
+		back = (ImageView)findViewById(R.id.toolbar_back);
+
+		back.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Constants.GLOBAL.HAVE_SCANNED = true;
-				Log.e("Click","click : "+Constants.GLOBAL.HAVE_SCANNED );
-				Message msg = Message.obtain();
-				msg.what = Constants.CODE.SCAN;
-				Log.e(TAG,"toAfterScanning");
-				EventBus.getDefault().post(msg);
 				finish();
-
-
 			}
 		});
+
 		hasSurface = false;
 		inactivityTimer = new InactivityTimer(this);
 	}

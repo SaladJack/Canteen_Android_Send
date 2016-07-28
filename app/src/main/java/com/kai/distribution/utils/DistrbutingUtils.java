@@ -1,5 +1,6 @@
 package com.kai.distribution.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Message;
 import android.util.Log;
@@ -28,7 +29,6 @@ public class DistrbutingUtils {
     public static void getDistributedListByHTTP(final Context context, int buildingId){
 
         JSONObject jsonObject = new JSONObject();
-        String url = Constants.URL.DISTRIBUTING_URL;
 
         try {
 
@@ -42,7 +42,7 @@ public class DistrbutingUtils {
 
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.POST, url, jsonObject,
+                Request.Method.POST, Constants.URL.DISTRIBUTING_URL, jsonObject,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -53,7 +53,9 @@ public class DistrbutingUtils {
                                 Constants.GLOBAL.unparsedNewDatas = response;
                                 manageData(context);//处理数据
                             }else if (res.equals("noorder")){
-                                return;
+                                Toast.makeText(context, "没有订单数据", Toast.LENGTH_SHORT).show();
+                            }else{
+                                NetResultUtils.badResponse(res, (Activity) context);
                             }
                         } catch (Exception e1) {
                             e1.printStackTrace();

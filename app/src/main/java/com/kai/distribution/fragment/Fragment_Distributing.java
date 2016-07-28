@@ -180,13 +180,9 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
 
         //设置配送地区spinner
         synchronized (this) {
-
             if (distributingList != null) {
                 distributingList.clear();
             }
-
-
-
 
             if (spinner_content != null) {
                 spinner_content.clear();

@@ -84,7 +84,7 @@
 					android:layout_marginTop="10dp"
 					android:background="@drawable/bt_bg"
 					android:layout_marginRight="20dp"
-					android:text="等待100s"
+					android:text="接收验证码"
 					android:textColor="#3191E8"
 					/>
 			</LinearLayout>

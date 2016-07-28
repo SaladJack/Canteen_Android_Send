@@ -8,8 +8,8 @@
 
 	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="50dp"
-		android:background="#0164B7"
+		android:layout_height="?attr/actionBarSize"
+		android:background="@color/toolbar_color"
 		android:orientation="horizontal"
 		>
 
@@ -43,8 +43,8 @@
 
 	<LinearLayout
 	    android:layout_width="match_parent"
-	    android:layout_height="0dp"
-	    android:layout_weight="9"
+	    android:layout_height="match_parent"
+
 	    android:background="#eeeeee"
 	    android:orientation="vertical"
 	    android:weightSum="4"
@@ -75,19 +75,19 @@
 	            android:text="版本信息"
 	            android:textSize="18sp"
 	            android:textColor="#000"
-	            ></TextView>
+	            />
 	        
 	        <ImageView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:src="@mipmap/navigate_next_black"
-	            ></ImageView>
+	            />
 	    </LinearLayout>
 	    <View
 	        android:layout_width="match_parent"
 	        android:layout_height="2dp"
 	        android:background="#1000"
-	        ></View>
+	        />
 	    <LinearLayout 
 	        android:id="@+id/clear_cache"
 	        android:layout_width="match_parent"

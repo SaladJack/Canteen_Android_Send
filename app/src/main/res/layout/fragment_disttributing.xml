@@ -8,9 +8,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="?attr/actionBarSize"
         android:orientation="horizontal"
-        android:background="#0164B7">
+        android:background="@color/toolbar_color">
 
         <TextView
             android:id="@+id/show_count"
@@ -50,20 +50,18 @@
             <TextView
                 android:id="@+id/area"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="@dimen/spinner_top_height"
                 android:gravity="center"
 
                 android:text="配送区域"
-                android:textColor="#D0D0D0"
-                android:textSize="20sp" >
+                android:textColor="@color/spinner_top_color"
+                android:textSize="10sp" >
             </TextView>
 
             <TextView
                 android:id="@+id/sendArea"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="@dimen/spinner_height"
                 android:gravity="center"
                 android:text="无"
                 android:textColor="#000"
@@ -80,21 +78,20 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="@dimen/spinner_top_height"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="配送楼栋"
-                android:textColor="#D0D0D0"
-                android:textSize="20sp"
+
+                android:text="   配送楼栋"
+                android:textColor="@color/spinner_top_color"
+                android:textSize="10sp"
                 android:drawableLeft="@mipmap/ic_location_on_black"/>
 
 
             <Spinner
                 android:id="@+id/show_listview"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="@dimen/spinner_height"
                 android:spinnerMode="dropdown"
                 android:gravity="center"
                 android:background="#ffffff"
@@ -110,19 +107,17 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="@dimen/spinner_top_height"
                 android:gravity="center"
                 android:text="送达时间"
-                android:textColor="#D0D0D0"
-                android:textSize="20sp" >
+                android:textColor="@color/spinner_top_color"
+                android:textSize="10sp" >
             </TextView>
 
             <TextView
                 android:id="@+id/service_time"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="@dimen/spinner_height"
                 android:gravity="center"
                 android:text="无"
                 android:textColor="#000"

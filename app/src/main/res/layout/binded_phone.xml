@@ -8,9 +8,8 @@
     
 	<RelativeLayout
 	    android:layout_width="match_parent"
-	    android:layout_height="50dp"
-
-	    android:background="#0164B7"
+		android:layout_height="?attr/actionBarSize"
+		android:background="@color/toolbar_color"
 	    android:orientation="horizontal"
 	    >
 

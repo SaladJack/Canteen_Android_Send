@@ -1,6 +1,7 @@
 package com.kai.distribution.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -31,6 +32,7 @@ public class Changed_Password_Activity extends Activity {
     private EditText new_password_1;
     private EditText new_password_2;
     private Button new_password_comfirm;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,11 @@ public class Changed_Password_Activity extends Activity {
                     } else if (!new_password_1.getText().toString().equals(new_password_2.getText().toString())) {
                         Toast.makeText(Changed_Password_Activity.this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
                     } else {
+                        dialog = new ProgressDialog(Changed_Password_Activity.this);
+//                        dialog.setMessage("...");
+                        dialog.setCancelable(true);
+                        dialog.show();
+
                         changePassword(old_password.getText().toString(),
                                 new_password_1.getText().toString(),
                                 String.valueOf(RsSharedUtil.getInt(Changed_Password_Activity.this, Constants.KEY.WORK_ID)),
@@ -108,6 +115,7 @@ public class Changed_Password_Activity extends Activity {
                             Log.e("change_password", response.toString());
                             String res = null;
                             try {
+                                dialog.dismiss();
                                 res = response.getString("result");
                                 if (res.equals("updatesuccess")) {
                                     Toast.makeText(Changed_Password_Activity.this, "密码修改成功", Toast.LENGTH_SHORT).show();
@@ -123,7 +131,9 @@ public class Changed_Password_Activity extends Activity {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                        Log.e("change_password","error: " + error.toString());
+                        dialog.dismiss();
+                    Toast.makeText(Changed_Password_Activity.this, "请求错误,请检查网络是否打开", Toast.LENGTH_SHORT).show();
+                    Log.e("change_password","error: " + error.toString());
                 }
             });
             jsonObjectRequest.setTag("Change_Password_Activity");

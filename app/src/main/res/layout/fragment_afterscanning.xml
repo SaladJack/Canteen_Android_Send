@@ -7,9 +7,9 @@
     <RelativeLayout
         android:id="@+id/rl_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="?attr/actionBarSize"
         android:orientation="horizontal"
-        android:background="#0164B7">
+        android:background="@color/toolbar_color">
 
         <TextView
             android:id="@+id/show_count"
@@ -21,6 +21,18 @@
             android:layout_marginLeft="@dimen/toolbar_return_marginLeft"
             android:text="配送中"
             />
+
+        <ImageButton
+            android:id="@+id/createQR"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            android:layout_toLeftOf="@+id/scan"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/creatqr"
+            />
+
 
         <ImageButton
             android:id="@+id/scan"

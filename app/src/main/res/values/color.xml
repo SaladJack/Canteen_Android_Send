@@ -2,11 +2,13 @@
 <resources>
 
 
+    <color name="spinner_top_color">#838484</color>
+
     <color name="white">#eeeeee</color>
     <color name="blue_">#0000ee</color>
     <color name="textcolor">#164d81</color>
 
-    <color name="toolbar_color">#0165b6</color>
+    <color name="toolbar_color">#184ca3</color>
 
     <color name="lv_text_color">#2a8ff4</color>
     <color name="divider">#eeeeee</color>

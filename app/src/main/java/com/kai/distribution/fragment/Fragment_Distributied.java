@@ -31,12 +31,10 @@ import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
 import com.kai.distribution.entity.Distributed;
 import com.kai.distribution.utils.JsonToBean;
+import com.kai.distribution.utils.NetResultUtils;
 import com.kai.distribution.utils.RsSharedUtil;
 import com.kai.distribution.utils.TimeUtils;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +70,7 @@ public class Fragment_Distributied extends Fragment
 	private TextView distributed_calendar_year_add,distributed_calendar_month_add,distributed_calendar_day_add;
 	private TextView distributed_calendar_year,distributed_calendar_month,distributed_calendar_day;
 	private TextView distributed_calendar_year_reduce,distributed_calendar_month_reduce,distributed_calendar_day_reduce;
-	private Button distributed_calendar_comfrim,distributed_calendar_today,distributed_calendar_cancel;
+	private Button distributed_calendar_comfirm,distributed_calendar_today,distributed_calendar_cancel;
 	
 	private static boolean calendar_open=true;
 	private String old_year;
@@ -105,7 +103,7 @@ public class Fragment_Distributied extends Fragment
 		distributed_time = (Spinner)view.findViewById(R.id.distributed_time);
 
 
-		mPtrFrameLayout = (PtrFrameLayout) view.findViewById(R.id.distributed_list_view);
+		mPtrFrameLayout = (PtrFrameLayout) view.findViewById(R.id.distributed_ptr_layout);
 
 		// header
 		final MaterialHeader header = new MaterialHeader(getContext());
@@ -203,7 +201,7 @@ public class Fragment_Distributied extends Fragment
 		distributed_calendar_month_reduce=(TextView) view.findViewById(R.id.distributed_calendar_month_reduce);
 		distributed_calendar_day_reduce=(TextView) view.findViewById(R.id.distributed_calendar_day_reduce);
 	
-		distributed_calendar_comfrim=(Button) view.findViewById(R.id.distributed_calendar_comfrim);
+		distributed_calendar_comfirm =(Button) view.findViewById(R.id.distributed_calendar_comfirm);
 		distributed_calendar_today=(Button) view.findViewById(R.id.distributed_calendar_today);
 		distributed_calendar_cancel=(Button) view.findViewById(R.id.distributed_calendar_cancel);
 	
@@ -214,7 +212,7 @@ public class Fragment_Distributied extends Fragment
 		distributed_calendar_year_reduce.setOnClickListener(click);
 		distributed_calendar_month_reduce.setOnClickListener(click);
 		distributed_calendar_day_reduce.setOnClickListener(click);
-		distributed_calendar_comfrim.setOnClickListener(click);
+		distributed_calendar_comfirm.setOnClickListener(click);
 		distributed_calendar_today.setOnClickListener(click);
 		distributed_calendar_cancel.setOnClickListener(click);
 		
@@ -461,7 +459,7 @@ public class Fragment_Distributied extends Fragment
 				}
 				break;
 				
-			case R.id.distributed_calendar_comfrim:
+			case R.id.distributed_calendar_comfirm:
 				show_distributed_calendar.setText(distributed_calendar_year.getText().toString() + "-"
 										 + distributed_calendar_month.getText().toString()+"-"
 										 + distributed_calendar_day.getText().toString());
@@ -472,7 +470,7 @@ public class Fragment_Distributied extends Fragment
 
 				distributed_calendar.setVisibility(View.GONE);
 				calendar_open = false;
-
+				mPtrFrameLayout.autoRefresh(true);
 				break;
 				
 			case R.id.distributed_calendar_today:
@@ -504,7 +502,7 @@ public class Fragment_Distributied extends Fragment
 		mPtrFrameLayout.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				Log.e("debug","postDelayed");
+				Log.e(TAG,"postDelayed");
 				mPtrFrameLayout.autoRefresh(true);
 			}
 		}, 1);
@@ -524,8 +522,8 @@ public class Fragment_Distributied extends Fragment
 				handler.postDelayed(new Runnable() {
 					@Override
 					public void run() {
+						Log.e(TAG,"onRefreshBegin()");
 						//添加刷新事件
-						pageIndex = 1;
 						getDistributedListByHTTP();
 						mPtrFrameLayout.refreshComplete();
 					}
@@ -540,7 +538,7 @@ public class Fragment_Distributied extends Fragment
 	@Override
 	public void onStart() {
 		super.onStart();
-		EventBus.getDefault().register(this);
+
 		if (listview_adapter != null) {
 			listview_adapter.notifyDataSetChanged();
 		}
@@ -555,28 +553,20 @@ public class Fragment_Distributied extends Fragment
 
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(List<Distributed> distributeds){
-
-        Log.e("onMessage","error!!!!");
-    }
-
 
 	@Override
 	public void onStop() {
 		super.onStop();
-		EventBus.getDefault().unregister(this);
 	}
 
     private void getDistributedListByHTTP(){
 
         JSONObject jsonObject = new JSONObject();
-        String url = Constants.URL.DISTRIBUTED_URL;
 
         try {
             jsonObject.put("code", RsSharedUtil.getString(getContext(),"code"));
             jsonObject.put("workerId", RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
-            jsonObject.put("pageIndex",pageIndex);
+//            jsonObject.put("pageIndex",pageIndex);
 			Log.e(TAG,"year: "+old_year+ " month:"+old_month+" day:"+old_day);
 			Log.e(TAG,"currentDayTime: " + TimeUtils.getDayMillis(TimeUtils.getTime(old_year,old_month,old_day)));
             jsonObject.put("date", TimeUtils.getDayMillis(TimeUtils.getTime(old_year,old_month,old_day)));
@@ -592,7 +582,7 @@ public class Fragment_Distributied extends Fragment
 
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST,  url, jsonObject,
+                Request.Method.POST,  Constants.URL.DISTRIBUTED_URL, jsonObject,
                 new Response.Listener<org.json.JSONObject>() {
                     @Override
                     public void onResponse(org.json.JSONObject response) {
@@ -603,6 +593,12 @@ public class Fragment_Distributied extends Fragment
 								Log.e(TAG,"success");
 								unparsedNewDatas = response.getJSONArray("array");
 								manageData();//处理数据
+							}if (res.equals("no orders")){
+								Toast.makeText(getContext(), "所选日期无订单", Toast.LENGTH_SHORT).show();
+								distributedList.clear();
+								listview_adapter.notifyDataSetChanged();
+							}else{
+								NetResultUtils.badResponse(res,getActivity());
 							}
                         } catch (Exception e1) {
                             e1.printStackTrace();
@@ -628,6 +624,8 @@ public class Fragment_Distributied extends Fragment
         }
         if (unparsedNewDatas == null || unparsedNewDatas.length()==0){
 //            Toast.makeText(getActivity(),"无已送达记录",Toast.LENGTH_SHORT).show();
+			distributedList.clear();
+			listview_adapter.notifyDataSetChanged();
             return;
         } else {
             newDatas = JsonToBean.getDistributeds(unparsedNewDatas.toString());

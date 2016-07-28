@@ -15,8 +15,21 @@ public class TimeUtils {
 //		long now = System.currentTimeMillis();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(time);
-		return formatter.format(calendar.getTime()).substring(11,16);
+		return formatter.format(calendar.getTime()).substring(11,16);//前闭后开
 	}
+
+	//XXXX.XX.XX XX:XX
+	public static String MillisToString_Point(long time){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//		long now = System.currentTimeMillis();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(time);
+		String s = formatter.format(calendar.getTime()).substring(0,16);
+		String[] ss = s.split("-");
+		return ss[0]+"."+ss[1]+"."+ss[2];
+
+	}
+
 
 	//获得所选日期的毫秒数
     public static long getDayMillis(String time){

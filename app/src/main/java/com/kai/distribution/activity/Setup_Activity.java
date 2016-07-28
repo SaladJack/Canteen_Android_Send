@@ -21,11 +21,14 @@ import com.android.volley.toolbox.AppStringRequest;
 import com.kai.distribution.R;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
+import com.kai.distribution.utils.DataCleanManager;
 import com.kai.distribution.utils.NetResultUtils;
 import com.kai.distribution.utils.RsSharedUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.sql.Time;
 
 public class Setup_Activity extends Activity implements OnClickListener
 {
@@ -93,8 +96,20 @@ public class Setup_Activity extends Activity implements OnClickListener
 
 						@Override
 						public void onClick(View arg0) {
-							// TODO Auto-generated method stub
 							alertDialog.dismiss();
+
+
+
+
+
+							DataCleanManager.cleanUnusefulData(getApplicationContext());
+							Toast.makeText(Setup_Activity.this, "已清除缓存", Toast.LENGTH_SHORT).show();
+							Intent intent = new Intent(Setup_Activity.this,HomeActivity.class);
+							startActivity(intent);
+							finish();
+
+
+
 						}
 					});
 

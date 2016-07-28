@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.kai.distribution.R;
 
 public class Version_Activity extends Activity
 {
-	private TextView set_up_version_return;
+	private ImageButton set_up_version_return;
 	private Button update_version;
 	
 	@Override
@@ -21,7 +22,7 @@ public class Version_Activity extends Activity
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.set_up_version);
 		
-		set_up_version_return=(TextView) findViewById(R.id.set_up_version_return);
+		set_up_version_return=(ImageButton) findViewById(R.id.set_up_version_return);
 		update_version=(Button) findViewById(R.id.update_version);
 		
 		set_up_version_return.setOnClickListener(click);

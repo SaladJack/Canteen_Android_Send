@@ -1,5 +1,6 @@
 package com.kai.distribution.fragment;
 
+import android.app.AlertDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,12 +8,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.kai.distribution.R;
 import com.kai.distribution.utils.DistrbutingUtils;
+import com.kai.distribution.utils.QRUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,6 +64,29 @@ public class Fragment_AfterScanning extends Fragment {
         afterScanningGif.setController(draweeController);
 
 
+        ImageButton createQR = (ImageButton)view.findViewById(R.id.createQR);
+
+        createQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 final AlertDialog alertDialog = new android.app.AlertDialog.Builder(getContext()).create();
+                alertDialog.show();
+                Window window = alertDialog.getWindow();
+                window.setContentView(R.layout.qr_layout);
+                ImageView qrImageView = (ImageView) window.findViewById(R.id.qrImage);
+                final Button qrBack = (Button)window.findViewById(R.id.qr_back);
+  Log.e(TAG,""+qrImageView.getWidth());
+                QRUtils.createQRImage(qrImageView,"comfirm");
+                qrBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+
+            }
+        });
 
         return view;
     }

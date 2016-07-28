@@ -70,7 +70,7 @@ public class Register_Next_Activity extends Activity {
 						Intent intent = getIntent();
 						Log.e("Register_Next_Activity","认证按钮被点击");
 //						register(intent.getStringExtra("account"), register_password.getText().toString(), intent.getStringExtra("name"));
-						register(intent.getStringExtra("account"), register_password.getText().toString(), "我是配送员");
+						register(intent.getStringExtra("account"), register_password.getText().toString(), intent.getStringExtra("name"));
 
 					} else {
 						Toast.makeText(Register_Next_Activity.this, "两次输入的密码不相同！", Toast.LENGTH_SHORT).show();

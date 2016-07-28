@@ -14,7 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#0164B7"
+            android:background="@color/toolbar_color"
             android:gravity="center_vertical">
 
             <ImageView
@@ -47,23 +47,6 @@
 
 
         </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_login"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#0164B7"
-        android:layout_weight="0.5">
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center"
-            android:text="点击登录"
-            android:textColor="#ffffff"
-            android:textSize="18sp"/>
-
     </LinearLayout>
 
     <LinearLayout

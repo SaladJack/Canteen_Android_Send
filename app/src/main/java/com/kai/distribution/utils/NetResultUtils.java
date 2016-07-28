@@ -25,8 +25,22 @@ public class NetResultUtils {
             NetResultUtils.wrongCode(activity);
         }else if (res.equals("longtimeoffline")){
             NetResultUtils.longTimeOffLine(activity);
+        }else if (res.equals("pagetoosmall")){
+            NetResultUtils.pageTooSmall(activity);
+        }else if (res.equals("pagetoolarge")){
+            NetResultUtils.pageTooLarge(activity);
         }
 
+    }
+
+   public static void pageTooSmall(Activity activity){
+       Toast.makeText(activity, "页数太小", Toast.LENGTH_SHORT).show();
+       clearData(activity);
+   }
+
+    public static void pageTooLarge(Activity activity){
+        Toast.makeText(activity, "页数太大", Toast.LENGTH_SHORT).show();
+        clearData(activity);
     }
 
 

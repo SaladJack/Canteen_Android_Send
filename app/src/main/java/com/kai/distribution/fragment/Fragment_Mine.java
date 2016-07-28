@@ -50,8 +50,6 @@ public class Fragment_Mine extends Fragment
 	private ImageView iv_logo;
 	@ViewInject(R.id.ll_user)
 	private LinearLayout ll_user;
-	@ViewInject(R.id.ll_login)
-	private LinearLayout ll_login;
 	@ViewInject(R.id.phone_number)
 	private TextView phone_number;
 	@ViewInject(R.id.system_message_num)
@@ -78,7 +76,7 @@ public class Fragment_Mine extends Fragment
 		if (!RsSharedUtil.getString(getActivity(), Constants.KEY.USER_CODE).equals("") ||
 				!RsSharedUtil.getString(getActivity(), Constants.KEY.USER_CODE).equalsIgnoreCase("null")) {
 			ll_user.setVisibility(View.VISIBLE);
-			ll_login.setVisibility(View.GONE);
+
 			tv_name.setText(RsSharedUtil.getString(getActivity(), Constants.KEY.USER_NAME));
 			tv_phone.setText(RsSharedUtil.getString(getActivity(), Constants.KEY.USER_PHONE));
 //			Picasso.with(getActivity())
@@ -89,14 +87,14 @@ public class Fragment_Mine extends Fragment
 				phone_number.setText(RsSharedUtil.getString(getActivity(), Constants.KEY.USER_PHONE));
 			}
 		}else {
-			ll_login.setVisibility(View.VISIBLE);
+
 			ll_user.setVisibility(View.GONE);
 		}
 
 	}
 
 
-	@OnClick({R.id.ll_work,R.id.ll_password,R.id.ll_bind,R.id.ll_set,R.id.ll_system,R.id.ll_login})
+	@OnClick({R.id.ll_work,R.id.ll_password,R.id.ll_bind,R.id.ll_set,R.id.ll_system})
 	public void onClick(View view) {
 		// TODO Auto-generated method stub
 		Intent  intent=null;
@@ -138,10 +136,7 @@ public class Fragment_Mine extends Fragment
 					intent.putExtra("messages", (Serializable) messages);
 					startActivity(intent);
 					break;
-				case R.id.ll_login:
-					intent=new Intent(getActivity(),LoginActivity.class);
-					startActivity(intent);
-					break;
+
 
 			}
 		}
