@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -146,6 +147,13 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
         spinner.setAdapter(spinner_adapter);
 
+        ViewTreeObserver vto = spinner.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                spinner.setDropDownVerticalOffset(spinner.getHeight());
+            }
+        });
 
 
 
@@ -154,6 +162,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
 
 
     }
+
 
 
     @Override

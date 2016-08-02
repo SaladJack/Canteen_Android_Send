@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -97,6 +98,16 @@ public class Fragment_Distributied extends Fragment
 		return view;
 	}
 
+	private void setSpinnerOffSet(final Spinner spinner){
+		ViewTreeObserver vto = spinner.getViewTreeObserver();
+		vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				spinner.setDropDownVerticalOffset(spinner.getHeight());
+			}
+		});
+	}
+
 	private void initView() {
 		distributed_area=(Spinner) view.findViewById(R.id.distributed_area);
 		distributed_dorm=(Spinner) view.findViewById(R.id.distributed_dorm);
@@ -121,8 +132,10 @@ public class Fragment_Distributied extends Fragment
         //show_distributed_spinner_text
 		area_spinner_adapter = new ArrayAdapter(getActivity(),R.layout.show_time_spinner_text,R.id.spinner_tv,area_spinner_content);
 		area_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
-		
+
 		distributed_area.setAdapter(area_spinner_adapter);
+
+		setSpinnerOffSet(distributed_area);
 		
 		//TODO 配送楼栋Spinner
 		dorm_spinner_content = new ArrayList<String>();
@@ -132,6 +145,7 @@ public class Fragment_Distributied extends Fragment
 		dorm_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 
 		distributed_dorm.setAdapter(dorm_spinner_adapter);
+		setSpinnerOffSet(distributed_dorm);
 
 		//TODO 送达时间Spinner
 		time_spinner_content = new ArrayList<String>();
@@ -141,6 +155,7 @@ public class Fragment_Distributied extends Fragment
 		time_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 
 		distributed_time.setAdapter(time_spinner_adapter);
+		setSpinnerOffSet(distributed_time);
 
 
         distributed_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
