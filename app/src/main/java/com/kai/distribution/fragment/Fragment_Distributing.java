@@ -1,6 +1,7 @@
 package com.kai.distribution.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
@@ -10,10 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,6 +27,7 @@ import com.kai.distribution.R;
 import com.kai.distribution.adapter.Distributing_listview_adapter;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.entity.Distributing;
+import com.kai.distribution.utils.QRUtils;
 import com.kai.distribution.utils.TimeUtils;
 import com.zxing.activity.CaptureActivity;
 
@@ -54,6 +59,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
     private int buildingId = 0;
     private TextView sendArea;
     private ImageButton scan;
+    private ImageButton createQR;
 
 
 
@@ -86,6 +92,29 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         spinner = (Spinner) view.findViewById(R.id.show_listview);
         scan = (ImageButton)view.findViewById(R.id.scan);
         sendArea = (TextView)view.findViewById(R.id.sendArea);
+        createQR = (ImageButton)view.findViewById(R.id.createQR);
+
+        createQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog alertDialog = new android.app.AlertDialog.Builder(getContext()).create();
+                alertDialog.show();
+                Window window = alertDialog.getWindow();
+                window.setContentView(R.layout.qr_layout);
+                ImageView qrImageView = (ImageView) window.findViewById(R.id.qrImage);
+                final Button qrBack = (Button)window.findViewById(R.id.qr_back);
+                Log.e(TAG,""+qrImageView.getWidth());
+                QRUtils.createQRImage(qrImageView,"comfirm");//我这里存储二维码信息
+                qrBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+
+            }
+        });
 
 
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {

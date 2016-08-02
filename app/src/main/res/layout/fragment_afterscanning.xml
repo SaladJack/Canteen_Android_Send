@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/bg_color"
     android:orientation="vertical" >
     <RelativeLayout
         android:id="@+id/rl_toolbar"
@@ -22,16 +22,6 @@
             android:text="配送中"
             />
 
-        <ImageButton
-            android:id="@+id/createQR"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:scaleType="fitXY"
-            android:layout_toLeftOf="@+id/scan"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/creatqr"
-            />
 
 
         <ImageButton
@@ -51,8 +41,8 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/after_scanning_gif"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="20dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
@@ -65,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/after_scanning_gif"
-        android:textSize="25sp"
+        android:textSize="15sp"
         android:textColor="#969696"
         android:text="您已进入下一轮配送," />
 
@@ -76,7 +66,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
-        android:textSize="25sp"
+        android:textSize="15sp"
         android:textColor="#969696"
         android:text="请耐心等待" />
 

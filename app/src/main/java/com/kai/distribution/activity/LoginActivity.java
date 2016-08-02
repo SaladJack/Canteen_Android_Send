@@ -85,21 +85,21 @@ public class LoginActivity extends Activity implements OnClickListener{
 		switch(view.getId())
 		{
 			case R.id.land_Btn:
-				String user=et_user.getText().toString().trim();
-				String password=et_password.getText().toString().trim();
-				if (user.equals("")||password.equals(""))
-				{
-					Toast.makeText(this,"请把信息填写完整！！",Toast.LENGTH_SHORT).show();
-					return;
-				}
-				dialog=new ProgressDialog(this);
-				dialog.setMessage("正在登录...");
-				dialog.setCancelable(true);
-				dialog.show();
-
-				postLogin(user,password);
-//				Intent intent1 = new Intent(this,HomeActivity.class);
-//				startActivity(intent1);
+//				String user=et_user.getText().toString().trim();
+//				String password=et_password.getText().toString().trim();
+//				if (user.equals("")||password.equals(""))
+//				{
+//					Toast.makeText(this,"请把信息填写完整！！",Toast.LENGTH_SHORT).show();
+//					return;
+//				}
+//				dialog=new ProgressDialog(this);
+//				dialog.setMessage("正在登录...");
+//				dialog.setCancelable(true);
+//				dialog.show();
+//
+//				postLogin(user,password);
+				Intent intent1 = new Intent(this,HomeActivity.class);
+				startActivity(intent1);
 				break;
 
 			case R.id.forgetnumber_Tv:
@@ -173,7 +173,6 @@ public class LoginActivity extends Activity implements OnClickListener{
 					}
 				}catch (Exception e) {
 					e.printStackTrace();
-					Log.e(TAG,e.toString());
 				}
 
 			}

@@ -17,7 +17,10 @@ import com.kai.distribution.R;
 import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.utils.DistrbutingUtils;
+import com.orhanobut.logger.Logger;
 import com.zxing.activity.CaptureActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,8 +61,13 @@ public class Fragment_Waiting extends Fragment implements View.OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.fragment_waiting_scan:
-				Intent intent = new Intent(getActivity(), CaptureActivity.class);
-				startActivityForResult(intent, 0);
+//				Intent intent = new Intent(getActivity(), CaptureActivity.class);
+//				startActivityForResult(intent, 0);
+
+				Message msg = Message.obtain();
+				msg.what = Constants.CODE.HAVE_DISTRIBUTING;
+				EventBus.getDefault().post(msg);
+				Logger.e("EventBus  post");
 				break;
 		}
 	}

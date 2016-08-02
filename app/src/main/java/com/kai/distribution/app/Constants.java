@@ -30,8 +30,6 @@ public class Constants {
         public static final String LOGOUT_URL=BASE_URL+"Canteen/worker/logout";
         //认证
         public static final String REGISTER_URL=BASE_URL+"Canteen/worker/setPassword";
-        //系统消息
-
         //已送达订单
         public static final String DISTRIBUTED_URL = BASE_URL+"Canteen/worker/showSendedOrders";
         //绑定手机

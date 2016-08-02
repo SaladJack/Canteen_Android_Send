@@ -64,29 +64,7 @@ public class Fragment_AfterScanning extends Fragment {
         afterScanningGif.setController(draweeController);
 
 
-        ImageButton createQR = (ImageButton)view.findViewById(R.id.createQR);
 
-        createQR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 final AlertDialog alertDialog = new android.app.AlertDialog.Builder(getContext()).create();
-                alertDialog.show();
-                Window window = alertDialog.getWindow();
-                window.setContentView(R.layout.qr_layout);
-                ImageView qrImageView = (ImageView) window.findViewById(R.id.qrImage);
-                final Button qrBack = (Button)window.findViewById(R.id.qr_back);
-  Log.e(TAG,""+qrImageView.getWidth());
-                QRUtils.createQRImage(qrImageView,"comfirm");
-                qrBack.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
-
-
-            }
-        });
 
         return view;
     }

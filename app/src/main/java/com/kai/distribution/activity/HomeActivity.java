@@ -31,6 +31,8 @@ import com.kai.distribution.fragment.Fragment_Distributied;
 import com.kai.distribution.fragment.Fragment_Distributing;
 import com.kai.distribution.fragment.Fragment_Mine;
 import com.kai.distribution.fragment.Fragment_Waiting;
+import com.kai.distribution.utils.RsSharedUtil;
+import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -68,8 +70,6 @@ public class HomeActivity extends FragmentActivity
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onMessageEvent(Message msg) {
-		Log.e(TAG,"onMessageEvent()");
-		Log.e(TAG,"msg.what = " + msg.what);
 		switch (msg.what) {
 
 			case Constants.CODE.HAVE_DISTRIBUTING:
@@ -106,7 +106,6 @@ public class HomeActivity extends FragmentActivity
 
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		EventBus.getDefault().register(this);
 		Fresco.initialize(this);
 		setContentView(R.layout.home_screen);
 
@@ -114,6 +113,13 @@ public class HomeActivity extends FragmentActivity
 
 		initView();
 		initOnClick();
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EventBus.getDefault().register(this);
+		Logger.e("EventBus is registered");
 	}
 
 	private void initView() {
@@ -289,13 +295,7 @@ public class HomeActivity extends FragmentActivity
 				if (TextUtils.isEmpty(res))
 					return;
 				if (res.equals("success")) {
-					Log.e(TAG, "success");
-					Constants.GLOBAL.HAVE_SCANNED = true;
-					Log.e("Click","click : "+Constants.GLOBAL.HAVE_SCANNED );
-					Message msg = Message.obtain();
-					msg.what = Constants.CODE.SCAN;
-					Log.e(TAG,"toAfterScanning");
-					EventBus.getDefault().post(msg);
+					changeStatu(RsSharedUtil.getString(this,Constants.KEY.USER_CODE),RsSharedUtil.getInt(this,Constants.KEY.WORK_ID));
 				} else {
 					Toast.makeText(HomeActivity.this, "二维码数据错误", Toast.LENGTH_SHORT).show();
 				}
@@ -318,9 +318,16 @@ public class HomeActivity extends FragmentActivity
 					public void onResponse(JSONObject response) {
 						String res = null ;
 						try {
+							Logger.json(response.toString());
 							res = response.getString("result");
 							if (res.equals("success")){
-
+								Constants.GLOBAL.HAVE_SCANNED = true;
+								Log.e("Click","click : "+Constants.GLOBAL.HAVE_SCANNED );
+								Message msg = Message.obtain();
+								msg.what = Constants.CODE.SCAN;
+								EventBus.getDefault().post(msg);
+							}else{
+								Toast.makeText(HomeActivity.this, res, Toast.LENGTH_SHORT).show();
 							}
 						} catch (JSONException e) {
 							e.printStackTrace();
@@ -340,17 +347,17 @@ public class HomeActivity extends FragmentActivity
 	@Override
 	protected void onStop() {
 		super.onStop();
+		EventBus.getDefault().unregister(this);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		EventBus.getDefault().unregister(this);
 		//数据重置
 		Constants.GLOBAL.UPDATE_FRAGMENT = false;
 		Constants.GLOBAL.HAVE_SCANNED = false;
 		frag_list.clear();
-		Log.e(TAG,"onDestroy");
+		Logger.e("onDestroy()");
 	}
 }
 
