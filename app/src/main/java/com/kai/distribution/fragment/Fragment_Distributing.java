@@ -3,6 +3,7 @@ package com.kai.distribution.fragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -152,6 +153,12 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
             @Override
             public void onGlobalLayout() {
                 spinner.setDropDownVerticalOffset(spinner.getHeight());
+                ViewTreeObserver obs = spinner.getViewTreeObserver();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    obs.removeOnGlobalLayoutListener(this);
+                } else {
+                    obs.removeGlobalOnLayoutListener(this);
+                }
             }
         });
 

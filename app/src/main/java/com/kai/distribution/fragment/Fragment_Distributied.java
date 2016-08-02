@@ -1,5 +1,6 @@
 package com.kai.distribution.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -104,7 +105,15 @@ public class Fragment_Distributied extends Fragment
 			@Override
 			public void onGlobalLayout() {
 				spinner.setDropDownVerticalOffset(spinner.getHeight());
+				ViewTreeObserver obs = spinner.getViewTreeObserver();
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+					obs.removeOnGlobalLayoutListener(this);
+				} else {
+					obs.removeGlobalOnLayoutListener(this);
+				}
 			}
+
+
 		});
 	}
 
