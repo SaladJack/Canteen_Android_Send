@@ -23,6 +23,7 @@ import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
 import com.kai.distribution.utils.NetResultUtils;
 import com.kai.distribution.utils.RsSharedUtil;
+import com.orhanobut.logger.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -114,7 +115,8 @@ public class Binded_Phone_Activity extends Activity
 				Log.e(TAG,"response: " + response.toString());
 				try {
 					String res = response.getString("result");
-					if (res.equals("checked")) {
+					Logger.e(res);
+					if (res.equals("success")) {
 						Toast.makeText(Binded_Phone_Activity.this, "手机解除绑定成功", Toast.LENGTH_SHORT).show();
 						RsSharedUtil.putString(Binded_Phone_Activity.this, Constants.KEY.USER_PHONE, "");
 						final AlertDialog alertDialog2 = new AlertDialog.Builder(Binded_Phone_Activity.this).create();

@@ -20,6 +20,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -31,11 +32,13 @@ import com.kai.distribution.app.MyApplication;
 import com.kai.distribution.entity.Distributed;
 import com.kai.distribution.entity.Distributing;
 import com.kai.distribution.utils.RsSharedUtil;
+import com.orhanobut.logger.Logger;
 
 import org.apache.http.protocol.RequestUserAgent;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +51,7 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
     private int resourceId;
     private ViewHolder holder;
     private Drawable drawable;
+    private List<ViewHolder> viewHolders = new ArrayList<>();
 
     public Distributing_listview_adapter(Context context, int resourceId, List<Distributing> objects) {
         super(context, resourceId, objects);
@@ -70,69 +74,18 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
     private final int YELLO_DELIVERED = 3;
     private final int YELLO_ISOUT = 4;
 
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-
-                case NOYELLO_DELIVERED:
-                    holder.is_confirm.setVisibility(View.GONE);
-                    holder.is_out.setVisibility(View.GONE);
-                    holder.delivered.setVisibility(View.VISIBLE);
-                    holder.delivered.setEnabled(false);
 
 
-                    holder.which_people.setEnabled(false);
-                    holder.which_people.setTextColor(0xFFC7C6C6);
-                    holder.which_people.setCompoundDrawables(drawable,null,null,null);
-                    break;
-                case NOYELLO_ISOUT:
-                    holder.is_out.setVisibility(View.GONE);
-                    holder.is_confirm.setVisibility(View.GONE);
-                    holder.deliverToBuilding.setVisibility(View.VISIBLE);
-                    holder.deliverToBuilding.setEnabled(false);
-
-
-                    holder.which_people.setEnabled(false);
-                    holder.which_people.setTextColor(0xFFC7C6C6);
-                    holder.which_people.setCompoundDrawables(drawable,null,null,null);
-
-                    break;
-                case YELLO_DELIVERED:
-                    holder.is_confirm.setVisibility(View.GONE);
-                    holder.is_out.setVisibility(View.GONE);
-                    holder.delivered.setVisibility(View.VISIBLE);
-                    holder.delivered.setEnabled(false);
-
-                    holder.which_people.setEnabled(false);
-                    holder.which_people.setTextColor(0xFFC7C6C6);
-
-                    holder.which_people.setCompoundDrawables(drawable,null,null,null);
-                    showCardDialog();
-
-                    break;
-                case YELLO_ISOUT:
-                    holder.is_out.setVisibility(View.GONE);
-                    holder.is_confirm.setVisibility(View.GONE);
-                    holder.deliverToBuilding.setVisibility(View.VISIBLE);
-
-                    holder.which_people.setEnabled(false);
-                    holder.which_people.setTextColor(0xFFC7C6C6);
-                    holder.which_people.setCompoundDrawables(drawable,null,null,null);
-                    showCardDialog();
-
-                    break;
-
-            }
-        }
-    };
 
     @Override
-    public View getView(int position, View view, ViewGroup viewgroup) {
+    public View getView(final int position, View view, ViewGroup viewgroup) {
         final Distributing distributing = getItem(position);
+        Logger.e("getView position:  " + position);
+
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.takeoutfodd_content, viewgroup, false);
             holder = new ViewHolder();
+            viewHolders.add(holder);
             holder.which_area = (TextView) view.findViewById(R.id.which_area);
             holder.which_people = (TextView) view.findViewById(R.id.which_people);
             holder.is_out = (Button) view.findViewById(R.id.is_out);
@@ -143,7 +96,6 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-
 
         holder.which_area.setText(distributing.getBuildingName());
         holder.which_people.setText(distributing.getStuName());
@@ -188,17 +140,18 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
                         confirmOrder(RsSharedUtil.getString(context,Constants.KEY.USER_CODE),
                                      RsSharedUtil.getInt(context,Constants.KEY.WORK_ID),
                                      distributing.getOrderId(),
-                                     STATU_ISOUT);
+                                     STATU_ISOUT,viewHolders.get(position));
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
                         alertDialog.dismiss();
+
                         confirmOrder(RsSharedUtil.getString(context,Constants.KEY.USER_CODE),
                                 RsSharedUtil.getInt(context,Constants.KEY.WORK_ID),
                                 distributing.getOrderId(),
-                                STATU_ISOUT);
+                                STATU_ISOUT,viewHolders.get(position));
                     }
                 });
             }
@@ -216,16 +169,23 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
                 window.setContentView(R.layout.confirm_dialog);
                 Button confirm=(Button) window.findViewById(R.id.confirm);
 
+                Logger.e(viewHolders.get(position).toString());
+
                 confirm.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View view) {
                         // TODO Auto-generated method stub
+
+                        Logger.e("确认按钮被点击");
                         alertDialog.dismiss();
+
+
+
                         confirmOrder(RsSharedUtil.getString(context,Constants.KEY.USER_CODE),
                                 RsSharedUtil.getInt(context,Constants.KEY.WORK_ID),
                                 distributing.getOrderId(),
-                                STATU_DELIVERED);
+                                STATU_DELIVERED,viewHolders.get(position));
                     }
                 });
             }
@@ -235,7 +195,7 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
 
 
 
-    static class ViewHolder {
+    public  static class ViewHolder {
         public TextView which_area, which_people;
         public Button is_out, is_confirm;
         public ImageButton delivered;
@@ -243,7 +203,7 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
     }
 
 
-    private void confirmOrder(String code, int workerId, int orderId, final int statu){
+    private void confirmOrder(String code, int workerId, int orderId, final int statu,final ViewHolder viewHolder){
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("code",code);
@@ -267,7 +227,7 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            Log.e("confirm",response.toString());
+                            Logger.json(response.toString());
                             String res = response.getString("result");
                             if (res.equals("confirmsuccess")){
                                 int flag = response.getInt("flag");
@@ -275,23 +235,71 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
                                 " statu":订单状态（int）（5：确认送达，10：学生外出）
                                 " flag":添加黄牌的标记（int）(0:不添加黄牌;1:添加黄牌)
                                 */
+                                Logger.e("statu:   "+ statu);
                                if(flag == 0 && statu == 5){
-                                   Message msg = Message.obtain();
-                                   msg.what = NOYELLO_DELIVERED;
-                                   mHandler.sendMessage(msg);
+//                                   Message msg = Message.obtain();
+//                                   msg.what = NOYELLO_DELIVERED;
+//                                   mHandler.sendMessage(msg);
+
+                                   viewHolder.is_confirm.setVisibility(View.GONE);
+                                   viewHolder.is_out.setVisibility(View.GONE);
+                                   viewHolder.delivered.setVisibility(View.VISIBLE);
+                                   viewHolder.delivered.setEnabled(false);
+
+
+                                   viewHolder.which_people.setEnabled(false);
+                                   viewHolder.which_people.setTextColor(0xFFC7C6C6);
+                                   viewHolder.which_people.setCompoundDrawables(drawable,null,null,null);
                                }else if (flag == 0 && statu == 10){
-                                   Message msg = Message.obtain();
-                                   msg.what = NOYELLO_ISOUT;
-                                   mHandler.sendMessage(msg);
+//                                   Message msg = Message.obtain();
+//                                   msg.what = NOYELLO_ISOUT;
+//                                   mHandler.sendMessage(msg);
+
+                                   viewHolder.is_out.setVisibility(View.GONE);
+                                   viewHolder.is_confirm.setVisibility(View.GONE);
+                                   viewHolder.deliverToBuilding.setVisibility(View.VISIBLE);
+                                   viewHolder.deliverToBuilding.setEnabled(false);
+
+
+                                   viewHolder.which_people.setEnabled(false);
+                                   viewHolder.which_people.setTextColor(0xFFC7C6C6);
+                                   viewHolder.which_people.setCompoundDrawables(drawable,null,null,null);
                                }else if (flag == 1 && statu == 5){
-                                   Message msg = Message.obtain();
-                                   msg.what = YELLO_DELIVERED;
-                                   mHandler.sendMessage(msg);
+//                                   Message msg = Message.obtain();
+//                                   msg.what = YELLO_DELIVERED;
+//                                   mHandler.sendMessage(msg);
+
+                                   viewHolder.is_confirm.setVisibility(View.GONE);
+                                   Logger.e(viewHolder.toString());
+                                   Logger.e("是否可见"+(viewHolder.is_confirm.getVisibility()==View.VISIBLE));
+                                   viewHolder.is_out.setVisibility(View.GONE);
+                                   viewHolder.delivered.setVisibility(View.VISIBLE);
+                                   viewHolder.delivered.setEnabled(false);
+
+                                   viewHolder.which_people.setEnabled(false);
+                                   viewHolder.which_people.setTextColor(0xFFC7C6C6);
+
+                                   viewHolder.which_people.setCompoundDrawables(drawable,null,null,null);
+                                   showCardDialog();
+
                                }else if (flag == 1 && statu == 10){
-                                   Message msg = Message.obtain();
-                                   msg.what = YELLO_ISOUT;
-                                   mHandler.sendMessage(msg);
+//                                   Message msg = Message.obtain();
+//                                   msg.what = YELLO_ISOUT;
+//                                   mHandler.sendMessage(msg);
+
+                                   viewHolder.is_out.setVisibility(View.GONE);
+                                   viewHolder.is_confirm.setVisibility(View.GONE);
+                                   viewHolder.deliverToBuilding.setVisibility(View.VISIBLE);
+
+                                   viewHolder.which_people.setEnabled(false);
+                                   viewHolder.which_people.setTextColor(0xFFC7C6C6);
+                                   viewHolder.which_people.setCompoundDrawables(drawable,null,null,null);
+                                   showCardDialog();
                                }
+                            }
+                            else if (res.equals("confirfail")){
+
+                                Toast.makeText(context, "确认失败", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -301,7 +309,7 @@ public class Distributing_listview_adapter extends ArrayAdapter<Distributing> {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                    Logger.e(error.toString());
             }
         });
 

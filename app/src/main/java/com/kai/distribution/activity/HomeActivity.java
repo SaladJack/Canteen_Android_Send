@@ -145,7 +145,14 @@ public class HomeActivity extends FragmentActivity
 		
 		frag_list=new ArrayList<Fragment>();
 		frag_list.add(fragment_distributied);
-		frag_list.add(fragment_waiting);
+
+		Logger.d("判断是否已扫码" + RsSharedUtil.getBoolean(this,Constants.KEY.USER_HAVESCANNED,false));
+		if (RsSharedUtil.getBoolean(this,Constants.KEY.USER_HAVESCANNED,false)){
+			frag_list.add(fragment_afterscanning);
+			Logger.d("afterscanning");
+		}else {
+			frag_list.add(fragment_waiting);
+		}
 		frag_list.add(fragment_mine);
 
 
@@ -285,6 +292,8 @@ public class HomeActivity extends FragmentActivity
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.e(TAG,"onActivityResult()");
 		super.onActivityResult(requestCode, resultCode, data);
+
+		Logger.e(""+resultCode);
 		switch (resultCode) {
 			case Constants.REFRESH_REQUEST:
 				fragment_mine.initView();
@@ -295,6 +304,7 @@ public class HomeActivity extends FragmentActivity
 				if (TextUtils.isEmpty(res))
 					return;
 				if (res.equals("success")) {
+					RsSharedUtil.putBoolean(this,Constants.KEY.USER_HAVESCANNED,true);
 					changeStatu(RsSharedUtil.getString(this,Constants.KEY.USER_CODE),RsSharedUtil.getInt(this,Constants.KEY.WORK_ID));
 				} else {
 					Toast.makeText(HomeActivity.this, "二维码数据错误", Toast.LENGTH_SHORT).show();
@@ -317,12 +327,12 @@ public class HomeActivity extends FragmentActivity
 					@Override
 					public void onResponse(JSONObject response) {
 						String res = null ;
+						Logger.e(response.toString());
 						try {
 							Logger.json(response.toString());
 							res = response.getString("result");
 							if (res.equals("success")){
 								Constants.GLOBAL.HAVE_SCANNED = true;
-								Log.e("Click","click : "+Constants.GLOBAL.HAVE_SCANNED );
 								Message msg = Message.obtain();
 								msg.what = Constants.CODE.SCAN;
 								EventBus.getDefault().post(msg);

@@ -31,6 +31,7 @@ import com.kai.distribution.utils.RsSharedUtil;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,6 +70,14 @@ public class Fragment_Mine extends Fragment
 				    RsSharedUtil.getInt(getActivity(),Constants.KEY.WORK_ID));
 
 		return view;
+	}
+
+	@Override
+	public void onStart() {
+		if (TextUtils.isEmpty(RsSharedUtil.getString(getActivity(),Constants.KEY.USER_PHONE))){
+			phone_number.setText("未绑定手机号");
+		}
+		super.onStart();
 	}
 
 	//返回该Fragment需要刷新界面 public不能更改

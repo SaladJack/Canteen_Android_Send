@@ -61,14 +61,14 @@ public class Fragment_Waiting extends Fragment implements View.OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.fragment_waiting_scan:
-//				Intent intent = new Intent(getActivity(), CaptureActivity.class);
-//				startActivityForResult(intent, 0);
-
-				Message msg = Message.obtain();
-				msg.what = Constants.CODE.HAVE_DISTRIBUTING;
-				EventBus.getDefault().post(msg);
-				Logger.e("EventBus  post");
+				Intent intent = new Intent(getActivity(), CaptureActivity.class);
+				startActivityForResult(intent, 0);
 				break;
+//				Message msg = Message.obtain();
+//				msg.what = Constants.CODE.HAVE_DISTRIBUTING;
+//				EventBus.getDefault().post(msg);
+//				Logger.e("EventBus  post");
+//				break;
 		}
 	}
 //

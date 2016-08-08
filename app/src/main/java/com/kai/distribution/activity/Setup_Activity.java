@@ -24,6 +24,7 @@ import com.kai.distribution.app.MyApplication;
 import com.kai.distribution.utils.DataCleanManager;
 import com.kai.distribution.utils.NetResultUtils;
 import com.kai.distribution.utils.RsSharedUtil;
+import com.orhanobut.logger.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -203,7 +204,7 @@ public class Setup_Activity extends Activity implements OnClickListener
 			public void onErrorResponse(VolleyError error) {
 				// TODO Auto-generated method stub
 				dialog.dismiss();
-				Log.d("logoutError", "error");
+				Logger.e(error.toString());
 				Toast.makeText(Setup_Activity.this, "服务器错误，退出失败！！", Toast.LENGTH_SHORT).show();
 			}
 

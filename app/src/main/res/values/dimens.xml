@@ -33,5 +33,6 @@
 
     <dimen name="spinner_top_textSize">20sp</dimen>
     <dimen name="spinner_textSize">25sp</dimen>
+    <dimen name="spinner_small_textSize">20sp</dimen>
 
 </resources>

@@ -12,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
+import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
@@ -47,10 +48,14 @@ public class DistrbutingUtils {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+                            Logger.json(response.toString());
                             String res = response.getJSONObject(0).getString("result");
                             if(res.equals("success")) {
                                 Log.e("Fragment_Distributing", response.toString());
+
+
                                 Constants.GLOBAL.unparsedNewDatas = response;
+//                                Constants.GLOBAL.unparsedNewDatas = Constants.getTestResponse();
                                 manageData(context);//处理数据
                             }else if (res.equals("noorder")){
                                 Toast.makeText(context, "没有订单数据", Toast.LENGTH_SHORT).show();
@@ -102,7 +107,7 @@ public class DistrbutingUtils {
             Constants.GLOBAL.distributingList.addAll(Constants.GLOBAL.newDatas);
 //            listview_adapter.notifyDataSetChanged();
 
-            Log.e(TAG," "+Constants.GLOBAL.HAVE_SCANNED);
+            Logger.e("haveScanned" + Constants.GLOBAL.HAVE_SCANNED);
             if (Constants.GLOBAL.HAVE_SCANNED && Constants.GLOBAL.DISTRIBUTING_NUM > 0) {
                 Log.e(TAG,"sendArea:"+ Constants.GLOBAL.newDatas.get(0).getSendArea());
                 Message msg = Message.obtain();

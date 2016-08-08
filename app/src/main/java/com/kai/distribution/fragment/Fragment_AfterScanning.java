@@ -45,12 +45,12 @@ public class Fragment_AfterScanning extends Fragment {
             @Override
             public void run() {
                 if (getActivity()!=null) {
-                    DistrbutingUtils.getDistributedListByHTTP(getActivity().getApplicationContext(), 0);
+                    DistrbutingUtils.getDistributedListByHTTP(getContext(), 0);
                 }else{
                     timer.cancel();
                 }
             }
-        },5000,60000);//一分钟请求一次网络
+        },5000,10000);//10s请求一次网络
 
 
         view=inflater.inflate(R.layout.fragment_afterscanning, container,false);

@@ -1,5 +1,6 @@
 package com.kai.distribution.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,9 +12,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -36,6 +39,7 @@ import com.kai.distribution.utils.JsonToBean;
 import com.kai.distribution.utils.NetResultUtils;
 import com.kai.distribution.utils.RsSharedUtil;
 import com.kai.distribution.utils.TimeUtils;
+import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,7 +82,6 @@ public class Fragment_Distributied extends Fragment
 	private String old_year;
 	private String old_month;
 	private String old_day;
-	private int pageIndex = 1;
 	private int sendAreId = 0;
 	private int buildingtype = 0 ;
 	private long sendTimeBegin = 0l;
@@ -88,7 +91,25 @@ public class Fragment_Distributied extends Fragment
 	private List<Distributed> distributedList = new ArrayList<>();
     private String current_area = "全部",current_dorm = "全部",current_time = "全部" ;
 
+	private Drawable drawable_selected,drawable_normal;
+	private ImageView choose;
+
     private static final String TAG = "Fragment_Distributied";
+	private boolean spClicked = false;
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		drawable_selected = getResources().getDrawable(R.drawable.choose2_selected);
+		drawable_selected.setBounds(0,0, drawable_selected.getMinimumWidth(), drawable_selected.getMinimumHeight());
+
+		drawable_normal = getResources().getDrawable(R.drawable.choose2_normal);
+		drawable_normal.setBounds(0,0, drawable_normal.getMinimumWidth(), drawable_normal.getMinimumHeight());
+		if (listview_adapter != null) {
+			listview_adapter.notifyDataSetChanged();
+		}
+	}
+
 
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -135,11 +156,14 @@ public class Fragment_Distributied extends Fragment
 		mPtrFrameLayout.setHeaderView(header);
 		mPtrFrameLayout.addPtrUIHandler(header);
 
+
+		choose = (ImageView) view.findViewById(R.id.choose);
+
 		//TODO 配送区域Spinner
 		area_spinner_content = new ArrayList<String>();
         area_spinner_content.add("全部");
-        //show_distributed_spinner_text
-		area_spinner_adapter = new ArrayAdapter(getActivity(),R.layout.show_time_spinner_text,R.id.spinner_tv,area_spinner_content);
+        //show_distributing_spinner_text
+		area_spinner_adapter = new ArrayAdapter(getActivity(),R.layout.show_distributied_spinner_text,R.id.spinner_tv,area_spinner_content);
 		area_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 
 		distributed_area.setAdapter(area_spinner_adapter);
@@ -150,7 +174,7 @@ public class Fragment_Distributied extends Fragment
 		dorm_spinner_content = new ArrayList<String>();
         dorm_spinner_content.add("全部");
 
-		dorm_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_time_spinner_text,R.id.spinner_tv,dorm_spinner_content);
+		dorm_spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributied_spinner_text,R.id.spinner_tv,dorm_spinner_content);
 		dorm_spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
 
 		distributed_dorm.setAdapter(dorm_spinner_adapter);
@@ -172,7 +196,6 @@ public class Fragment_Distributied extends Fragment
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 current_area = (String)distributed_area.getSelectedItem();
                 selected(current_area,current_dorm,current_time);
-
             }
 
             @Override
@@ -180,6 +203,12 @@ public class Fragment_Distributied extends Fragment
 
             }
         });
+
+
+
+
+
+
         distributed_dorm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -192,6 +221,8 @@ public class Fragment_Distributied extends Fragment
 
             }
         });
+
+
         distributed_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -279,10 +310,12 @@ public class Fragment_Distributied extends Fragment
 				if(calendar_open==true)
 				{
 					distributed_calendar.setVisibility(View.VISIBLE);
+					show_distributed_calendar.setCompoundDrawables(null,null,drawable_selected,null);
 					calendar_open=false;
 				}else if(calendar_open==false)
 				{
 					distributed_calendar.setVisibility(View.GONE);
+					show_distributed_calendar.setCompoundDrawables(null,null,drawable_normal,null);
 					calendar_open=true;
 				}
 				break;
@@ -493,8 +526,10 @@ public class Fragment_Distributied extends Fragment
 				old_day = distributed_calendar_day.getText().toString();
 
 				distributed_calendar.setVisibility(View.GONE);
+				show_distributed_calendar.setCompoundDrawables(null,null,drawable_normal,null);
 				calendar_open = false;
 				mPtrFrameLayout.autoRefresh(true);
+				distributed_show_list.smoothScrollToPosition(0);
 				break;
 				
 			case R.id.distributed_calendar_today:
@@ -514,6 +549,7 @@ public class Fragment_Distributied extends Fragment
 				distributed_calendar_day.setText(old_day);
 
 				distributed_calendar.setVisibility(View.GONE);
+				show_distributed_calendar.setCompoundDrawables(null,null,drawable_normal,null);
 				calendar_open = false;
 
 				break;
@@ -527,6 +563,7 @@ public class Fragment_Distributied extends Fragment
 			@Override
 			public void run() {
 				Log.e(TAG,"postDelayed");
+				distributed_show_list.smoothScrollToPosition(0);
 				mPtrFrameLayout.autoRefresh(true);
 			}
 		}, 1);
@@ -538,7 +575,8 @@ public class Fragment_Distributied extends Fragment
 
 			@Override
 			public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-				return true;
+				return checkContentCanBePulledDown(frame, content, header);
+
 			}
 
 			@Override
@@ -550,23 +588,19 @@ public class Fragment_Distributied extends Fragment
 						//添加刷新事件
 						getDistributedListByHTTP();
 						mPtrFrameLayout.refreshComplete();
+
 					}
 				}, 1000);
 			}
 		});
 
+
+
 	}
 
 
 
-	@Override
-	public void onStart() {
-		super.onStart();
 
-		if (listview_adapter != null) {
-			listview_adapter.notifyDataSetChanged();
-		}
-	}
 
 
 /*
@@ -611,10 +645,9 @@ public class Fragment_Distributied extends Fragment
                     @Override
                     public void onResponse(org.json.JSONObject response) {
                         try {
-                            Log.e(TAG,response.toString());
+							Logger.json(response.toString());
 							String res = response.getString("result");
 							if (res.equals("success")) {
-								Log.e(TAG,"success");
 								unparsedNewDatas = response.getJSONArray("array");
 								manageData();//处理数据
 							}if (res.equals("no orders")){
@@ -632,7 +665,9 @@ public class Fragment_Distributied extends Fragment
 
             @Override
             public void onErrorResponse(VolleyError error) {
-
+				Toast.makeText(getActivity(), "网络错误", Toast.LENGTH_SHORT).show();
+				distributedList.clear();
+				listview_adapter.notifyDataSetChanged();
             }
 
         }
@@ -722,9 +757,37 @@ public class Fragment_Distributied extends Fragment
         }
 
 
-		Log.e(TAG,"size: "+distributedList.size());
+
         listview_adapter.notifyDataSetChanged();
 
     }
+
+	private boolean canChildScrollUp(View view) {
+		if (android.os.Build.VERSION.SDK_INT < 14) {
+			if (view instanceof AbsListView) {
+				final AbsListView absListView = (AbsListView) view;
+				return absListView.getChildCount() > 0
+						&& (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0)
+						.getTop() < absListView.getPaddingTop());
+			} else {
+				return view.getScrollY() > 0;
+			}
+		} else {
+			return view.canScrollVertically(-1);
+		}
+	}
+
+	/**
+	 * Default implement for check can perform pull to refresh
+	 *
+	 * @param frame
+	 * @param content
+	 * @param header
+	 * @return
+	 */
+	private boolean checkContentCanBePulledDown(PtrFrameLayout frame, View content, View header) {
+		return !canChildScrollUp(content);
+	}
+
 
 }

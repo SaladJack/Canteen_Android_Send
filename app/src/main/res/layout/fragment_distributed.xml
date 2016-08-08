@@ -21,7 +21,8 @@
 			android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:drawableRight="@mipmap/choose2_normal"
+			android:gravity="center"
+            android:drawableRight="@drawable/choose2_normal"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 

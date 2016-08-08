@@ -30,6 +30,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/app_name" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -46,6 +47,7 @@
         <activity
             android:launchMode="singleInstance"
             android:name=".activity.HomeActivity">
+
         </activity>
 
         <activity

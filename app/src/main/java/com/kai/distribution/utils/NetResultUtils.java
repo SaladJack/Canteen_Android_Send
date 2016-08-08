@@ -72,6 +72,7 @@ public class NetResultUtils {
         clearData(activity);
     }
 
+
     private static void clearData(Activity activity){
         RsSharedUtil.putString(activity, Constants.KEY.USER_ACCOUNT,"");
         RsSharedUtil.putString(activity, Constants.KEY.USER_NAME, "");
@@ -79,6 +80,7 @@ public class NetResultUtils {
         RsSharedUtil.putString(activity, Constants.KEY.USER_PHOTO,"");
         RsSharedUtil.putString(activity, Constants.KEY.USER_PHONE, "");
         RsSharedUtil.putInt(activity, Constants.KEY.WORK_ID, 0);
+        RsSharedUtil.putBoolean(activity,Constants.KEY.USER_HAVESCANNED,false);
         if (HomeActivity.mHomeActivity != null) {
             HomeActivity.mHomeActivity.finish();
         }

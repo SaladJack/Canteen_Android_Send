@@ -45,5 +45,6 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
     compile 'com.facebook.fresco:fresco:0.10.0'
     compile 'com.facebook.fresco:animated-gif:0.10.0'
+    compile 'com.orhanobut:logger:1.15'
 
 }

@@ -1,6 +1,7 @@
 package com.kai.distribution.activity;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.util.Log;
@@ -45,6 +46,7 @@ public class Work_Clipboard_Activity extends Activity
 
     private String time;
     private static final String TAG = "Work_Clipboard_Activity";
+	private Drawable drawable_selected,drawable_normal;
 
 
 
@@ -61,6 +63,13 @@ public class Work_Clipboard_Activity extends Activity
                         RsSharedUtil.getInt(Work_Clipboard_Activity.this,Constants.KEY.WORK_ID),
                         TimeUtils.getDayMillis(time),
                         TimeUtils.getMonthMillis(time));
+
+
+		drawable_selected = getResources().getDrawable(R.drawable.choose2_selected);
+		drawable_selected.setBounds(0,0, drawable_selected.getMinimumWidth(), drawable_selected.getMinimumHeight());
+
+		drawable_normal = getResources().getDrawable(R.drawable.choose2_normal);
+		drawable_normal.setBounds(0,0, drawable_normal.getMinimumWidth(), drawable_normal.getMinimumHeight());
 
 	}
 
@@ -143,10 +152,12 @@ public class Work_Clipboard_Activity extends Activity
 				if(calendar_open==false)
 				{
 					clipboard_calendar.setVisibility(View.VISIBLE);
+					show_calendar_date.setCompoundDrawables(null,null,drawable_selected,null);
 					calendar_open=true;
 				}else if(calendar_open==true)
 				{
 					clipboard_calendar.setVisibility(View.GONE);
+					show_calendar_date.setCompoundDrawables(null,null,drawable_normal,null);
 					calendar_open=false;
 				}
 				break;

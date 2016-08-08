@@ -31,6 +31,7 @@ import com.kai.distribution.app.Constants;
 import com.kai.distribution.entity.Distributing;
 import com.kai.distribution.utils.QRUtils;
 import com.kai.distribution.utils.TimeUtils;
+import com.orhanobut.logger.Logger;
 import com.zxing.activity.CaptureActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -106,7 +107,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
                 ImageView qrImageView = (ImageView) window.findViewById(R.id.qrImage);
                 final Button qrBack = (Button)window.findViewById(R.id.qr_back);
                 Log.e(TAG,""+qrImageView.getWidth());
-                QRUtils.createQRImage(qrImageView,"comfirm");//我这里存储二维码信息
+                QRUtils.createQRImage(qrImageView,"comfirm");//这里存储二维码信息
                 qrBack.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -144,7 +145,7 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
 
 
 
-        spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributed_spinner_text, R.id.spinner_tv, spinner_content);
+        spinner_adapter = new ArrayAdapter(getActivity(), R.layout.show_distributing_spinner_text, R.id.spinner_tv, spinner_content);
         spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
         spinner.setAdapter(spinner_adapter);
 
@@ -291,6 +292,8 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
                 }
             }
         }
+
+        Logger.e("size: "+distributingList.size());
 
         listview_adapter.notifyDataSetChanged();
     }

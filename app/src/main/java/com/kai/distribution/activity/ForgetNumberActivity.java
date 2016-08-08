@@ -3,6 +3,8 @@ package com.kai.distribution.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -19,9 +21,16 @@ import com.android.volley.toolbox.AppStringRequest;
 import com.kai.distribution.R;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
+import com.orhanobut.logger.Logger;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ForgetNumberActivity extends Activity 
 {
@@ -29,8 +38,24 @@ public class ForgetNumberActivity extends Activity
 	private Button send_identifynumber_Btn,forgetnumber_to_next_Btn;
 	private ImageButton return_to_mainactivity_Btn;
 	private Intent intent;
-
+	private Timer timer;
+	private int time = 100;
 	private static final String TAG = "ForgetNumberActivity";
+
+
+
+	private Handler handler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			if (time >= 0) {
+				send_identifynumber_Btn.setText("等待" + time + "秒");
+			}else if(time<0&&time==100){
+				send_identifynumber_Btn.setText("发送验证码");
+				send_identifynumber_Btn.setEnabled(true);
+			}
+		}
+	};
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +67,12 @@ public class ForgetNumberActivity extends Activity
 		
 		initView();
 		initOnClick();
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+
 	}
 
 	private void initView() {
@@ -75,6 +106,23 @@ public class ForgetNumberActivity extends Activity
 				if (TextUtils.isEmpty(forgetnumber_phone_Et.getText().toString())){
 					Toast.makeText(ForgetNumberActivity.this, "请输入手机号", Toast.LENGTH_SHORT).show();
 				} else{
+					send_identifynumber_Btn.setEnabled(false);
+					timer = new Timer();
+					timer.schedule(new TimerTask() {
+						@Override
+						public void run() {
+							if (time >= 0) {
+								handler.sendEmptyMessage(time);
+								--time;
+							}else{
+								handler.sendEmptyMessage(time);
+								time = 100;
+								timer.cancel();
+							}
+						}
+					},0,1000);
+
+
 					sendMessage(forgetnumber_phone_Et.getText().toString());
 				}
 
@@ -128,4 +176,22 @@ public class ForgetNumberActivity extends Activity
 		MyApplication.getRequestQueue().add(stringRequest);
 	}
 
+
+
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if (timer !=null){
+			timer.cancel();
+		}
+		handler.removeMessages(time);
+		handler = null;
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+
+	}
 }

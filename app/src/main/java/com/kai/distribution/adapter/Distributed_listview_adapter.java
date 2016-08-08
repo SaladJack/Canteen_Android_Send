@@ -59,7 +59,6 @@ public class Distributed_listview_adapter extends ArrayAdapter<Distributed> {
 
         viewHolder.distributed_person_name.setText(distributed.getStuName());
         viewHolder.distributed_which_area.setText(distributed.getAddress());
-
         viewHolder.distributed_good_number.setText("[" + distributed.getGoodNumber() + "份]");
         viewHolder.distributed_which_time.setText(String.valueOf(TimeUtils.MillisToString(distributed.getRealTime())));
         if (distributed.getFlag() == 1){

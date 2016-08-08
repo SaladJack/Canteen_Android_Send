@@ -3,6 +3,8 @@ package com.kai.distribution.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -41,7 +43,18 @@ public class Bind_Phone_Activity extends Activity
     private boolean haveSendedMsg = false; //短信是否已发送
     private boolean haveClicked = false;
     private Timer timer;
-
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (time >= 0) {
+                waiting_code.setText("等待" + time + "秒");
+            } else {
+                waiting_code.setText("发送验证码");
+                waiting_code.setEnabled(true);
+            }
+        }
+    };
 
     private static final String TAG = "Bind_Phone_Activity";
 
@@ -102,12 +115,11 @@ public class Bind_Phone_Activity extends Activity
                             @Override
                             public void run() {
                                 if (time >= 0) {
-                                    waiting_code.setText("等待" + time + "秒");
+                                    handler.sendEmptyMessage(time);
                                     --time;
-                                }else{
+                                }else if(time<0&&time==100) {
                                     time = 100;
-                                    waiting_code.setText("接收验证码");
-                                    waiting_code.setEnabled(true);
+                                    handler.sendEmptyMessage(time);
                                     haveClicked = false;
                                     timer.cancel();
                                 }

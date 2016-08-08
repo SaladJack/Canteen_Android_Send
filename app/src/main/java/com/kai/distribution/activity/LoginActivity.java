@@ -28,6 +28,7 @@ import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
 import com.kai.distribution.entity.UserInfo;
 import com.kai.distribution.utils.RsSharedUtil;
+import com.orhanobut.logger.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +52,7 @@ public class LoginActivity extends Activity implements OnClickListener{
         super.onCreate(savedInstanceState);
 		if(!RsSharedUtil.getString(LoginActivity.this,Constants.KEY.USER_CODE).equals(""))
 		{
-			Log.e("debug","跳过登陆界面");
+			Logger.e("跳过登录界面");
 			Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
 			startActivity(intent);
 			finish();
@@ -85,21 +86,21 @@ public class LoginActivity extends Activity implements OnClickListener{
 		switch(view.getId())
 		{
 			case R.id.land_Btn:
-//				String user=et_user.getText().toString().trim();
-//				String password=et_password.getText().toString().trim();
-//				if (user.equals("")||password.equals(""))
-//				{
-//					Toast.makeText(this,"请把信息填写完整！！",Toast.LENGTH_SHORT).show();
-//					return;
-//				}
-//				dialog=new ProgressDialog(this);
-//				dialog.setMessage("正在登录...");
-//				dialog.setCancelable(true);
-//				dialog.show();
-//
-//				postLogin(user,password);
-				Intent intent1 = new Intent(this,HomeActivity.class);
-				startActivity(intent1);
+				String user=et_user.getText().toString().trim();
+				String password=et_password.getText().toString().trim();
+				if (user.equals("")||password.equals(""))
+				{
+					Toast.makeText(this,"请把信息填写完整！！",Toast.LENGTH_SHORT).show();
+					return;
+				}
+				dialog=new ProgressDialog(this);
+				dialog.setMessage("正在登录...");
+				dialog.setCancelable(true);
+				dialog.show();
+
+				postLogin(user,password);
+//				Intent intent1 = new Intent(this,HomeActivity.class);
+//				startActivity(intent1);
 				break;
 
 			case R.id.forgetnumber_Tv:
@@ -132,16 +133,14 @@ public class LoginActivity extends Activity implements OnClickListener{
 
 			@Override
 			public void onResponse(String response) {
-				Log.e(TAG,"login: "+response);
 				dialog.dismiss();
 
 				try {
 
 					JSONObject jsonObject = new JSONObject(response);
 					String res = jsonObject.getString("result");
-					Log.e(TAG,res);
+					Logger.e(response.toString());
 					if (res.equals("alreadylogined")) {
-						Log.e(TAG,"alreadylogined:::");
 						Toast.makeText(LoginActivity.this, "配送员已经登录", Toast.LENGTH_LONG).show();
 					}else if(res.equals("success")){
 						Log.e(TAG,"success");
@@ -160,16 +159,15 @@ public class LoginActivity extends Activity implements OnClickListener{
 							intent.setClass(LoginActivity.this,HomeActivity.class);
 							startActivity(intent);
 							finish();
-						}else if(res.equals("no such a worker")){
-							Log.e(TAG,"no such a worker");
-							Toast.makeText(LoginActivity.this, "账号不存在", Toast.LENGTH_SHORT).show();
-						}else if(res.equals("wrongformat")){
-							Log.e(TAG,"wrongformat");
-							Toast.makeText(LoginActivity.this, "账号或密码错误", Toast.LENGTH_SHORT).show();
-						}else {
-							Log.e(TAG,"else");
-							Toast.makeText(LoginActivity.this, res, Toast.LENGTH_SHORT).show();
 						}
+					}
+					else if(res.equals("no such a worker")){
+						Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+					}else if(res.equals("wrongformat")){
+						Log.e(TAG,"wrongformat");
+						Toast.makeText(LoginActivity.this, "账号或密码错误", Toast.LENGTH_SHORT).show();
+					}else {
+						Toast.makeText(LoginActivity.this, res, Toast.LENGTH_SHORT).show();
 					}
 				}catch (Exception e) {
 					e.printStackTrace();
@@ -182,8 +180,8 @@ public class LoginActivity extends Activity implements OnClickListener{
 			public void onErrorResponse(VolleyError error) {
 				// TODO Auto-generated method stub
 				dialog.dismiss();
-				Log.d("loginError",error.toString());
-				Toast.makeText(LoginActivity.this,"登录失败！！",Toast.LENGTH_SHORT).show();
+				Logger.e(error.toString());
+				Toast.makeText(LoginActivity.this,"网络错误！！",Toast.LENGTH_SHORT).show();
 			}
 
 		});
@@ -194,6 +192,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onDestroy()
 	{
+		Logger.e(TAG+":onDestroy");
 		MyApplication.getRequestQueue().cancelAll("LoginActivity");
 		super.onDestroy();
 	}

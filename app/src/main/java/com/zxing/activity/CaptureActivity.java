@@ -31,6 +31,7 @@ import com.kai.distribution.R;
 import com.kai.distribution.activity.HomeActivity;
 import com.kai.distribution.app.Constants;
 import com.kai.distribution.app.MyApplication;
+import com.orhanobut.logger.Logger;
 import com.zxing.camera.CameraManager;
 import com.zxing.decoding.CaptureActivityHandler;
 import com.zxing.decoding.InactivityTimer;
@@ -144,9 +145,13 @@ public class CaptureActivity extends Activity implements Callback {
 			Toast.makeText(CaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
 		}else {
 //			System.out.println("Result:"+resultString);
+
+
 			Intent resultIntent = new Intent();
 			Bundle bundle = new Bundle();
 			bundle.putString("result", resultString);
+
+			Logger.e(resultString);
 			resultIntent.putExtras(bundle);
 			this.setResult(RESULT_OK, resultIntent);
 		}
