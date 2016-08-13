@@ -149,19 +149,20 @@ public class Fragment_Distributing extends Fragment implements View.OnClickListe
         spinner_adapter.setDropDownViewResource(R.layout.spinner_item_layout);
         spinner.setAdapter(spinner_adapter);
 
-        ViewTreeObserver vto = spinner.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                spinner.setDropDownVerticalOffset(spinner.getHeight());
-                ViewTreeObserver obs = spinner.getViewTreeObserver();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    obs.removeOnGlobalLayoutListener(this);
-                } else {
-                    obs.removeGlobalOnLayoutListener(this);
-                }
-            }
-        });
+//        ViewTreeObserver vto = spinner.getViewTreeObserver();
+//        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                spinner.setDropDownVerticalOffset(spinner.getHeight());
+//                ViewTreeObserver obs = spinner.getViewTreeObserver();
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                    obs.removeOnGlobalLayoutListener(this);
+//                } else {
+//
+//     obs.removeGlobalOnLayoutListener(this);
+//                }
+//            }
+//        });
 
 
 

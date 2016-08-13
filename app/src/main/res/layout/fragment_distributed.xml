@@ -268,7 +268,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical" >
-            
+
             <TextView
                 android:layout_width="wrap_content"
 				android:layout_height="@dimen/spinner_top_height"
@@ -279,8 +279,8 @@
 				android:textColor="@color/spinner_top_color"
 				android:textSize="@dimen/spinner_top_textSize"
                 />
-            
-            <Spinner 
+
+            <Spinner
                 android:id="@+id/distributed_dorm"
                 android:layout_width="match_parent"
 				android:layout_height="@dimen/spinner_height"
@@ -295,7 +295,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical" >
-            
+
             <TextView
                 android:layout_width="wrap_content"
 				android:layout_height="@dimen/spinner_top_height"
@@ -316,8 +316,12 @@
 				/>
 
 
+
         </LinearLayout>
     </LinearLayout>
+
+
+
 
 
 	<com.chanven.lib.cptr.PtrFrameLayout
@@ -332,13 +336,46 @@
 		cube_ptr:ptr_pull_to_fresh="false"
 		cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
 		cube_ptr:ptr_resistance="1.8" >
-    <ListView
-        android:id="@+id/distributed_show_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-		tools:listitem="@layout/distributed_takeoutfood"
-        android:background="#ffffff" 
-        android:divider="@null"
-        />
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			<ListView
+				android:id="@+id/distributed_show_list"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				tools:listitem="@layout/distributed_takeoutfood"
+				android:background="#ffffff"
+				android:divider="@null"
+				/>
+			<RelativeLayout
+				android:id="@+id/empty_layout"
+				android:background="#f0f0f0"
+				android:layout_centerInParent="true"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:visibility="gone">
+				<ImageView
+					android:id="@+id/empty_layout_bike"
+					android:layout_centerInParent="true"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@mipmap/bike14"/>
+				<TextView
+					android:layout_below="@+id/empty_layout_bike"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="30dp"
+					android:text="该日期无已送达订单"
+					android:textSize="15sp"
+					android:gravity="center"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+			</RelativeLayout>
+		</LinearLayout>
+
+
+
+
 	</com.chanven.lib.cptr.PtrFrameLayout>
 </LinearLayout>
+

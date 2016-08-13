@@ -25,8 +25,8 @@ public class Constants {
     public static final int REFRESH_REQUEST = 1;
 
     public static  class URL{
-//        public static final String BASE_URL="http://milk345.imwork.net:13607/";
-public static final String BASE_URL="http://192.168.0.106:8080/";
+        //        public static final String BASE_URL="http://milk345.imwork.net:13607/";
+        public static final String BASE_URL="http://192.168.0.112:8080/";
 
         //登录
         public static final String LOGIN_URL=BASE_URL+"Canteen/worker/login";
@@ -90,66 +90,7 @@ public static final String BASE_URL="http://192.168.0.106:8080/";
     }
 
 
-    public static String json = "[\n" +
-            "    {\n" +
-            "        \"statu\": 4,\n" +
-            "        \"stuName\": \"北区的罗伦\",\n" +
-            "        \"phoneNumber\": \"15602288161\",\n" +
-            "        \"address\": \"北八\",\n" +
-            "        \"roomNum\": \"\",\n" +
-            "        \"sendArea\": \"6区\",\n" +
-            "        \"sendTimeBegin\": 1470536700000,\n" +
-            "        \"sendTimeEnd\": 1470537000000,\n" +
-            "        \"realTime\": 0,\n" +
-            "        \"orderId\": 219,\n" +
-            "        \"goodsNumber\": 3,\n" +
-            "        \"buildingId\": 113,\n" +
-            "        \"buildingName\": \"北八\",\n" +
-            "        \"result\": \"success\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"statu\": 4,\n" +
-            "        \"stuName\": \"北区的罗伦\",\n" +
-            "        \"phoneNumber\": \"15602288161\",\n" +
-            "        \"address\": \"北八\",\n" +
-            "        \"roomNum\": \"\",\n" +
-            "        \"sendArea\": \"6区\",\n" +
-            "        \"sendTimeBegin\": 1470536700000,\n" +
-            "        \"sendTimeEnd\": 1470537000000,\n" +
-            "        \"realTime\": 0,\n" +
-            "        \"orderId\": 220,\n" +
-            "        \"goodsNumber\": 3,\n" +
-            "        \"buildingId\": 113,\n" +
-            "        \"buildingName\": \"北八\",\n" +
-            "        \"result\": \"success\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"statu\": 4,\n" +
-            "        \"stuName\": \"北区的罗伦\",\n" +
-            "        \"phoneNumber\": \"15602288161\",\n" +
-            "        \"address\": \"北八\",\n" +
-            "        \"roomNum\": \"\",\n" +
-            "        \"sendArea\": \"6区\",\n" +
-            "        \"sendTimeBegin\": 1470536700000,\n" +
-            "        \"sendTimeEnd\": 1470537000000,\n" +
-            "        \"realTime\": 0,\n" +
-            "        \"orderId\": 221,\n" +
-            "        \"goodsNumber\": 3,\n" +
-            "        \"buildingId\": 113,\n" +
-            "        \"buildingName\": \"北八\",\n" +
-            "        \"result\": \"success\"\n" +
-            "    }\n" +
-            "]";
-    public static JSONArray testResponse;
 
-    public static JSONArray getTestResponse(){
-        try {
-           testResponse =  new JSONArray(json);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return testResponse;
-    }
     public static String getDeviceID(Context context){
         TelephonyManager tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
         String DEVICE_ID = tm.getDeviceId();

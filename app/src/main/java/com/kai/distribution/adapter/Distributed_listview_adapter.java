@@ -70,6 +70,8 @@ public class Distributed_listview_adapter extends ArrayAdapter<Distributed> {
         return view;
     }
 
+
+
     static class ViewHolder {
         public TextView distributed_person_name;
         public TextView distributed_which_area;

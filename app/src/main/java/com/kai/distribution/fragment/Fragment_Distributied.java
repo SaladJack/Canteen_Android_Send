@@ -191,7 +191,7 @@ public class Fragment_Distributied extends Fragment
 		setSpinnerOffSet(distributed_time);
 
 
-        distributed_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+		distributed_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 current_area = (String)distributed_area.getSelectedItem();
@@ -237,6 +237,7 @@ public class Fragment_Distributied extends Fragment
         });
 
 		distributed_show_list=(ListView) view.findViewById(R.id.distributed_show_list);
+		distributed_show_list.setEmptyView(view.findViewById(R.id.empty_layout));
 		listview_adapter = new Distributed_listview_adapter(getContext(), R.layout.distributed_takeoutfood, distributedList);
 		distributed_show_list.setAdapter(listview_adapter);
 		
@@ -651,7 +652,7 @@ public class Fragment_Distributied extends Fragment
 								unparsedNewDatas = response.getJSONArray("array");
 								manageData();//处理数据
 							}if (res.equals("no orders")){
-								Toast.makeText(getContext(), "所选日期无订单", Toast.LENGTH_SHORT).show();
+//								Toast.makeText(getContext(), "所选日期无订单", Toast.LENGTH_SHORT).show();
 								distributedList.clear();
 								listview_adapter.notifyDataSetChanged();
 							}else{

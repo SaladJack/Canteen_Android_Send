@@ -50,7 +50,7 @@ public class Fragment_AfterScanning extends Fragment {
                     timer.cancel();
                 }
             }
-        },5000,10000);//10s请求一次网络
+        },2000,5000);//10s请求一次网络
 
 
         view=inflater.inflate(R.layout.fragment_afterscanning, container,false);
